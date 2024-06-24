@@ -1,0 +1,28 @@
+Arreglo original: 2,6,10,15,20,
+ ----- Insercion en primer elemento. -----
+Ingrese el numero para cambiar: 25     
+25,2,6,10,15,
+----- Insertar elemento en un indice especifico -----
+Ingrese el numero para cambiar: 59
+Ingrese el indice en el cual cambiar: 1
+25,59,6,10,15,
+ -----Insertar elemento un indice antes -----
+Ingrese el numero para cambiar: 69
+Ingrese el indice en el cual cambiar: 3
+25,59,69,6,10,
+ -----Insertar elemento un indice despues -----
+Ingrese el numero para cambiar: 14
+Ingrese el indice en el cual cambiar: 1
+25,59,14,69,6,
+ ----- Eliminar elemento -----
+Ingrese el indice en el cual cambiar: 3
+25,59,14,6,6,
+ ----- Buscar elemento por el dato. -----
+Ingrese el numero a buscar: 14
+el numero 14 se encuentra en el indice 2
+ ----- Buscar elemento por el indice -----
+Ingrese el indice para buscar el elemento: 0
+El numero es: 25
+
+...Program finished with exit code 0
+Press ENTER to exit console.
