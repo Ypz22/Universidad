@@ -1,0 +1,403 @@
+---
+title: "Portafolio de trabajos parcial 2 - Estadística 13485"
+author: "Jefferson David Yépez Morán"
+date: "2024-07-03"
+output: html_document
+---
+
+```{css style settings, echo = FALSE}
+blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 14px;
+    border-left: 5px solid #eee;
+}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Temario de clases
+## 1. Intervalos de confianza
+
+## Intervalos de confianza para una población
+### Media
+### Proporción
+### Varianza
+
+## Intervalos de confianza para dos poblaciones 
+### Diferencia de Medias
+### Diferencia de Proporciones
+### Razón de Varianzas
+
+## Tamaños muestrales
+
+## Resolución de Ejercicios propuestos
+
+__9.4__ Una empresa de material eléctrico fabrica bombillas de luz que tienen una duración aproximadamente distribuida de forma normal, con una desviación estándar de 40 horas. Si una muestra de 30 bombillas tiene una duración promedio de 780 horas, encuentre un intervalo de confi anza de 96% para la media de la población de todas las bombillas que produce esta empresa.
+
+__9.6__ Las estaturas de una muestra aleatoria de 50 estudiantes de una universidad muestra una media de
+174.5 centímetros y una desviación estándar de 6.9 centímetros.
+a) Construya un intervalo de confi anza de 98% para la estatura media de todos los estudiantes de la universidad.
+b) ¿Qué podemos afi rmar con 98% de confi anza sobre
+el tamaño posible de nuestro error, si estimamos que
+la estatura media de todos los estudiante de la universidad es 174.5 centímetros?
+
+__9.13__ Una máquina produce piezas metálicas de forma cilíndrica. Se toma una muestra de las piezas y los diámetros son 1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01 y 1.03 centímetros. Encuentre un intervalo de confianza de 99% para el diámetro medio de las piezas de esta máquina. Suponga una distribución aproximadamente normal.
+
+__9.16__ Una muestra aleatoria de 12 graduadas de cierta escuela secretarial teclearon un promedio de 79.3 palabras por minuto, con una desviación estándar de 7.8 palabras por minuto. Suponiendo una distribución normal para el número de palabras que se teclea por minuto, encuentre un intervalo de confi anza de 95% para el número promedio de palabras tecleadas por todas las graduadas de esta escuela.
+
+__9.35__ Una muestra aleatoria de tamaño n1 = 25 que
+se toma de una población normal con una desviación
+es tándar σ1 = 5 tiene una media 1 = 80. Una segunda
+muestra aleatoria de tamaño n2 = 36, que se toma de
+una población normal diferente con una desviación estándar σ2 = 3, tiene una media 2 = 75. Encuentre un intervalo de confi anza de 94% para µ1 – µ2.
+
+__9.38__ En un proceso químico por lotes, se comparan los efectos de dos catalizadores sobre la potencia de la reacción del proceso. Se preparó una muestra de 12 lotes con el uso del catalizador 1 y se obtuvo una muestra de 10 lotes con el catalizador 2. Los 12 lotes para los que se utilizó el catalizador 1 dieron un rendi miento promedio de 85 con una desviación estándar muestral de 4; en tanto que para la segunda muestra el promedio fue de 81 con una desviación estándar muestral de 5.
+Encuentre un intervalo de confi anza de 90% para la
+diferencia entre las medias poblacionales, suponiendo que las poblaciones se distribuyen de forma aproximadamente normal con varianzas iguales.
+
+__9.43__ Una compañía de taxis trata de decidir si comprar neumáticos de la marca A o de la B para su fl otilla de taxis. Para estimar la diferencia de las dos marcas, se lleva a cabo un experimento utilizando 12 neumáticos de cada marca. Los neumáticos se utilizan hasta que se desgastan. Los resultados son: 
+Marca A: 
+x1 = 36,300 kilómetros,
+s1 = 5,000 kilómetros.
+Marca B: 
+x2 = 38,100 kilómetros,
+s2 = 6,100 kilómetros.
+
+Calcule un intervalo de confi anza de 95% para µA − µB, suponiendo que las poblaciones se distribuyen de forma aproximadamente normal. Puede no supo ner que las varianzas son iguales.
+
+__9.45__ El gobierno otorga fondos para los departamentos de agricultura de 9 universidades para probar las capacidades de rendimiento de dos nuevas varie dades de trigo. Cada variedad se siembra en parcelas de área igual en cada universidad y el rendimiento, en kilogramos por parcela, se registra como sigue:
+
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+
+<table>
+    <tr>
+        <th>Variedad</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>38</td>
+        <td>23</td>
+        <td>35</td>
+        <td>41</td>
+        <td>44</td>
+        <td>29</td>
+        <td>37</td>
+        <td>31</td>
+        <td>38</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>45</td>
+        <td>25</td>
+        <td>31</td>
+        <td>38</td>
+        <td>50</td>
+        <td>33</td>
+        <td>36</td>
+        <td>40</td>
+        <td>43</td>
+    </tr>
+</table>
+<br>
+
+Encuentre un intervalo de confi anza de 95% para la
+diferencia media entre los rendimientos de las dos variedades, suponiendo que las diferencias de rendimiento se distribuyen de forma aproximadamente normal. Explique por qué en este problema se necesita el pareamiento.
+
+__9.47__ A continuación se listan 10 de las 431 compañías estudiadas en la revista Fortune (marzo de 1997). Se listan las utilidades totales para los 10 años anteriores a 1996 y también para 1996. Encuentre un intervalo de confianza de 95% para el cambio promedio en el porcentaje de utilidad de los inversionistas.
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+
+<table>
+    <tr>
+        <th>Compañia</th>
+        <th>1986-1996</th>
+        <th>1996</th>
+    </tr>
+    <tr>
+        <td>Coca-Cola</td>
+        <td>29.8%</td>
+        <td>43.3%</td>
+    </tr>
+    <tr>
+        <td>Mirage Resorts</td>
+        <td>27.9%</td>
+        <td>25.4%</td>
+    </tr>
+    <tr>
+        <td>Merck</td>
+        <td>22.1%</td>
+        <td>24.0%</td>
+    </tr>
+    <tr>
+        <td>Microsoft</td>
+        <td>44.5%</td>
+        <td>88.3%</td>
+    </tr>
+    <tr>
+        <td>Johnson & Johnson</td>
+        <td>22.2%</td>
+        <td>18.1%</td>
+    </tr>
+    <tr>
+        <td>Intel</td>
+        <td>43.8%</td>
+        <td>131.2%</td>
+    </tr>
+    <tr>
+        <td>Pfizer</td>
+        <td>21.7%</td>
+        <td>34.0%</td>
+    </tr>
+    <tr>
+        <tdProcter & Gamble</td>
+        <td>21.9%</td>
+        <td>32.1%</td>
+    </tr>
+    <tr>
+        <td>Berkshire Hathaway</td>
+        <td>28.3%</td>
+        <td>6.2%</td>
+    </tr>
+    <tr>
+        <td>S&P 500</td>
+        <td>11.8%</td>
+        <td>20.3%</td>
+    </tr>
+</table>
+<br>
+
+__9.44__ Con referencia al ejercicio 9.43, encuentre un intervalo de confi anza de 99% para µ1 − µ2, si se asigna al azar un neumático de cada compañía a las ruedas traseras de 8 taxis y se registran las siguientes distancias, en kilómetros:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+
+<table>
+    <tr>
+        <th>Taxi</th>
+        <th>Marca A</th>
+        <th>Marca B</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>34.400</td>
+        <td>36.700</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>45.500</td>
+        <td>46.800</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>36.700</td>
+        <td>37.700</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>32.000</td>
+        <td>31.100</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>48.400</td>
+        <td>47.800</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>32.800</td>
+        <td>36.400</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>38.100</td>
+        <td>38.900</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>30.100</td>
+        <td>31.500</td>
+    </tr>
+</table>
+<br>
+Suponga que las diferencias de las distancias se distribuyen de forma aproximadamente normal.
+
+__9.49__ Se considera usar dos marcas diferentes de pintura látex. El tiempo de secado en horas se mide en especímenes de muestras del uso de las dos pinturas. Se seleccionan 15 especímenes de cada una y los tiempos de secado son los siguientes:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+
+<table>
+    <tr>
+        <th>Pintura A</th>
+        <th>Pintura B</th>
+    </tr>
+    <tr>
+        <td>3.5 | 2.7 | 3.9 | 4.2 | 3.6 | 2.7 | 3.3 | 5.2 | 4.2 | 2.9 | 4.4 | 5.2 | 4.0 | 4.1 | 3.4</td>
+        <td>4.7 | 3.9 | 4.5 | 5.5 | 4.0 | 5.3 | 4.3 | 6.0 | 5.2 | 3.7 | 5.5 | 6.2 | 5.1 | 5.4 | 4.8</td>
+    </tr>
+</table>
+<br>
+
+Suponga que el tiempo de secado se distribuye normalmente con σA = σB. Encuentre un intervalo de confi anza en µB − µA, donde µA y µB sean los tiempos medios de secado.
+
+__9.53__ En una muestra aleatoria de 1000 viviendas en cierta ciudad, se encuentra que 228 se calientan con petróleo. Encuentre el intervalo de confi anza de 99% para la proporción de viviendas en esta ciudad que se calientan con petróleo.
+
+__9.56__ Un genetista se interesa en la proporción de hombres africanos que tienen cierto trastorno sanguíneo menor. En una muestra aleatoria de 100 hombres africanos, se encuentra que 24 lo padecen.
+a) Calcule un intervalo de confi anza de 99% para la
+proporción de hombres africanos que tienen este
+trastorno sanguíneo.
+b) ¿Qué se puede asegurar con 99% de confi anza acerca de la posible magnitud de nuestro error, si estimamos que la proporción de hombres africanos con
+dicho trastorno sanguíneo es 0.24?
+
+__9.60__ ¿Qué tan grande se requiere que sea la muestra en el ejercicio 9.53, si deseamos tener una confi anza de 99% de que nuestra proporción de la muestra estará dentro del 0.05 de la proporción real de casas en esta ciudad que se calientan con petróleo? 
+
+__9.66__ Se encuestan 10 escuelas de ingeniería en Estados Unidos. La muestra contiene 250 ingenieros eléctricos, donde 80 son mujeres; y 175 ingenieros químicos, donde 40 son mujeres. Calcule un intervalo de confi anza de 90% para la diferencia entre la proporción de mujeres en estos dos campos de la ingeniería. ¿Hay una diferencia signifi cativa entre las dos proporciones? 
+
+__9.69__ Una encuesta a 1000 estudiantes concluye que 274 eligen al equipo profesional de béisbol A como su equipo favorito. En 1991, se realizó la misma encuesta con 760 estudiantes. Concluyó que 240 de ellos también eligieron al equipo A como su favorito. Calcule un intervalo de confi anza de 95% para la diferencia entre la proporción de estudiantes que favorecen al equipo A entre las dos encuestas. ¿Hay una diferencia signifi cativa?
+
+__9.71__ Un fabricante de baterías para automóvil afi rma que sus baterías durarán, en promedio, 3 años con una varianza de 1 año. Si 5 de estas baterías tienen duraciones de 1.9, 2.4, 3.0, 3.5 y 4.2 años, construya un intervalo de confi anza de 95% para σ2 y decida si es válida la afi rmación del fabricante de que σ2 = 1. Suponga que la población de duraciones de las baterías se distribuye de forma aproximadamente normal.
+
+__9.72__ Una muestra aleatoria de 20 estudiantes obtuvo una media de = 72 y una varianza de s2 = 16 en un examen universitario de colocación en matemáticas. Suponga que las califi caciones se distribuyen normalmente y construya un intervalo de confi anza de 98% para σ2.
+
+__9.74__ Construya un intervalo de confianza de 99%
+para σ2 en el ejercicio 9.13 de la página 286.
+
+__9.80__ Construya un intervalo de confianza de 95%
+para σ2A/σ2B en el ejercicio 9.49 de la página 299. ¿Debería utilizarse la suposición de la varianza igual?
+
+## 2. Contrastes de hipótesis
+
+## Contrastes de hipótesis para una población
+### Media
+### Proporción
+### Varianza
+
+## Contrastes de hipótesis para dos poblaciones 
+### Diferencia de Medias
+### Diferencia de Proporciones
+### Razón de Varianzas
+
+## Potencia de una prueba
+
+
+## Resolución de Ejercicios propuestos
+__10.4__
+__10.12__
+__10.20__
+__10.22__
+__10.25__
+__10.30__
+__10.32__
+__10.35__
+__10.36__
+__10.41__
+__10.42__
+__10.44__
+__10.46__
+__10.50__
+__10.60__
+__10.64__
+__10.66__
+__10.69__
+__10.73__
+__10.76__
+
+
+
+
+
+
+
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+
+<table>
+    <tr>
+        <th>x</th>
+        <th>0</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+    </tr>
+    <tr>
+        <td>f(x)</td>
+        <td>0.41</td>
+        <td>0.37</td>
+        <td>0.16</td>
+        <td>0.05</td>
+        <td>0.01</td>
+    </tr>
+</table>
+<br>
+
+## Consultas:
+
+
+
