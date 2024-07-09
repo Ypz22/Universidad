@@ -238,27 +238,27 @@ __9.4__ Una empresa de material eléctrico fabrica bombillas de luz que tienen u
 
 ```{r}
 # Datos proporcionados
-n <- 30
-media_muestral <- 780
-desviacion_estandar_poblacion <- 40
-nivel_confianza <- 0.96
+n = 30
+media_muestral = 780
+desviacion_estandar_poblacion = 40
+nivel_confianza = 0.96
 
 # Nivel de significancia
-alpha <- 1 - nivel_confianza
+alpha = 1 - nivel_confianza
 alpha
 # Valor crítico (z-score) para un intervalo de confianza del 96%
-z_score <- qnorm(1 - alpha / 2)
+z_score = qnorm(1 - alpha / 2)
 z_score
 # Error estándar
-error_estandar <- desviacion_estandar_poblacion / sqrt(n)
+error_estandar = desviacion_estandar_poblacion / sqrt(n)
 error_estandar
 # Margen de error
-margen_error <- z_score * error_estandar
+margen_error = z_score * error_estandar
 margen_error
 # Intervalo de confianza
-limite_inferior <- media_muestral - margen_error
+limite_inferior = media_muestral - margen_error
 limite_inferior
-limite_superior <- media_muestral + margen_error
+limite_superior = media_muestral + margen_error
 limite_superior
 
 ```
@@ -269,27 +269,27 @@ __9.6__ Las estaturas de una muestra aleatoria de 50 estudiantes de una universi
 a) Construya un intervalo de confi anza de 98% para la estatura media de todos los estudiantes de la universidad.
 ```{r}
 # Datos proporcionados
-n3 <- 50
-media_muestral3 <- 174.5
-desviacion_estandar_muestra3 <- 6.9
-nivel_confianza3 <- 0.98
+n3 = 50
+media_muestral3 = 174.5
+desviacion_estandar_muestra3 = 6.9
+nivel_confianza3 = 0.98
 
 # Nivel de significancia
-alpha3 <- 1 - nivel_confianza3
+alpha3 = 1 - nivel_confianza3
 alpha3
 # Valor crítico (z-score) para un intervalo de confianza del 98%
-z_score3 <- qnorm(1 - alpha3 / 2)
+z_score3 = qnorm(1 - alpha3 / 2)
 z_score3
 # Error estándar
-error_estandar3 <- desviacion_estandar_muestra3 / sqrt(n3)
+error_estandar3 = desviacion_estandar_muestra3 / sqrt(n3)
 error_estandar3
 # Margen de error
-margen_error3 <- z_score3 * error_estandar3
+margen_error3 = z_score3 * error_estandar3
 margen_error3
 # Intervalo de confianza
-limite_inferior3 <- media_muestral3 - margen_error3
+limite_inferior3 = media_muestral3 - margen_error3
 limite_inferior3
-limite_superior3 <- media_muestral3 + margen_error3
+limite_superior3 = media_muestral3 + margen_error3
 limite_superior3
 
 
@@ -302,22 +302,22 @@ la estatura media de todos los estudiante de la universidad es 174.5 centímetro
 
 ```{r}
 # Datos proporcionados
-n3 <- 50
-media_muestral3 <- 174.5
-desviacion_estandar_muestra3 <- 6.9
-nivel_confianza3 <- 0.98
+n3 = 50
+media_muestral3 = 174.5
+desviacion_estandar_muestra3 = 6.9
+nivel_confianza3 = 0.98
 
 # Nivel de significancia
-alpha3 <- 1 - nivel_confianza3
+alpha3 = 1 - nivel_confianza3
 alpha3
 # Valor crítico (z-score) para un intervalo de confianza del 98%
-z_score3 <- qnorm(1 - alpha3 / 2)
+z_score3 = qnorm(1 - alpha3 / 2)
 z_score3
 # Error estándar
-error_estandar3 <- desviacion_estandar_muestra3 / sqrt(n3)
+error_estandar3 = desviacion_estandar_muestra3 / sqrt(n3)
 error_estandar3
 # Margen de error
-margen_error3 <- z_score3 * error_estandar3
+margen_error3 = z_score3 * error_estandar3
 margen_error3
 ```
 
@@ -326,28 +326,28 @@ __9.13__ Una máquina produce piezas metálicas de forma cilíndrica. Se toma un
 
 ```{r}
 # Datos proporcionados
-muestra <- c(1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01, 1.03)
-n <- length(muestra)
-media_muestral <- mean(muestra)
-desviacion_estandar_muestra <- sd(muestra)
-nivel_confianza <- 0.99
+muestra = c(1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01, 1.03)
+n = length(muestra)
+media_muestral = mean(muestra)
+desviacion_estandar_muestra = sd(muestra)
+nivel_confianza = 0.99
 
 # Nivel de significancia
-alpha <- 1 - nivel_confianza
+alpha = 1 - nivel_confianza
 alpha
 # Valor crítico (t-score) para un intervalo de confianza del 99%
-t_score <- qt(1 - alpha / 2, df = n - 1)
+t_score = qt(1 - alpha / 2, df = n - 1)
 t_score
 # Error estándar
-error_estandar <- desviacion_estandar_muestra / sqrt(n)
+error_estandar = desviacion_estandar_muestra / sqrt(n)
 error_estandar
 # Margen de error
-margen_error <- t_score * error_estandar
+margen_error = t_score * error_estandar
 margen_error
 # Intervalo de confianza
-limite_inferior <- media_muestral - margen_error
+limite_inferior = media_muestral - margen_error
 limite_inferior
-limite_superior <- media_muestral + margen_error
+limite_superior = media_muestral + margen_error
 limite_superior
 
 ```
@@ -357,27 +357,27 @@ __9.16__ Una muestra aleatoria de 12 graduadas de cierta escuela secretarial tec
 
 ```{r}
 # Datos proporcionados
-n <- 12
-media_muestral <- 79.3
-desviacion_estandar_muestra <- 7.8
-nivel_confianza <- 0.95
+n = 12
+media_muestral = 79.3
+desviacion_estandar_muestra = 7.8
+nivel_confianza = 0.95
 
 # Nivel de significancia
-alpha <- 1 - nivel_confianza
+alpha = 1 - nivel_confianza
 alpha
 # Valor crítico (t-score) para un intervalo de confianza del 95%
-t_score <- qt(1 - alpha / 2, df = n - 1)
+t_score = qt(1 - alpha / 2, df = n - 1)
 t_score
 # Error estándar
-error_estandar <- desviacion_estandar_muestra / sqrt(n)
+error_estandar = desviacion_estandar_muestra / sqrt(n)
 error_estandar
 # Margen de error
-margen_error <- t_score * error_estandar
+margen_error = t_score * error_estandar
 margen_error
 # Intervalo de confianza
-limite_inferior <- media_muestral - margen_error
+limite_inferior = media_muestral - margen_error
 limite_inferior
-limite_superior <- media_muestral + margen_error
+limite_superior = media_muestral + margen_error
 limite_superior
 ```
 
@@ -390,26 +390,26 @@ una población normal diferente con una desviación estándar σ2 = 3, tiene una
 
 ```{r}
 # Datos proporcionados
-n1 <- 25  # Tamaño de la primera muestra
-xbar1 <- 80  # Media de la primera muestra
-sigma1 <- 5  # Desviación estándar de la primera muestra
+n1 = 25  # Tamaño de la primera muestra
+xbar1 = 80  # Media de la primera muestra
+sigma1 = 5  # Desviación estándar de la primera muestra
 
-n2 <- 36  # Tamaño de la segunda muestra
-xbar2 <- 75  # Media de la segunda muestra
-sigma2 <- 3  # Desviación estándar de la segunda muestra
+n2 = 36  # Tamaño de la segunda muestra
+xbar2 = 75  # Media de la segunda muestra
+sigma2 = 3  # Desviación estándar de la segunda muestra
 
 # Nivel de confianza y nivel de significancia
-alpha <- 0.06  # Nivel de significancia (1 - nivel de confianza)
+alpha = 0.06  # Nivel de significancia (1 - nivel de confianza)
 alpha
-conf_level <- 1 - alpha  # Nivel de confianza
+conf_level = 1 - alpha  # Nivel de confianza
 conf_level
 # Valor crítico de la distribución normal estándar
-Z <- qnorm(1 - alpha/2)
+Z = qnorm(1 - alpha/2)
 Z
 # Intervalo de confianza para la diferencia de medias
-limite_inferior <- (xbar1 - xbar2) - Z * sqrt((sigma1^2 / n1) + (sigma2^2 / n2))
+limite_inferior = (xbar1 - xbar2) - Z * sqrt((sigma1^2 / n1) + (sigma2^2 / n2))
 limite_inferior
-limite_superior  <- (xbar1 - xbar2) + Z * sqrt((sigma1^2 / n1) + (sigma2^2 / n2))
+limite_superior  = (xbar1 - xbar2) + Z * sqrt((sigma1^2 / n1) + (sigma2^2 / n2))
 limite_superior 
 ```
 
@@ -420,33 +420,33 @@ diferencia entre las medias poblacionales, suponiendo que las poblaciones se dis
 
 ```{r}
 # Datos proporcionados
-n1 <- 12
-xbar1 <- 85
-s1 <- 4
+n1 = 12
+xbar1 = 85
+s1 = 4
 
-n2 <- 10
-xbar2 <- 81
-s2 <- 5
+n2 = 10
+xbar2 = 81
+s2 = 5
 
 # Nivel de confianza
-conf_level <- 0.90
+conf_level = 0.90
 conf_level
 # Grados de libertad
-df <- n1 + n2 - 2
+df = n1 + n2 - 2
 df
 # Varianza combinada
-sp2 <- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / df
+sp2 = ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / df
 sp2
 # Error estándar de la diferencia de medias
-error_estandar  <- sqrt(sp2 * (1/n1 + 1/n2))
+error_estandar  = sqrt(sp2 * (1/n1 + 1/n2))
 error_estandar 
 # Valor crítico t para el nivel de confianza del 90%
-t_critical <- qt((1 + conf_level) / 2, df)
+t_critical = qt((1 + conf_level) / 2, df)
 t_critical
 # Intervalo de confianza
-limite_inferior <- (xbar1 - xbar2) - t_critical * error_estandar 
+limite_inferior = (xbar1 - xbar2) - t_critical * error_estandar 
 limite_inferior
-limite_superior  <- (xbar1 - xbar2) + t_critical * error_estandar 
+limite_superior  = (xbar1 - xbar2) + t_critical * error_estandar 
 limite_superior 
 ```
 
@@ -463,34 +463,34 @@ Calcule un intervalo de confi anza de 95% para µA − µB, suponiendo que las p
 
 ```{r}
 # Datos proporcionados
-n1 <- 12
-xbar1 <- 36300
-s1 <- 5000
+n1 = 12
+xbar1 = 36300
+s1 = 5000
 
-n2 <- 12
-xbar2 <- 38100
-s2 <- 6100
+n2 = 12
+xbar2 = 38100
+s2 = 6100
 
 # Nivel de confianza
-conf_level <- 0.95
+conf_level = 0.95
 conf_level
 # Grados de libertad
-df_num <- ((s1^2 / n1) + (s2^2 / n2))^2
+df_num = ((s1^2 / n1) + (s2^2 / n2))^2
 df_num
-df_denom <- ((s1^2 / n1)^2 / (n1 - 1)) + ((s2^2 / n2)^2 / (n2 - 1))
+df_denom = ((s1^2 / n1)^2 / (n1 - 1)) + ((s2^2 / n2)^2 / (n2 - 1))
 df_denom
-df <- df_num / df_denom
+df = df_num / df_denom
 df
 # Error estándar de la diferencia de medias
-error_estandar  <- sqrt((s1^2 / n1) + (s2^2 / n2))
+error_estandar  = sqrt((s1^2 / n1) + (s2^2 / n2))
 error_estandar 
 # Valor crítico t para el nivel de confianza del 95% y los grados de libertad df
-t_critical <- qt((1 + conf_level) / 2, df)
+t_critical = qt((1 + conf_level) / 2, df)
 t_critical
 # Intervalo de confianza
-limite_inferior  <- (xbar1 - xbar2) - t_critical * error_estandar 
+limite_inferior  = (xbar1 - xbar2) - t_critical * error_estandar 
 limite_inferior 
-limite_superior  <- (xbar1 - xbar2) + t_critical * error_estandar 
+limite_superior  = (xbar1 - xbar2) + t_critical * error_estandar 
 limite_superior 
 ```
 
@@ -553,6 +553,23 @@ __9.45__ El gobierno otorga fondos para los departamentos de agricultura de 9 un
 
 Encuentre un intervalo de confi anza de 95% para la
 diferencia media entre los rendimientos de las dos variedades, suponiendo que las diferencias de rendimiento se distribuyen de forma aproximadamente normal. Explique por qué en este problema se necesita el pareamiento.
+
+```{r}
+variedad1 = c(38, 23, 35, 41, 44, 29, 37, 31, 38)
+variedad2 = c(45, 25, 31, 38, 50, 33, 36, 40, 43)
+
+diferencias = variedad2 - variedad1
+
+media_diferencias = mean(diferencias)
+media_diferencias
+desviacion_diferencias = sd(diferencias)
+desviacion_diferencias
+
+t_test = t.test(diferencias, conf.level = 0.95)
+t_test$conf.int
+
+```
+
 
 __9.47__ A continuación se listan 10 de las 431 compañías estudiadas en la revista Fortune (marzo de 1997). Se listan las utilidades totales para los 10 años anteriores a 1996 y también para 1996. Encuentre un intervalo de confianza de 95% para el cambio promedio en el porcentaje de utilidad de los inversionistas.
 <style>
@@ -628,6 +645,23 @@ __9.47__ A continuación se listan 10 de las 431 compañías estudiadas en la re
 </table>
 <br>
 
+```{r}
+utilidades_1986_1996 = c(29.8, 27.9, 22.1, 24.0, 22.7, 23.2, 21.9, 21.6, 23.4, 11.8)
+utilidades_1996 = c(43.3, 36.1, 24.0, 40.6, 18.1, 19.6, 25.0, 26.2, 21.7, 20.3)
+
+diferencias = utilidades_1996 - utilidades_1986_1996
+
+media_diferencias = mean(diferencias)
+media_diferencias
+desviacion_diferencias = sd(diferencias)
+desviacion_diferencias
+
+t_test = t.test(diferencias, conf.level = 0.95)
+t_test$conf.int
+
+```
+
+
 __9.44__ Con referencia al ejercicio 9.43, encuentre un intervalo de confi anza de 99% para µ1 − µ2, si se asigna al azar un neumático de cada compañía a las ruedas traseras de 8 taxis y se registran las siguientes distancias, en kilómetros:
 <style>
         table {
@@ -693,6 +727,33 @@ __9.44__ Con referencia al ejercicio 9.43, encuentre un intervalo de confi anza 
 <br>
 Suponga que las diferencias de las distancias se distribuyen de forma aproximadamente normal.
 
+```{r}
+marca_A = c(34400, 45500, 36700, 32700, 32000, 38700, 38100, 31100)
+marca_B = c(36700, 46800, 37700, 31100, 31700, 37400, 38900, 31500)
+
+diferencias = marca_A - marca_B
+diferencias
+n = length(diferencias)
+n
+media_diferencias = mean(diferencias)
+media_diferencias
+sd_diferencias = sd(diferencias)
+sd_diferencias
+confianza = 0.99
+confianza
+gl = n - 1
+gl
+t_critico = qt((1 + confianza) / 2, gl)
+t_critico
+margen_error = t_critico * sd_diferencias / sqrt(n)
+margen_error
+IC_inferior = media_diferencias - margen_error
+IC_inferior
+IC_superior = media_diferencias + margen_error
+IC_superior
+```
+
+
 __9.49__ Se considera usar dos marcas diferentes de pintura látex. El tiempo de secado en horas se mide en especímenes de muestras del uso de las dos pinturas. Se seleccionan 15 especímenes de cada una y los tiempos de secado son los siguientes:
 <style>
         table {
@@ -722,26 +783,65 @@ __9.49__ Se considera usar dos marcas diferentes de pintura látex. El tiempo de
 
 Suponga que el tiempo de secado se distribuye normalmente con σA = σB. Encuentre un intervalo de confi anza en µB − µA, donde µA y µB sean los tiempos medios de secado.
 
+```{r}
+# Datos de los tiempos de secado en horas
+pintura_A = c(3.5, 2.7, 3.9, 4.2, 3.6, 4.4, 3.1, 3.0, 4.0, 3.6, 2.7, 3.3, 5.2, 4.2, 4.4)
+pintura_B = c(4.7, 3.9, 4.5, 5.5, 4.0, 5.3, 4.9, 4.6, 5.2, 3.7, 4.4, 4.8, 5.1, 5.4, 4.8)
+
+# Tamaño de la muestra
+n_A = length(pintura_A)
+n_B = length(pintura_B)
+
+media_A = mean(pintura_A)
+media_A
+media_B = mean(pintura_B)
+media_B
+var_A = var(pintura_A)
+var_A
+var_B = var(pintura_B)
+var_B
+var_comb = ((n_A - 1) * var_A + (n_B - 1) * var_B) / (n_A + n_B - 2)
+var_comb
+confianza = 0.95
+confianza
+gl = n_A + n_B - 2
+gl
+t_critico = qt((1 + confianza) / 2, gl)
+t_critico
+error_estandar = sqrt(var_comb * (1/n_A + 1/n_B))
+error_estandar
+margen_error = t_critico * error_estandar
+margen_error
+diferencia_medias = media_B - media_A
+diferencia_medias
+IC_inferior = diferencia_medias - margen_error
+IC_inferior
+IC_superior = diferencia_medias + margen_error
+IC_superior
+
+```
+
+
 __9.53__ En una muestra aleatoria de 1000 viviendas en cierta ciudad, se encuentra que 228 se calientan con petróleo. Encuentre el intervalo de confi anza de 99% para la proporción de viviendas en esta ciudad que se calientan con petróleo.
 
 ```{r}
 # Datos
-n <- 1000  # tamaño de la muestra
-x <- 228   # número de viviendas que se calientan con petróleo
+n = 1000  # tamaño de la muestra
+x = 228   # número de viviendas que se calientan con petróleo
 
 # Proporción muestral
-proporcion_muestral  <- x / n
+proporcion_muestral  = x / n
 
 # Error estándar
-error_estandar  <- sqrt(proporcion_muestral  * (1 - proporcion_muestral ) / n)
+error_estandar  = sqrt(proporcion_muestral  * (1 - proporcion_muestral ) / n)
 
 # Valor crítico z para el nivel de confianza del 99%
-z <- qnorm(0.995)  # qnorm(0.995) da el percentil 99.5%
+z = qnorm(0.995)  # qnorm(0.995) da el percentil 99.5%
 
 # Intervalo de confianza
-limite_inferior  <- proporcion_muestral  - z * error_estandar 
+limite_inferior  = proporcion_muestral  - z * error_estandar 
 limite_inferior 
-limite_superior <- proporcion_muestral  + z * error_estandar 
+limite_superior = proporcion_muestral  + z * error_estandar 
 limite_superior
 
 ```
@@ -754,22 +854,22 @@ trastorno sanguíneo.
 
 ```{r}
 # Datos
-tamaño_muestra <- 100  # tamaño de la muestra
-hombres_con_trastorno <- 24   # número de hombres con el trastorno
+tamaño_muestra = 100  # tamaño de la muestra
+hombres_con_trastorno = 24   # número de hombres con el trastorno
 
 # Proporción muestral
-proporcion_muestral <- hombres_con_trastorno / tamaño_muestra
+proporcion_muestral = hombres_con_trastorno / tamaño_muestra
 proporcion_muestral
 # Error estándar
-error_estandar <- sqrt(proporcion_muestral * (1 - proporcion_muestral) / tamaño_muestra)
+error_estandar = sqrt(proporcion_muestral * (1 - proporcion_muestral) / tamaño_muestra)
 error_estandar
 # Valor crítico z para el nivel de confianza del 99%
-z <- qnorm(0.995)  # qnorm(0.995) da el percentil 99.5%
+z = qnorm(0.995)  # qnorm(0.995) da el percentil 99.5%
 z
 # Intervalo de confianza
-limite_inferior <- proporcion_muestral - z * error_estandar
+limite_inferior = proporcion_muestral - z * error_estandar
 limite_inferior
-limite_superior <- proporcion_muestral + z * error_estandar
+limite_superior = proporcion_muestral + z * error_estandar
 limite_superior
 ```
 
@@ -778,17 +878,17 @@ dicho trastorno sanguíneo es 0.24?
 
 ```{r}
 # Datos
-tamaño_muestra <- 100  # tamaño de la muestra
-hombres_con_trastorno <- 24   # número de hombres con el trastorno
+tamaño_muestra = 100  # tamaño de la muestra
+hombres_con_trastorno = 24   # número de hombres con el trastorno
 
 # Proporción muestral
-proporcion_muestral <- hombres_con_trastorno / tamaño_muestra
+proporcion_muestral = hombres_con_trastorno / tamaño_muestra
 proporcion_muestral
 # Error estándar
-error_estandar <- sqrt(proporcion_muestral * (1 - proporcion_muestral) / tamaño_muestra)
+error_estandar = sqrt(proporcion_muestral * (1 - proporcion_muestral) / tamaño_muestra)
 error_estandar
 # Margen de error
-margen_error <- z * error_estandar
+margen_error = z * error_estandar
 margen_error
 
 #Por lo tanto, con un 99% de confianza, podemos afirmar que la proporción verdadera de hombres africanos que tienen este trastorno sanguíneo está dentro del intervalo aproximadamente entre 13.01% y 34.99%. Además, podemos decir con un 99% de confianza que nuestra estimación puntual de 24% tiene un margen de error de aproximadamente ±5.495%.
@@ -799,15 +899,15 @@ __9.60__ ¿Qué tan grande se requiere que sea la muestra en el ejercicio 9.53, 
 
 ```{r}
 # Datos y variables en español
-margen_error <- 0.05  # margen de error deseado
-nivel_confianza <- 0.99  # nivel de confianza del 99%
-proporcion_muestral <- 0.228  # proporción muestral obtenida del ejercicio 9.53
+margen_error = 0.05  # margen de error deseado
+nivel_confianza = 0.99  # nivel de confianza del 99%
+proporcion_muestral = 0.228  # proporción muestral obtenida del ejercicio 9.53
 
 # Calcular el valor crítico z para el nivel de confianza del 99%
-z <- qnorm(1 - (1 - nivel_confianza) / 2)
+z = qnorm(1 - (1 - nivel_confianza) / 2)
 z
 # Calcular el tamaño de muestra necesario
-n <- ceiling((z^2 * proporcion_muestral * (1 - proporcion_muestral)) / (margen_error^2))
+n = ceiling((z^2 * proporcion_muestral * (1 - proporcion_muestral)) / (margen_error^2))
 n
 # Mostrar el resultado
 cat("Se requiere una muestra de al menos", n, "viviendas para asegurar un intervalo de confianza del 99% con un margen de error de ±0.05 para la proporción de viviendas que se calientan con petróleo.")
@@ -819,28 +919,28 @@ __9.66__ Se encuestan 10 escuelas de ingeniería en Estados Unidos. La muestra c
 
 ```{r}
 # Datos y variables en español
-n1 <- 250
-mujeres1 <- 80
+n1 = 250
+mujeres1 = 80
 
-n2 <- 175
-mujeres2 <- 40
+n2 = 175
+mujeres2 = 40
 
 # Proporciones muestrales
-proporcion1 <- mujeres1 / n1
+proporcion1 = mujeres1 / n1
 proporcion1
-proporcion2 <- mujeres2 / n2
+proporcion2 = mujeres2 / n2
 proporcion2
 # Diferencia de proporciones
-diferencia_proporciones <- proporcion1 - proporcion2
+diferencia_proporciones = proporcion1 - proporcion2
 diferencia_proporciones
 # Error estándar de la diferencia
-SE <- sqrt((proporcion1 * (1 - proporcion1)) / n1 + (proporcion2 * (1 - proporcion2)) / n2)
+SE = sqrt((proporcion1 * (1 - proporcion1)) / n1 + (proporcion2 * (1 - proporcion2)) / n2)
 SE
 # Valor crítico z para el nivel de confianza del 90%
-z <- qnorm(0.95)
+z = qnorm(0.95)
 z
 # Intervalo de confianza para la diferencia de proporciones
-intervalo_confianza <- c(diferencia_proporciones - z * SE, diferencia_proporciones + z * SE)
+intervalo_confianza = c(diferencia_proporciones - z * SE, diferencia_proporciones + z * SE)
 intervalo_confianza
 
 ```
@@ -850,29 +950,29 @@ __9.69__ Una encuesta a 1000 estudiantes concluye que 274 eligen al equipo profe
 
 ```{r}
 # Datos y variables en español
-n1 <- 1000
-favorito_A1 <- 274
+n1 = 1000
+favorito_A1 = 274
 
-n2 <- 760
-favorito_A2 <- 240
+n2 = 760
+favorito_A2 = 240
 
 # Proporciones muestrales
-proporcion1 <- favorito_A1 / n1
+proporcion1 = favorito_A1 / n1
 proporcion1
-proporcion2 <- favorito_A2 / n2
+proporcion2 = favorito_A2 / n2
 proporcion2
 
 # Diferencia de proporciones
-diferencia_proporciones <- proporcion1 - proporcion2
+diferencia_proporciones = proporcion1 - proporcion2
 diferencia_proporciones
 # Error estándar de la diferencia
-SE <- sqrt((proporcion1 * (1 - proporcion1)) / n1 + (proporcion2 * (1 - proporcion2)) / n2)
+SE = sqrt((proporcion1 * (1 - proporcion1)) / n1 + (proporcion2 * (1 - proporcion2)) / n2)
 SE
 # Valor crítico z para el nivel de confianza del 95%
-z <- qnorm(0.975)
+z = qnorm(0.975)
 z
 # Intervalo de confianza para la diferencia de proporciones
-intervalo_confianza <- c(diferencia_proporciones - z * SE, diferencia_proporciones + z * SE)
+intervalo_confianza = c(diferencia_proporciones - z * SE, diferencia_proporciones + z * SE)
 intervalo_confianza
 ```
 
@@ -881,18 +981,18 @@ __9.71__ Un fabricante de baterías para automóvil afi rma que sus baterías du
 
 ```{r}
 # Datos y variables en español
-duraciones <- c(1.9, 2.4, 3.0, 3.5, 4.2)
-n <- length(duraciones)
-media_muestral <- mean(duraciones)
+duraciones = c(1.9, 2.4, 3.0, 3.5, 4.2)
+n = length(duraciones)
+media_muestral = mean(duraciones)
 
 # Calcular la varianza muestral
-varianza_muestral <- var(duraciones)
+varianza_muestral = var(duraciones)
 varianza_muestral
 # Grados de libertad
-grados_libertad <- n - 1
+grados_libertad = n - 1
 grados_libertad
 # Intervalo de confianza para la varianza al 95%
-intervalo_confianza <- sqrt((n - 1) * varianza_muestral / qchisq(c(0.975, 0.025), df = grados_libertad))
+intervalo_confianza = sqrt((n - 1) * varianza_muestral / qchisq(c(0.975, 0.025), df = grados_libertad))
 intervalo_confianza
 
 ```
@@ -902,15 +1002,15 @@ __9.72__ Una muestra aleatoria de 20 estudiantes obtuvo una media de = 72 y una 
 
 ```{r}
 # Datos y variables en español
-n <- 20
-media_muestral <- 72
-varianza_muestral <- 16
+n = 20
+media_muestral = 72
+varianza_muestral = 16
 
 # Grados de libertad
-grados_libertad <- n - 1
+grados_libertad = n - 1
 grados_libertad
 # Intervalo de confianza para la varianza al 98%
-intervalo_confianza <- sqrt((n - 1) * varianza_muestral / qchisq(c(0.99, 0.01), df = grados_libertad))
+intervalo_confianza = sqrt((n - 1) * varianza_muestral / qchisq(c(0.99, 0.01), df = grados_libertad))
 intervalo_confianza
 ```
 
@@ -920,26 +1020,56 @@ para σ2 en el ejercicio 9.13 de la página 286.
 
 ```{r}
 # Datos del ejercicio 9.13
-muestra <- c(1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01, 1.03)
-n <- length(muestra)
-media_muestral <- mean(muestra)
-desviacion_estandar_muestra <- sd(muestra)
+muestra = c(1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01, 1.03)
+n = length(muestra)
+media_muestral = mean(muestra)
+desviacion_estandar_muestra = sd(muestra)
 
 # Nivel de confianza
-nivel_confianza <- 0.99
-alpha <- 1 - nivel_confianza
+nivel_confianza = 0.99
+alpha = 1 - nivel_confianza
 alpha
 # Grados de libertad
-grados_libertad <- n - 1
+grados_libertad = n - 1
 grados_libertad
 # Intervalo de confianza para la varianza al 99%
-intervalo_confianza <- sqrt((n - 1) * var(muestra) / qchisq(c(1 - alpha/2, alpha/2), df = grados_libertad))
+intervalo_confianza = sqrt((n - 1) * var(muestra) / qchisq(c(1 - alpha/2, alpha/2), df = grados_libertad))
 intervalo_confianza
 
 ```
 
 __9.80__ Construya un intervalo de confianza de 95%
 para σ2A/σ2B en el ejercicio 9.49 de la página 299. ¿Debería utilizarse la suposición de la varianza igual?
+
+```{r}
+# Datos de los tiempos de secado en horas
+pintura_A = c(3.5, 2.7, 3.9, 4.2, 3.6, 4.4, 3.1, 3.0, 4.0, 3.6, 2.7, 3.3, 5.2, 4.2, 4.4)
+pintura_B = c(4.7, 3.9, 4.5, 5.5, 4.0, 5.3, 4.9, 4.6, 5.2, 3.7, 4.4, 4.8, 5.1, 5.4, 4.8)
+
+n_A = length(pintura_A)
+n_B = length(pintura_B)
+
+var_A = var(pintura_A)
+var_A
+var_B = var(pintura_B)
+var_B
+confianza = 0.95
+confianza
+gl_A = n_A - 1
+gl_A
+gl_B = n_B - 1
+gl_B
+
+F_critico_inferior = qf((1 - confianza) / 2, gl_A, gl_B)
+F_critico_inferior
+F_critico_superior = qf((1 + confianza) / 2, gl_A, gl_B)
+F_critico_superior
+limite_inferior = var_A / var_B / F_critico_superior
+limite_inferior
+limite_superior = var_A / var_B / F_critico_inferior
+limite_superior
+
+```
 
 
 
@@ -1224,23 +1354,23 @@ b) Evalúe β para las alternativas p = 0.5 y p = 0.7.
 ```{r}
 #a)
 # Datos y variables en español
-p_hipotesis_nula <- 0.6
-n <- 15 
+p_hipotesis_nula = 0.6
+n = 15 
 
 # Intervalo en el que aceptamos la hipótesis nula (6 a 12 graduados)
-k_aceptar <- 6:12
+k_aceptar = 6:12
 k_aceptar
 # Probabilidad de aceptar H0 cuando p = 0.6 (usando distribución binomial)
-alpha <- sum(dbinom(k_aceptar, size = n, prob = p_hipotesis_nula))
+alpha = sum(dbinom(k_aceptar, size = n, prob = p_hipotesis_nula))
 alpha
 #b)
 # Probabilidades alternativas para evaluar beta
-p_alternativas <- c(0.5, 0.7)
+p_alternativas = c(0.5, 0.7)
 
 # Calcular beta para cada alternativa
-beta <- numeric(length(p_alternativas))
+beta = numeric(length(p_alternativas))
 for (i in seq_along(p_alternativas)) {
-  beta[i] <- 1 - sum(dbinom(k_aceptar, size = n, prob = p_alternativas[i]))
+  beta[i] = 1 - sum(dbinom(k_aceptar, size = n, prob = p_alternativas[i]))
 }
 
 # Mostrar los resultados de beta
@@ -1269,29 +1399,21 @@ b) ¿Cuál es la probabilidad de cometer un error tipo II
 al utilizar este procedimiento de prueba si en realidad tan sólo 48% de los votantes está a favor del impuesto adicional a la gasolina?
 
 ```{r}
-#a)
-# Datos y variables en español
-n <- 400  # Tamaño de la muestra
-p_hipotesis_nula <- 0.6  # Proporción bajo la hipótesis nula
-
-# Intervalo para aceptar la hipótesis nula (más de 220 y menos de 260)
+# a) 
+n <- 400
+p_hipotesis_nula <- 0.6
 k_aceptar <- 221:259
 
-# Probabilidad de cometer error tipo I
-alpha <- sum(dbeta(k_aceptar, size = n, shape1 = k_aceptar, shape2 = n - k_aceptar + 1))
+alpha <- sum(dbinom(k_aceptar, size = n, prob = p_hipotesis_nula))
 alpha
 
-#b)
-# Proporción bajo la hipótesis alternativa
+# b) 
 p_hipotesis_alternativa <- 0.48
-
-# Intervalo para aceptar la hipótesis nula (más de 220 y menos de 260)
 k_aceptar <- 221:259
 
-# Probabilidad de cometer error tipo II para p = 0.48
-beta <- 1 - sum(dbeta(k_aceptar, size = n, shape1 = k_aceptar, shape2 = n - k_aceptar + 1,
-                      lower.tail = FALSE, log.p = FALSE) * dbinom(n * p_hipotesis_nula, n, p_hipotesis_alternativa))
+beta <- sum(dbinom(k_aceptar, size = n, prob = p_hipotesis_alternativa))
 beta
+
 
 ```
 
@@ -1301,17 +1423,17 @@ significancia de 0.05.
 
 ```{r}
 # Datos y variables en español
-media_muestral <- 5.23
-mu0 <- 5.5
-desviacion_estandar <- 0.24
-n <- 64
-nivel_significancia <- 0.05
+media_muestral = 5.23
+mu0 = 5.5
+desviacion_estandar = 0.24
+n = 64
+nivel_significancia = 0.05
 
 # Calcular el estadístico de prueba t
-t <- (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
+t = (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
 
 # Calcular el valor p (p-value) unilateral
-p_valor <- pt(t, df = n - 1)
+p_valor = pt(t, df = n - 1)
 
 # Comprobación de la significancia
 if (p_valor < nivel_significancia) {
@@ -1334,21 +1456,21 @@ permanece constante.
 
 ```{r}
 # Datos y variables en español
-media_muestral <- 165.2
-mu0 <- 162.5
-desviacion_estandar <- 6.9
-n <- 50
+media_muestral = 165.2
+mu0 = 162.5
+desviacion_estandar = 6.9
+n = 50
 
 # Calcular el estadístico de prueba Z
-Z <- (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
+Z = (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
 
 # Calcular el valor p bilateral
-p_valor <- 2 * pnorm(-abs(Z))
+p_valor = 2 * pnorm(-abs(Z))
 
 # Mostrar el valor p
 p_valor
 # Nivel de significancia usual
-nivel_significancia <- 0.05
+nivel_significancia = 0.05
 
 # Comprobación de la significancia
 if (p_valor < nivel_significancia) {
@@ -1369,21 +1491,21 @@ que la distribución del contenido es normal.
 
 ```{r}
 # Datos y variables en español
-muestras <- c(10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3, 9.8)
-n <- length(muestras)
-media_muestral <- mean(muestras)
-mu0 <- 10
-nivel_significancia <- 0.01
+muestras = c(10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3, 9.8)
+n = length(muestras)
+media_muestral = mean(muestras)
+mu0 = 10
+nivel_significancia = 0.01
 
 # Calcular la desviación estándar muestral
-desviacion_estandar <- sd(muestras)
+desviacion_estandar = sd(muestras)
 
 # Calcular el estadístico de prueba t
-t <- (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
+t = (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
 t
 
 # Calcular el valor p bilateral
-p_valor <- 2 * pt(-abs(t), df = n - 1)
+p_valor = 2 * pt(-abs(t), df = n - 1)
 p_valor
 
 # Comprobación de la significancia
@@ -1405,22 +1527,22 @@ Pruebe la hipótesis de que μ1 = μ2 contra la alternativa
 
 ```{r}
 # Datos y variables en español
-media_muestra_1 <- 81
-media_muestra_2 <- 76
-sigma_1 <- 5.2
-sigma_2 <- 3.4
-n1 <- 25
-n2 <- 36
+media_muestra_1 = 81
+media_muestra_2 = 76
+sigma_1 = 5.2
+sigma_2 = 3.4
+n1 = 25
+n2 = 36
 
 # Calcular el estadístico de prueba Z
-Z <- ((media_muestra_1 - media_muestra_2) - 0) / sqrt((sigma_1^2 / n1) + (sigma_2^2 / n2))
+Z = ((media_muestra_1 - media_muestra_2) - 0) / sqrt((sigma_1^2 / n1) + (sigma_2^2 / n2))
 Z
 
 # Calcular el valor p bilateral
-p_valor <- 2 * pnorm(-abs(Z))
+p_valor = 2 * pnorm(-abs(Z))
 p_valor
 # Nivel de significancia usual
-nivel_significancia <- 0.05
+nivel_significancia = 0.05
 
 # Comprobación de la significancia
 if (p_valor < nivel_significancia) {
@@ -1445,20 +1567,20 @@ de investigación es $2000 mayor que los de los de otras
 instituciones. Utilice un nivel de signifi cancia de 0.01.
 ```{r}
 # Datos proporcionados
-media_muestra_1 <- 70750
-media_muestra_2 <- 65200
-desviacion_estandar_1 <- 6000
-desviacion_estandar_2 <- 5000
-n <- 200
-delta_0 <- 2000
-nivel_significancia <- 0.01
+media_muestra_1 = 70750
+media_muestra_2 = 65200
+desviacion_estandar_1 = 6000
+desviacion_estandar_2 = 5000
+n = 200
+delta_0 = 2000
+nivel_significancia = 0.01
 
 # Calcular el estadístico de prueba Z
-Z <- ((media_muestra_1 - media_muestra_2) - delta_0) / sqrt((desviacion_estandar_1^2 / n) + (desviacion_estandar_2^2 / n))
+Z = ((media_muestra_1 - media_muestra_2) - delta_0) / sqrt((desviacion_estandar_1^2 / n) + (desviacion_estandar_2^2 / n))
 Z
 
 # Calcular el valor p bilateral
-p_valor <- 2 * pnorm(-abs(Z))
+p_valor = 2 * pnorm(-abs(Z))
 p_valor
 # Comprobación de la significancia
 if (p_valor < nivel_significancia) {
@@ -1511,6 +1633,18 @@ comienza el experimento son los siguientes:
 el suero es efectivo? Suponga que las dos distribuciones
 se distribuyen de forma normal con varianzas iguales.
 
+```{r}
+# Datos de los tiempos de supervivencia en años
+con_tratamiento = c(2.1, 5.3, 1.4, 4.6, 0.9)
+sin_tratamiento = c(1.9, 0.5, 2.8, 3.1)
+
+t_test = t.test(con_tratamiento, sin_tratamiento, var.equal = TRUE, alternative = "greater")
+
+t_test
+
+```
+
+
 __10.36__  Una compañía grande armadora de automóviles trata de decidir si compra llantas de la marca A o
 de la B para sus modelos nuevos. Para ayudar a tomar
 una decisión, se realiza un experimento en donde se
@@ -1529,26 +1663,26 @@ las poblaciones se distribuyen de forma aproximadamente normal con varianzas igu
 
 ```{r}
 # Datos proporcionados
-x1 <- 37900
-s1 <- 5100
-x2 <- 39800
-s2 <- 5900
-n1 <- 12
-n2 <- 12
-nivel_significancia <- 0.05
+x1 = 37900
+s1 = 5100
+x2 = 39800
+s2 = 5900
+n1 = 12
+n2 = 12
+nivel_significancia = 0.05
 
 # Calcular la desviación estándar agrupada (pooled standard deviation)
-sp <- sqrt(((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2))
+sp = sqrt(((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2))
 
 # Calcular el estadístico t
-t <- (x1 - x2) / (sp * sqrt(1/n1 + 1/n2))
+t = (x1 - x2) / (sp * sqrt(1/n1 + 1/n2))
 t
 
 # Calcular los grados de libertad
-df <- n1 + n2 - 2
+df = n1 + n2 - 2
 
 # Calcular el valor p bilateral
-p_valor <- 2 * pt(-abs(t), df)
+p_valor = 2 * pt(-abs(t), df)
 p_valor
 # Comprobación de la significancia
 if (p_valor < nivel_significancia) {
@@ -1576,19 +1710,19 @@ de poblaciones normales con varianzas diferentes.
 
 ```{r}
 # Datos proporcionados
-densidad_estacion_1 <- c(82, 85, 88, 79, 91)
-densidad_estacion_2 <- c(75, 81, 77, 89, 80, 83)
+densidad_estacion_1 = c(82, 85, 88, 79, 91)
+densidad_estacion_2 = c(75, 81, 77, 89, 80, 83)
 
 # Realizar la prueba t de Welch
-resultado <- t.test(densidad_estacion_1, densidad_estacion_2, var.equal = FALSE)
+resultado = t.test(densidad_estacion_1, densidad_estacion_2, var.equal = FALSE)
 
 # Mostrar el resultado
 resultado
 # Obtener el valor p
-p_valor <- resultado$p.value
+p_valor = resultado$p.value
 
 # Nivel de significancia
-nivel_significancia <- 0.05
+nivel_significancia = 0.05
 
 # Comparar el valor p con el nivel de significancia
 if (p_valor < nivel_significancia) {
@@ -1641,7 +1775,7 @@ análisis. A continuación se presentan los datos codifi cados que muestran los 
         <td>1.9</td>
         <td>2.5</td>
         <td>2.3</td>
-        <td>2.4</td>
+        <td>2.4</td>    
     </tr>
 </table>
 <br>
@@ -1649,11 +1783,51 @@ Suponiendo que las poblaciones son normales, pruebe
 con un nivel de signifi cancia de 0.05 si los dos métodos
 de análisis dan, en promedio, el mismo resultado.
 
+```{r}
+# Datos
+rayos_x = c(2.0, 2.0, 2.3, 2.1, 2.4)
+quimica = c(2.2, 1.9, 2.5, 2.3, 2.4)
+
+resultado = t.test(rayos_x, quimica, paired = TRUE)
+resultado
+
+```
+
+
 __10.44__  En el ejercicio 9.88 de la página 315, utilice la
 distribución t para probar la hipótesis de que la dieta
 reduce el peso de un individuo en 4.5 kilogramos, en
 promedio, contra la hipótesis alternativa de que la diferencia media en peso es menor que 4.5 kilogramos.
 Utilice un valor P.
+
+```{r}
+peso_antes = c(58.5, 60.3, 61.7, 69.0, 64.0, 62.6, 56.7)
+peso_despues = c(60.0, 54.9, 58.1, 62.1, 58.5, 59.9, 54.4)
+
+diferencias = peso_antes - peso_despues
+
+media_dif = mean(diferencias)
+media_dif
+sd_dif = sd(diferencias)
+sd_dif
+n = length(diferencias)
+n
+alpha = 0.05
+alpha
+error_est = sd_dif / sqrt(n)
+error_est
+t_critico = qt(1 - alpha/2, df = n-1)
+t_critico
+lim_inf = media_dif - t_critico * error_est
+lim_inf
+lim_sup = media_dif + t_critico * error_est
+lim_sup
+mu_0 = 4.5
+t_estadistico = (media_dif - mu_0) / error_est
+p_valor = pt(t_estadistico, df = n-1)
+t_estadistico
+```
+
 
 
 
@@ -1726,6 +1900,21 @@ de ácido y después de 60 días de almacenamiento:
 Si se supone que las poblaciones se distribuyen normalmente, ¿hay sufi ciente evidencia, al nivel de signifi cancia de 0.05, para decir que la duración del almacenamiento infl uye en las concentraciones residuales de
 ácido sórbico?
 
+```{r}
+# Datos
+antes = c(224, 400, 444, 590, 600, 680)
+despues = c(116, 239, 329, 437, 597, 576)
+
+diferencias = antes - despues
+diferencias
+
+resultado = t.test(antes, despues, paired = TRUE)
+
+resultado
+
+```
+
+
 __10.50__ ¿Qué tan grandes deberían ser las muestras del
 ejercicio 10.31, si la potencia de nuestra prueba debe
 ser 0.95 cuando la diferencia real entre los tipos de hilo
@@ -1733,23 +1922,23 @@ A y B es 8 kilogramos?
 
 ```{r}
 # Datos del ejercicio 10.31
-mu_A <- 86.7
-sigma_A <- 6.28
-mu_B <- 77.8
-sigma_B <- 5.61
-delta <- 12  
-alpha <- 0.05
-beta <- 1 - 0.95  
+mu_A = 86.7
+sigma_A = 6.28
+mu_B = 77.8
+sigma_B = 5.61
+delta = 12  
+alpha = 0.05
+beta = 1 - 0.95  
 
 # Calculando los valores críticos de la distribución normal estándar
-Z_alpha <- qnorm(1 - alpha/2)
-Z_beta <- qnorm(1 - beta)
+Z_alpha = qnorm(1 - alpha/2)
+Z_beta = qnorm(1 - beta)
 
 # Calculando el tamaño de muestra necesario
-n <- ((Z_alpha * sigma_A + Z_beta * sigma_B) / delta)^2
+n = ((Z_alpha * sigma_A + Z_beta * sigma_B) / delta)^2
 
 # Redondeando al entero más cercano
-n <- ceiling(n)
+n = ceiling(n)
 
 # Mostrando el tamaño de muestra calculado
 n
@@ -1764,25 +1953,25 @@ nivel de signifi cancia de 0.05.
 
 ```{r}
 # Definición de variables
-n <- 90  
-x <- 28  
-p0 <- 0.25  
-alpha <- 0.05  
+n = 90  
+x = 28  
+p0 = 0.25  
+alpha = 0.05  
 
 # Calculando la proporción muestral
-p <- x / n
+p = x / n
 
 # Realizando la prueba de proporciones para una muestra (Z-test)
-z <- (p - p0) / sqrt(p0 * (1 - p0) / n)
+z = (p - p0) / sqrt(p0 * (1 - p0) / n)
 
 # Calculando el valor crítico de la distribución normal estándar para el nivel de significancia alpha
-z_critico <- qnorm(1 - alpha)
+z_critico = qnorm(1 - alpha)
 
 # Calculando el p-valor
-p_valor <- 1 - pnorm(z)
+p_valor = 1 - pnorm(z)
 
 # Mostrando los resultados
-resultado <- ifelse(z > z_critico, "Rechazar H0", "No rechazar H0")
+resultado = ifelse(z > z_critico, "Rechazar H0", "No rechazar H0")
 resultado
 p_valor
 
@@ -1803,23 +1992,23 @@ de casadas? Utilice un valor P.
 
 ```{r}
 # Datos del problema
-n1 <- 300   
-x1 <- 240   
-n2 <- 400   
-x2 <- 288   
+n1 = 300   
+x1 = 240   
+n2 = 400   
+x2 = 288   
 
 # Calculando las proporciones muestrales
-p1 <- x1 / n1
-p2 <- x2 / n2
+p1 = x1 / n1
+p2 = x2 / n2
 
 # Calculando la proporción combinada bajo la hipótesis nula
-p_comb <- (x1 + x2) / (n1 + n2)
+p_comb = (x1 + x2) / (n1 + n2)
 
 # Calculando el estadístico Z para la prueba de proporciones
-z <- (p1 - p2) / sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))
+z = (p1 - p2) / sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))
 
 # Calculando el valor p (p-valor)
-p_valor <- 1 - pnorm(z)
+p_valor = 1 - pnorm(z)
 
 # Mostrando los resultados
 p_valor
@@ -1838,23 +2027,23 @@ la efectividad del medicamento?
 
 ```{r}
 # Datos del problema
-n1 <- 120  
-x1 <- 29    
-n2 <- 280   
-x2 <- 56   
+n1 = 120  
+x1 = 29    
+n2 = 280   
+x2 = 56   
 
 # Calculando las proporciones muestrales
-p1 <- x1 / n1
-p2 <- x2 / n2
+p1 = x1 / n1
+p2 = x2 / n2
 
 # Calculando la proporción combinada bajo la hipótesis nula
-p_comb <- (x1 + x2) / (n1 + n2)
+p_comb = (x1 + x2) / (n1 + n2)
 
 # Calculando el estadístico Z para la prueba de proporciones
-z <- (p1 - p2) / sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))
+z = (p1 - p2) / sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))
 
 # Calculando el valor p (p-valor)
-p_valor <- 1 - pnorm(z)
+p_valor = 1 - pnorm(z)
 
 # Mostrando los resultados
 p_valor
@@ -1871,18 +2060,18 @@ sus conclusiones.
 
 ```{r}
 # Datos del problema
-n <- 64       
-s2 <- 4.25   
-sigma2_hipotesis <- 4.2  
+n = 64       
+s2 = 4.25   
+sigma2_hipotesis = 4.2  
 
 # Estadístico de prueba (chi-cuadrado)
-chi2 <- (n - 1) * s2 / sigma2_hipotesis
+chi2 = (n - 1) * s2 / sigma2_hipotesis
 
 # Grados de libertad
-df <- n - 1
+df = n - 1
 
 # Valor p (dos colas)
-p_valor <- 2 * pchisq(chi2, df = df, lower.tail = FALSE)
+p_valor = 2 * pchisq(chi2, df = df, lower.tail = FALSE)
 
 # Mostrando los resultados
 p_valor
@@ -1923,6 +2112,24 @@ hombres y 14 mujeres da los siguientes datos:
     </tr>
 </table>
 <br>
+
+```{r}
+n1 = 11
+s1 = 6.1
+n2 = 14
+s2 = 5.3
+
+estadistico_F = (s1^2) / (s2^2)
+estadistico_F
+
+gl1 = n1 - 1
+gl2 = n2 - 1
+
+valor_p = 1 - pf(estadistico_F, gl1, gl2)
+valor_p
+
+```
+
 
 __10.76__ Se comparan dos tipos de instrumentos para
 medir la cantidad de monóxido de azufre en la atmósfera, en un experimento sobre la contaminación del aire.
@@ -1989,6 +2196,24 @@ mediciones que tengan la misma variabilidad. Se registran las siguientes lectura
 Suponiendo que las poblaciones de mediciones se distribuyen de forma aproximadamente normal, pruebe la
 hipótesis de que σA = σB, contra la alternativa de que
 σA =/ σB. Use un valor P.
+
+```{r}
+instrumento_A = c(0.86, 0.82, 0.75, 0.61, 0.89, 0.64, 0.81, 0.68, 0.65)
+instrumento_B = c(0.87, 0.74, 0.63, 0.55, 0.76, 0.70, 0.69, 0.57, 0.53)
+
+var_A = var(instrumento_A)
+var_B = var(instrumento_B)
+
+estadistico_F = var_A / var_B
+estadistico_F
+
+gl1 = length(instrumento_A) - 1
+gl2 = length(instrumento_B) - 1
+
+valor_p = 2 * min(pf(estadistico_F, gl1, gl2), 1 - pf(estadistico_F, gl1, gl2))
+valor_p
+```
+
 
 ## Consultas:
 
