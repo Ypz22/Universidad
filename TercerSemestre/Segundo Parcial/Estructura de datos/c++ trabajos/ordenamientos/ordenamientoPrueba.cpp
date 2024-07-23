@@ -36,10 +36,9 @@ void ordenamiento(float a[]) {
     }
     for(int i = 0; i < 10; i++) {
         if(b[i] != 0) {
-            nodo *cabeza = b[i];
-            nodo *actual = cabeza;
+            nodo *actual = b[i];
             while(actual->siguiente != NULL) {
-                nodo *temporal = cabeza;
+                nodo *temporal = b[i];
                 while(temporal->siguiente != NULL) {
                     if(temporal->dato > temporal->siguiente->dato) {
                         float auxiliar = temporal->dato;
@@ -55,8 +54,7 @@ void ordenamiento(float a[]) {
     int indiceA = 0;
     for(int i = 0; i < 10; i++) {
         if(b[i] != 0) {
-            nodo *cabeza = b[i];
-            nodo *actual = cabeza;
+            nodo *actual = b[i];
             while(actual != NULL) {
                 a[indiceA] = actual->dato;
                 indiceA++;
@@ -71,17 +69,14 @@ int main() {
 
     cout << "Array original: ";
     for (int i = 0; i < tamano; i++) {
-        cout << a[i] << " ";
+        cout << a[i] << " |";
     }
     cout << endl;
-
     ordenamiento(a);
-
     cout << "Array ordenado: ";
     for (int i = 0; i < tamano; i++) {
-        cout << a[i] << " ";
+        cout << a[i] << " |";
     }
     cout << endl;
-
     return 0;
 }
