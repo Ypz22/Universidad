@@ -52,6 +52,10 @@ class FuncionesArbol{
         }
     }
 
+    Arbol* eliminarDatoArbol(int dato){
+        raiz = eliminar(raiz,dato); 
+    }
+
     private:
     void insertar(Arbol *raiz, int dato){
         if(raiz->dato > dato){
@@ -67,6 +71,40 @@ class FuncionesArbol{
                 insertar(raiz->der, dato);
             }
         }
+    }
+
+    Arbol* eliminar(Arbol* raiz, int dato) {
+        if (raiz == NULL){
+            return raiz;
+        } 
+
+        if (dato < raiz->dato) {
+            raiz->izq = eliminar(raiz->izq, dato);
+        } else if (dato > raiz->dato) {
+            raiz->der = eliminar(raiz->der, dato);
+        } else {
+            if (raiz->izq == NULL) {
+                Arbol* temp = raiz->der;
+                delete raiz;
+                return temp;
+            } else if (raiz->der == NULL) {
+                Arbol* temp = raiz->izq;
+                delete raiz;
+                return temp;
+            }
+
+            Arbol* temp = nodoValorMinimo(raiz->der);
+            raiz->dato = temp->dato;
+            raiz->der = eliminar(raiz->der, temp->dato);
+        }
+        return raiz;
+    }
+
+    Arbol* nodoValorMinimo(Arbol* raiz) {
+        Arbol* actual = raiz;
+        while (actual && actual->izq != NULL)
+            actual = actual->izq;
+        return actual;
     }
 };
 
@@ -88,7 +126,11 @@ int main(){
     arbol.inOrden(arbol.raiz);
     cout<<endl;
 
-    cout<<arbol.raiz->dato<<endl;
+    arbol.eliminarDatoArbol(17);
+
+    cout<<"In orden: "<<endl;
+    arbol.inOrden(arbol.raiz);
+    cout<<endl;
 
     cout<<"Pre orden: "<<endl;
     arbol.preOrden(arbol.raiz);
