@@ -1,16 +1,13 @@
 from collections import deque
 
-def es_bipartito(grafo):
+def esBipartito(grafo):
     color = {}
-    
     for vertice in grafo:
         if vertice not in color:
             color[vertice] = 0
             queue = deque([vertice])
-            
             while queue:
                 u = queue.popleft()
-                
                 for v in grafo[u]:
                     if v not in color:
                         color[v] = 1 - color[u]
@@ -23,7 +20,6 @@ def es_bipartito(grafo):
     
     return True, (conjunto1, conjunto2)
 
-# Ejemplo de uso
 grafo = {
     0: [1, 3],
     1: [0, 2],
@@ -31,7 +27,7 @@ grafo = {
     3: [0, 2]
 }
 
-es_bipartito, conjuntos = es_bipartito(grafo)
+es_bipartito, conjuntos = esBipartito(grafo)
 
 if es_bipartito:
     print("El grafo es bipartito.")
