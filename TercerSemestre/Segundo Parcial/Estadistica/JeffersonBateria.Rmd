@@ -233,269 +233,343 @@ n
 
 
 ## Resolución de Ejercicios propuestos
+__11.3__ Se realizo un estudioo sobre la cantidad de azucar convertida, en cierto proceso, a distintas temperaturas. Los datos se codificaron y registraron como sigue: 
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
 
-__9.4__ Una empresa de material eléctrico fabrica bombillas de luz que tienen una duración aproximadamente distribuida de forma normal, con una desviación estándar de 40 horas. Si una muestra de 30 bombillas tiene una duración promedio de 780 horas, encuentre un intervalo de confi anza de 96% para la media de la población de todas las bombillas que produce esta empresa.
+<table>
+    <tr>
+        <th>Temperatura z</th>
+        <th>Azúcar convertida,y</th>
+    </tr>
+    <tr>
+        <td>1.0</td>
+        <td>8.1</td>
+    </tr>
+    <tr>
+        <td>1.1</td>
+        <td>7.8</td>
+    </tr>
+    <tr>
+        <td>1.2</td>
+        <td>8.5</td>
+    </tr>
+    <tr>
+        <td>1.3</td>
+        <td>9.8</td>
+    </tr>
+    <tr>
+        <td>1.4</td>
+        <td>9.5</td>
+    </tr>
+    <tr>
+        <td>1.5</td>
+        <td>8.9</td>
+    </tr>
+    <tr>
+        <td>1.6</td>
+        <td>8.6</td>
+    </tr>
+    <tr>
+        <td>1.7</td>
+        <td>10.2</td>
+    </tr>
+    <tr>
+        <td>1.8</td>
+        <td>9.3</td>
+    </tr>
+    <tr>
+        <td>1.9</td>
+        <td>9.2</td>
+    </tr>
+    <tr>
+        <td>2.0</td>
+        <td>10.5</td>
+    </tr>
 
-```{r}
-# Datos proporcionados
-n = 30
-media_muestral = 780
-desviacion_estandar_poblacion = 40
-nivel_confianza = 0.96
+</table>
+<br>
 
-# Nivel de significancia
-alpha = 1 - nivel_confianza
-alpha
-# Valor crítico (z-score) para un intervalo de confianza del 96%
-z_score = qnorm(1 - alpha / 2)
-z_score
-# Error estándar
-error_estandar = desviacion_estandar_poblacion / sqrt(n)
-error_estandar
-# Margen de error
-margen_error = z_score * error_estandar
-margen_error
-# Intervalo de confianza
-limite_inferior = media_muestral - margen_error
-limite_inferior
-limite_superior = media_muestral + margen_error
-limite_superior
+a) Estime la recta de regresion lineal.
+b) Clacule la cantidad media de azúcar convertida que se produce cuando la temperatura registrada es 1.75.
+c) Grafique los residuos contra la temperatura. Comente el resultado
 
-```
+__11.5__ Se registraron las cantidades de un compuesto químico, y, que se disolvía en 100 gramos de agua a distintas temperaturas:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
 
+<table>
+    <tr>
+        <th>x(°C)</th>
+        <th>y(gramos)</th>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>8</td>
+        <td>6</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>12</td>
+        <td>10</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>25</td>
+        <td>21</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>45</td>
+        <td>31</td>
+        <td>33</td>
+        <td>28</td>
+    </tr>
+    <tr>
+        <td>60</td>
+        <td>44</td>
+        <td>39</td>
+        <td>42</td>
+    </tr>
+    <tr>
+        <td>75</td>
+        <td>48</td>
+        <td>51</td>
+        <td>44</td>
+    </tr>
+</table>
+<br>
 
-__9.6__ Las estaturas de una muestra aleatoria de 50 estudiantes de una universidad muestra una media de
-174.5 centímetros y una desviación estándar de 6.9 centímetros.
-a) Construya un intervalo de confi anza de 98% para la estatura media de todos los estudiantes de la universidad.
-```{r}
-# Datos proporcionados
-n3 = 50
-media_muestral3 = 174.5
-desviacion_estandar_muestra3 = 6.9
-nivel_confianza3 = 0.98
+a) Encuentre la ecuación de la recta de regresión.
+b) Grafique la recta en un diagrama de dispersión.
+c) Estime la cantidad de producto químico que se disolverá en 100 gramos de agua a 50 °C.
 
-# Nivel de significancia
-alpha3 = 1 - nivel_confianza3
-alpha3
-# Valor crítico (z-score) para un intervalo de confianza del 98%
-z_score3 = qnorm(1 - alpha3 / 2)
-z_score3
-# Error estándar
-error_estandar3 = desviacion_estandar_muestra3 / sqrt(n3)
-error_estandar3
-# Margen de error
-margen_error3 = z_score3 * error_estandar3
-margen_error3
-# Intervalo de confianza
-limite_inferior3 = media_muestral3 - margen_error3
-limite_inferior3
-limite_superior3 = media_muestral3 + margen_error3
-limite_superior3
+__11.7__ Un comerciante al detalle realizó un estudio para determinar la relación que hay entre los gastos de la publicidad semanal y las ventas. Registró los datos siguientes: 
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
 
+<table>
+    <tr>
+        <th>Costos de publicidad(s)</th>
+        <th>Ventas($)</th>
+    </tr>
+    <tr>
+        <td>40</td>
+        <td>385</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>400</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>395</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>365</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>475</td>
+    </tr>
+    <tr>
+        <td>50</td>
+        <td>440</td>
+    </tr>
+    <tr>
+        <td>40</td>
+        <td>490</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>420</td>
+    </tr>
+    <tr>
+        <td>50</td>
+        <td>560</td>
+    </tr>
+    <tr>
+        <td>40</td>
+        <td>252</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>480</td>
+    </tr>
+    <tr>
+        <td>50</td>
+        <td>510</td>
+    </tr>
+</table>
+<br>
 
-```
+a) Elabore un diagrama de dispersión.
+b) Encuentre la ecuación de regresión para pronosticar las ventas semanales, a partir de los gastos en publicidad.
+c) Estime las ventas semanales cuando los costos de la publicidad sean $35.
+d) Grafique los residuos contra los costos de publicidad. Haga comentarios.
 
+__11.9__ Un estudio sobre la cantidad de lluvia y la contaminación removida del aire produjo los siguientes datos: 
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
 
-b) ¿Qué podemos afi rmar con 98% de confi anza sobre
-el tamaño posible de nuestro error, si estimamos que
-la estatura media de todos los estudiante de la universidad es 174.5 centímetros?
+<table>
+    <tr>
+        <th>Cantidad de lluvia diaria, x(0.01 cm)</th>
+        <th>Partículas removidas, y(ug/m^3)</th>
+    </tr>
+    <tr>
+        <td>4.3</td>
+        <td>123</td>
+    </tr>
+    <tr>
+        <td>4.5</td>
+        <td>121</td>
+    </tr>
+    <tr>
+        <td>5.9</td>
+        <td>116</td>
+    </tr>
+    <tr>
+        <td>5.6</td>
+        <td>118</td>
+    </tr>
+    <tr>
+        <td>6.1</td>
+        <td>114</td>
+    </tr>
+    <tr>
+        <td>5.2</td>
+        <td>118</td>
+    </tr>
+    <tr>
+        <td>3.8</td>
+        <td>132</td>
+    </tr>
+    <tr>
+        <td>2.1</td>
+        <td>141</td>
+    </tr>
+    <tr>
+        <td>7.5</td>
+        <td>108</td>
+    </tr>
+</table>
+<br>
 
-```{r}
-# Datos proporcionados
-n3 = 50
-media_muestral3 = 174.5
-desviacion_estandar_muestra3 = 6.9
-nivel_confianza3 = 0.98
-
-# Nivel de significancia
-alpha3 = 1 - nivel_confianza3
-alpha3
-# Valor crítico (z-score) para un intervalo de confianza del 98%
-z_score3 = qnorm(1 - alpha3 / 2)
-z_score3
-# Error estándar
-error_estandar3 = desviacion_estandar_muestra3 / sqrt(n3)
-error_estandar3
-# Margen de error
-margen_error3 = z_score3 * error_estandar3
-margen_error3
-```
-
-
-__9.13__ Una máquina produce piezas metálicas de forma cilíndrica. Se toma una muestra de las piezas y los diámetros son 1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01 y 1.03 centímetros. Encuentre un intervalo de confianza de 99% para el diámetro medio de las piezas de esta máquina. Suponga una distribución aproximadamente normal.
-
-```{r}
-# Datos proporcionados
-muestra = c(1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01, 1.03)
-n = length(muestra)
-media_muestral = mean(muestra)
-desviacion_estandar_muestra = sd(muestra)
-nivel_confianza = 0.99
-
-# Nivel de significancia
-alpha = 1 - nivel_confianza
-alpha
-# Valor crítico (t-score) para un intervalo de confianza del 99%
-t_score = qt(1 - alpha / 2, df = n - 1)
-t_score
-# Error estándar
-error_estandar = desviacion_estandar_muestra / sqrt(n)
-error_estandar
-# Margen de error
-margen_error = t_score * error_estandar
-margen_error
-# Intervalo de confianza
-limite_inferior = media_muestral - margen_error
-limite_inferior
-limite_superior = media_muestral + margen_error
-limite_superior
-
-```
-
-
-__9.16__ Una muestra aleatoria de 12 graduadas de cierta escuela secretarial teclearon un promedio de 79.3 palabras por minuto, con una desviación estándar de 7.8 palabras por minuto. Suponiendo una distribución normal para el número de palabras que se teclea por minuto, encuentre un intervalo de confi anza de 95% para el número promedio de palabras tecleadas por todas las graduadas de esta escuela.
-
-```{r}
-# Datos proporcionados
-n = 12
-media_muestral = 79.3
-desviacion_estandar_muestra = 7.8
-nivel_confianza = 0.95
-
-# Nivel de significancia
-alpha = 1 - nivel_confianza
-alpha
-# Valor crítico (t-score) para un intervalo de confianza del 95%
-t_score = qt(1 - alpha / 2, df = n - 1)
-t_score
-# Error estándar
-error_estandar = desviacion_estandar_muestra / sqrt(n)
-error_estandar
-# Margen de error
-margen_error = t_score * error_estandar
-margen_error
-# Intervalo de confianza
-limite_inferior = media_muestral - margen_error
-limite_inferior
-limite_superior = media_muestral + margen_error
-limite_superior
-```
-
-
-__9.35__ Una muestra aleatoria de tamaño n1 = 25 que
-se toma de una población normal con una desviación
-es tándar σ1 = 5 tiene una media 1 = 80. Una segunda
-muestra aleatoria de tamaño n2 = 36, que se toma de
-una población normal diferente con una desviación estándar σ2 = 3, tiene una media 2 = 75. Encuentre un intervalo de confi anza de 94% para µ1 – µ2.
-
-```{r}
-# Datos proporcionados
-n1 = 25  # Tamaño de la primera muestra
-xbar1 = 80  # Media de la primera muestra
-sigma1 = 5  # Desviación estándar de la primera muestra
-
-n2 = 36  # Tamaño de la segunda muestra
-xbar2 = 75  # Media de la segunda muestra
-sigma2 = 3  # Desviación estándar de la segunda muestra
-
-# Nivel de confianza y nivel de significancia
-alpha = 0.06  # Nivel de significancia (1 - nivel de confianza)
-alpha
-conf_level = 1 - alpha  # Nivel de confianza
-conf_level
-# Valor crítico de la distribución normal estándar
-Z = qnorm(1 - alpha/2)
-Z
-# Intervalo de confianza para la diferencia de medias
-limite_inferior = (xbar1 - xbar2) - Z * sqrt((sigma1^2 / n1) + (sigma2^2 / n2))
-limite_inferior
-limite_superior  = (xbar1 - xbar2) + Z * sqrt((sigma1^2 / n1) + (sigma2^2 / n2))
-limite_superior 
-```
-
-
-__9.38__ En un proceso químico por lotes, se comparan los efectos de dos catalizadores sobre la potencia de la reacción del proceso. Se preparó una muestra de 12 lotes con el uso del catalizador 1 y se obtuvo una muestra de 10 lotes con el catalizador 2. Los 12 lotes para los que se utilizó el catalizador 1 dieron un rendi miento promedio de 85 con una desviación estándar muestral de 4; en tanto que para la segunda muestra el promedio fue de 81 con una desviación estándar muestral de 5.
-Encuentre un intervalo de confi anza de 90% para la
-diferencia entre las medias poblacionales, suponiendo que las poblaciones se distribuyen de forma aproximadamente normal con varianzas iguales.
-
-```{r}
-# Datos proporcionados
-n1 = 12
-xbar1 = 85
-s1 = 4
-
-n2 = 10
-xbar2 = 81
-s2 = 5
-
-# Nivel de confianza
-conf_level = 0.90
-conf_level
-# Grados de libertad
-df = n1 + n2 - 2
-df
-# Varianza combinada
-sp2 = ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / df
-sp2
-# Error estándar de la diferencia de medias
-error_estandar  = sqrt(sp2 * (1/n1 + 1/n2))
-error_estandar 
-# Valor crítico t para el nivel de confianza del 90%
-t_critical = qt((1 + conf_level) / 2, df)
-t_critical
-# Intervalo de confianza
-limite_inferior = (xbar1 - xbar2) - t_critical * error_estandar 
-limite_inferior
-limite_superior  = (xbar1 - xbar2) + t_critical * error_estandar 
-limite_superior 
-```
-
-
-__9.43__ Una compañía de taxis trata de decidir si comprar neumáticos de la marca A o de la B para su fl otilla de taxis. Para estimar la diferencia de las dos marcas, se lleva a cabo un experimento utilizando 12 neumáticos de cada marca. Los neumáticos se utilizan hasta que se desgastan. Los resultados son: 
-Marca A: 
-x1 = 36,300 kilómetros,
-s1 = 5,000 kilómetros.
-Marca B: 
-x2 = 38,100 kilómetros,
-s2 = 6,100 kilómetros.
-
-Calcule un intervalo de confi anza de 95% para µA − µB, suponiendo que las poblaciones se distribuyen de forma aproximadamente normal. Puede no supo ner que las varianzas son iguales.
-
-```{r}
-# Datos proporcionados
-n1 = 12
-xbar1 = 36300
-s1 = 5000
-
-n2 = 12
-xbar2 = 38100
-s2 = 6100
-
-# Nivel de confianza
-conf_level = 0.95
-conf_level
-# Grados de libertad
-df_num = ((s1^2 / n1) + (s2^2 / n2))^2
-df_num
-df_denom = ((s1^2 / n1)^2 / (n1 - 1)) + ((s2^2 / n2)^2 / (n2 - 1))
-df_denom
-df = df_num / df_denom
-df
-# Error estándar de la diferencia de medias
-error_estandar  = sqrt((s1^2 / n1) + (s2^2 / n2))
-error_estandar 
-# Valor crítico t para el nivel de confianza del 95% y los grados de libertad df
-t_critical = qt((1 + conf_level) / 2, df)
-t_critical
-# Intervalo de confianza
-limite_inferior  = (xbar1 - xbar2) - t_critical * error_estandar 
-limite_inferior 
-limite_superior  = (xbar1 - xbar2) + t_critical * error_estandar 
-limite_superior 
-```
+a) Obtenga la ecuación de la recta de regresión para pronosticar las partículas removidas, a partir de la cantidad de lluvia diaria.
+b) Estime la cantidad de partículas removidas cuando la lluvia diaria es x = 4.8 unidades.
 
 
-__9.45__ El gobierno otorga fondos para los departamentos de agricultura de 9 universidades para probar las capacidades de rendimiento de dos nuevas varie dades de trigo. Cada variedad se siembra en parcelas de área igual en cada universidad y el rendimiento, en kilogramos por parcela, se registra como sigue:
+__11.11__ El empuje de un motor (y) es función de la temperatura de escape (x) en °F, cuando otras variables de importancia se mantienen constantes. Considere los siguientes datos:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+
+<table>
+    <tr>
+        <th>y</th>
+        <th>x</th>
+    </tr>
+    <tr>
+        <td>4300</td>
+        <td>1760</td>
+    </tr>
+    <tr>
+        <td>4650</td>
+        <td>1652</td>
+    </tr>
+    <tr>
+        <td>3200</td>
+        <td>1485</td>
+    </tr>
+    <tr>
+        <td>3150</td>
+        <td>1390</td>
+    </tr>
+    <tr>
+        <td>4950</td>
+        <td>1820</td>
+    </tr>
+    <tr>
+        <td>4010</td>
+        <td>1665</td>
+    </tr>
+    <tr>
+        <td>3810</td>
+        <td>1550</td>
+    </tr>
+    <tr>
+        <td>4500</td>
+        <td>1700</td>
+    </tr>
+    <tr>
+        <td>3008</td>
+        <td>1270</td>
+    </tr>
+</table>
+<br>
+
+a) Grafique los datos.
+b) Ajuste una recta de regresión simple a los datos y grafíquela a través de ellos.
+
+__12.3__ Se efectuó un conjunto de ensayos experimetnales para determinar una forma de predecir el tiempo de cocción y a diferentes niveles del ancho de horno x1 y temperaturas de la chimenea x2. Los siguientes son los datos registrados.
 
 <style>
         table {
@@ -513,62 +587,67 @@ __9.45__ El gobierno otorga fondos para los departamentos de agricultura de 9 un
 
 <table>
     <tr>
-        <th>Variedad</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
-        <th>6</th>
-        <th>7</th>
-        <th>8</th>
-        <th>9</th>
+        <th>y</th>
+        <th>x1</th>
+        <th>x2</th>
     </tr>
     <tr>
-        <td>1</td>
-        <td>38</td>
-        <td>23</td>
-        <td>35</td>
-        <td>41</td>
-        <td>44</td>
-        <td>29</td>
-        <td>37</td>
-        <td>31</td>
-        <td>38</td>
+        <td>6.40</td>
+        <td>1.32</td>
+        <th>1.15</th>
     </tr>
     <tr>
-        <td>2</td>
-        <td>45</td>
-        <td>25</td>
-        <td>31</td>
-        <td>38</td>
-        <td>50</td>
-        <td>33</td>
-        <td>36</td>
-        <td>40</td>
-        <td>43</td>
+        <td>15.05</td>
+        <td>2.69</td>
+        <th>3.40</th>
+    </tr>
+    <tr>
+        <td>18.75</td>
+        <td>3.56</td>
+        <th>4.10</th>
+    </tr>
+    <tr>
+        <td>30.25</td>
+        <td>4.41</td>
+        <th>8.75</th>
+    </tr>
+    <tr>
+        <td>44.85</td>
+        <td>5.35</td>
+        <th>14.82</th>
+    </tr>
+    <tr>
+        <td>48.94</td>
+        <td>6.20</td>
+        <th>15.15</th>
+    </tr>
+    <tr>
+        <td>51.55</td>
+        <td>7.12</td>
+        <th>15.32</th>
+    </tr>
+    <tr>
+        <td>61.50</td>
+        <td>8.87</td>
+        <th>18.18</th>
+    </tr>
+    <tr>
+        <td>10.44</td>
+        <td>9.80</td>
+        <th>35.19</th>
+    </tr>
+    <tr>
+        <td>111.42</td>
+        <td>10.65</td>
+        <th>40.40</th>
     </tr>
 </table>
 <br>
 
-Encuentre un intervalo de confi anza de 95% para la
-diferencia media entre los rendimientos de las dos variedades, suponiendo que las diferencias de rendimiento se distribuyen de forma aproximadamente normal. Explique por qué en este problema se necesita el pareamiento.
-
-```{r}
-variedad1 = c(38, 23, 35, 41, 44, 29, 37, 31, 38)
-variedad2 = c(45, 25, 31, 38, 50, 33, 36, 40, 43)
-
-diferencias = variedad2 - variedad1
-
-media_diferencias = mean(diferencias)
-media_diferencias
-desviacion_diferencias = sd(diferencias)
-desviacion_diferencias
-
-t_test = t.test(diferencias, conf.level = 0.95)
-t_test$conf.int
-
-```
+Estime la ecuacion de regresión lineal múltiple:
+\[
+\mu_{Y|x_1, x_2} = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+\]
 
 
 __9.47__ A continuación se listan 10 de las 431 compañías estudiadas en la revista Fortune (marzo de 1997). Se listan las utilidades totales para los 10 años anteriores a 1996 y también para 1996. Encuentre un intervalo de confianza de 95% para el cambio promedio en el porcentaje de utilidad de los inversionistas.
@@ -662,414 +741,7 @@ t_test$conf.int
 ```
 
 
-__9.44__ Con referencia al ejercicio 9.43, encuentre un intervalo de confi anza de 99% para µ1 − µ2, si se asigna al azar un neumático de cada compañía a las ruedas traseras de 8 taxis y se registran las siguientes distancias, en kilómetros:
-<style>
-        table {
-            width: 50%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-</style>
 
-<table>
-    <tr>
-        <th>Taxi</th>
-        <th>Marca A</th>
-        <th>Marca B</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>34.400</td>
-        <td>36.700</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>45.500</td>
-        <td>46.800</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>36.700</td>
-        <td>37.700</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>32.000</td>
-        <td>31.100</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>48.400</td>
-        <td>47.800</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>32.800</td>
-        <td>36.400</td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>38.100</td>
-        <td>38.900</td>
-    </tr>
-    <tr>
-        <td>8</td>
-        <td>30.100</td>
-        <td>31.500</td>
-    </tr>
-</table>
-<br>
-Suponga que las diferencias de las distancias se distribuyen de forma aproximadamente normal.
-
-```{r}
-marca_A = c(34400, 45500, 36700, 32700, 32000, 38700, 38100, 31100)
-marca_B = c(36700, 46800, 37700, 31100, 31700, 37400, 38900, 31500)
-
-diferencias = marca_A - marca_B
-diferencias
-n = length(diferencias)
-n
-media_diferencias = mean(diferencias)
-media_diferencias
-sd_diferencias = sd(diferencias)
-sd_diferencias
-confianza = 0.99
-confianza
-gl = n - 1
-gl
-t_critico = qt((1 + confianza) / 2, gl)
-t_critico
-margen_error = t_critico * sd_diferencias / sqrt(n)
-margen_error
-IC_inferior = media_diferencias - margen_error
-IC_inferior
-IC_superior = media_diferencias + margen_error
-IC_superior
-```
-
-
-__9.49__ Se considera usar dos marcas diferentes de pintura látex. El tiempo de secado en horas se mide en especímenes de muestras del uso de las dos pinturas. Se seleccionan 15 especímenes de cada una y los tiempos de secado son los siguientes:
-<style>
-        table {
-            width: 50%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-</style>
-
-<table>
-    <tr>
-        <th>Pintura A</th>
-        <th>Pintura B</th>
-    </tr>
-    <tr>
-        <td>3.5 | 2.7 | 3.9 | 4.2 | 3.6 | 2.7 | 3.3 | 5.2 | 4.2 | 2.9 | 4.4 | 5.2 | 4.0 | 4.1 | 3.4</td>
-        <td>4.7 | 3.9 | 4.5 | 5.5 | 4.0 | 5.3 | 4.3 | 6.0 | 5.2 | 3.7 | 5.5 | 6.2 | 5.1 | 5.4 | 4.8</td>
-    </tr>
-</table>
-<br>
-
-Suponga que el tiempo de secado se distribuye normalmente con σA = σB. Encuentre un intervalo de confi anza en µB − µA, donde µA y µB sean los tiempos medios de secado.
-
-```{r}
-# Datos de los tiempos de secado en horas
-pintura_A = c(3.5, 2.7, 3.9, 4.2, 3.6, 4.4, 3.1, 3.0, 4.0, 3.6, 2.7, 3.3, 5.2, 4.2, 4.4)
-pintura_B = c(4.7, 3.9, 4.5, 5.5, 4.0, 5.3, 4.9, 4.6, 5.2, 3.7, 4.4, 4.8, 5.1, 5.4, 4.8)
-
-# Tamaño de la muestra
-n_A = length(pintura_A)
-n_B = length(pintura_B)
-
-media_A = mean(pintura_A)
-media_A
-media_B = mean(pintura_B)
-media_B
-var_A = var(pintura_A)
-var_A
-var_B = var(pintura_B)
-var_B
-var_comb = ((n_A - 1) * var_A + (n_B - 1) * var_B) / (n_A + n_B - 2)
-var_comb
-confianza = 0.95
-confianza
-gl = n_A + n_B - 2
-gl
-t_critico = qt((1 + confianza) / 2, gl)
-t_critico
-error_estandar = sqrt(var_comb * (1/n_A + 1/n_B))
-error_estandar
-margen_error = t_critico * error_estandar
-margen_error
-diferencia_medias = media_B - media_A
-diferencia_medias
-IC_inferior = diferencia_medias - margen_error
-IC_inferior
-IC_superior = diferencia_medias + margen_error
-IC_superior
-
-```
-
-
-__9.53__ En una muestra aleatoria de 1000 viviendas en cierta ciudad, se encuentra que 228 se calientan con petróleo. Encuentre el intervalo de confi anza de 99% para la proporción de viviendas en esta ciudad que se calientan con petróleo.
-
-```{r}
-# Datos
-n = 1000  # tamaño de la muestra
-x = 228   # número de viviendas que se calientan con petróleo
-
-# Proporción muestral
-proporcion_muestral  = x / n
-
-# Error estándar
-error_estandar  = sqrt(proporcion_muestral  * (1 - proporcion_muestral ) / n)
-
-# Valor crítico z para el nivel de confianza del 99%
-z = qnorm(0.995)  # qnorm(0.995) da el percentil 99.5%
-
-# Intervalo de confianza
-limite_inferior  = proporcion_muestral  - z * error_estandar 
-limite_inferior 
-limite_superior = proporcion_muestral  + z * error_estandar 
-limite_superior
-
-```
-
-
-__9.56__ Un genetista se interesa en la proporción de hombres africanos que tienen cierto trastorno sanguíneo menor. En una muestra aleatoria de 100 hombres africanos, se encuentra que 24 lo padecen.
-a) Calcule un intervalo de confianza de 99% para la
-proporción de hombres africanos que tienen este
-trastorno sanguíneo.
-
-```{r}
-# Datos
-tamaño_muestra = 100  # tamaño de la muestra
-hombres_con_trastorno = 24   # número de hombres con el trastorno
-
-# Proporción muestral
-proporcion_muestral = hombres_con_trastorno / tamaño_muestra
-proporcion_muestral
-# Error estándar
-error_estandar = sqrt(proporcion_muestral * (1 - proporcion_muestral) / tamaño_muestra)
-error_estandar
-# Valor crítico z para el nivel de confianza del 99%
-z = qnorm(0.995)  # qnorm(0.995) da el percentil 99.5%
-z
-# Intervalo de confianza
-limite_inferior = proporcion_muestral - z * error_estandar
-limite_inferior
-limite_superior = proporcion_muestral + z * error_estandar
-limite_superior
-```
-
-b) ¿Qué se puede asegurar con 99% de confianza acerca de la posible magnitud de nuestro error, si estimamos que la proporción de hombres africanos con
-dicho trastorno sanguíneo es 0.24?
-
-```{r}
-# Datos
-tamaño_muestra = 100  # tamaño de la muestra
-hombres_con_trastorno = 24   # número de hombres con el trastorno
-
-# Proporción muestral
-proporcion_muestral = hombres_con_trastorno / tamaño_muestra
-proporcion_muestral
-# Error estándar
-error_estandar = sqrt(proporcion_muestral * (1 - proporcion_muestral) / tamaño_muestra)
-error_estandar
-# Margen de error
-margen_error = z * error_estandar
-margen_error
-
-#Por lo tanto, con un 99% de confianza, podemos afirmar que la proporción verdadera de hombres africanos que tienen este trastorno sanguíneo está dentro del intervalo aproximadamente entre 13.01% y 34.99%. Además, podemos decir con un 99% de confianza que nuestra estimación puntual de 24% tiene un margen de error de aproximadamente ±5.495%.
-```
-
-
-__9.60__ ¿Qué tan grande se requiere que sea la muestra en el ejercicio 9.53, si deseamos tener una confi anza de 99% de que nuestra proporción de la muestra estará dentro del 0.05 de la proporción real de casas en esta ciudad que se calientan con petróleo? 
-
-```{r}
-# Datos y variables en español
-margen_error = 0.05  # margen de error deseado
-nivel_confianza = 0.99  # nivel de confianza del 99%
-proporcion_muestral = 0.228  # proporción muestral obtenida del ejercicio 9.53
-
-# Calcular el valor crítico z para el nivel de confianza del 99%
-z = qnorm(1 - (1 - nivel_confianza) / 2)
-z
-# Calcular el tamaño de muestra necesario
-n = ceiling((z^2 * proporcion_muestral * (1 - proporcion_muestral)) / (margen_error^2))
-n
-# Mostrar el resultado
-cat("Se requiere una muestra de al menos", n, "viviendas para asegurar un intervalo de confianza del 99% con un margen de error de ±0.05 para la proporción de viviendas que se calientan con petróleo.")
-
-```
-
-
-__9.66__ Se encuestan 10 escuelas de ingeniería en Estados Unidos. La muestra contiene 250 ingenieros eléctricos, donde 80 son mujeres; y 175 ingenieros químicos, donde 40 son mujeres. Calcule un intervalo de confi anza de 90% para la diferencia entre la proporción de mujeres en estos dos campos de la ingeniería. ¿Hay una diferencia signifi cativa entre las dos proporciones? 
-
-```{r}
-# Datos y variables en español
-n1 = 250
-mujeres1 = 80
-
-n2 = 175
-mujeres2 = 40
-
-# Proporciones muestrales
-proporcion1 = mujeres1 / n1
-proporcion1
-proporcion2 = mujeres2 / n2
-proporcion2
-# Diferencia de proporciones
-diferencia_proporciones = proporcion1 - proporcion2
-diferencia_proporciones
-# Error estándar de la diferencia
-SE = sqrt((proporcion1 * (1 - proporcion1)) / n1 + (proporcion2 * (1 - proporcion2)) / n2)
-SE
-# Valor crítico z para el nivel de confianza del 90%
-z = qnorm(0.95)
-z
-# Intervalo de confianza para la diferencia de proporciones
-intervalo_confianza = c(diferencia_proporciones - z * SE, diferencia_proporciones + z * SE)
-intervalo_confianza
-
-```
-
-
-__9.69__ Una encuesta a 1000 estudiantes concluye que 274 eligen al equipo profesional de béisbol A como su equipo favorito. En 1991, se realizó la misma encuesta con 760 estudiantes. Concluyó que 240 de ellos también eligieron al equipo A como su favorito. Calcule un intervalo de confi anza de 95% para la diferencia entre la proporción de estudiantes que favorecen al equipo A entre las dos encuestas. ¿Hay una diferencia significativa?
-
-```{r}
-# Datos y variables en español
-n1 = 1000
-favorito_A1 = 274
-
-n2 = 760
-favorito_A2 = 240
-
-# Proporciones muestrales
-proporcion1 = favorito_A1 / n1
-proporcion1
-proporcion2 = favorito_A2 / n2
-proporcion2
-
-# Diferencia de proporciones
-diferencia_proporciones = proporcion1 - proporcion2
-diferencia_proporciones
-# Error estándar de la diferencia
-SE = sqrt((proporcion1 * (1 - proporcion1)) / n1 + (proporcion2 * (1 - proporcion2)) / n2)
-SE
-# Valor crítico z para el nivel de confianza del 95%
-z = qnorm(0.975)
-z
-# Intervalo de confianza para la diferencia de proporciones
-intervalo_confianza = c(diferencia_proporciones - z * SE, diferencia_proporciones + z * SE)
-intervalo_confianza
-```
-
-
-__9.71__ Un fabricante de baterías para automóvil afi rma que sus baterías durarán, en promedio, 3 años con una varianza de 1 año. Si 5 de estas baterías tienen duraciones de 1.9, 2.4, 3.0, 3.5 y 4.2 años, construya un intervalo de confi anza de 95% para σ2 y decida si es válida la afi rmación del fabricante de que σ2 = 1. Suponga que la población de duraciones de las baterías se distribuye de forma aproximadamente normal.
-
-```{r}
-# Datos y variables en español
-duraciones = c(1.9, 2.4, 3.0, 3.5, 4.2)
-n = length(duraciones)
-media_muestral = mean(duraciones)
-
-# Calcular la varianza muestral
-varianza_muestral = var(duraciones)
-varianza_muestral
-# Grados de libertad
-grados_libertad = n - 1
-grados_libertad
-# Intervalo de confianza para la varianza al 95%
-intervalo_confianza = sqrt((n - 1) * varianza_muestral / qchisq(c(0.975, 0.025), df = grados_libertad))
-intervalo_confianza
-
-```
-
-
-__9.72__ Una muestra aleatoria de 20 estudiantes obtuvo una media de = 72 y una varianza de s2 = 16 en un examen universitario de colocación en matemáticas. Suponga que las califi caciones se distribuyen normalmente y construya un intervalo de confi anza de 98% para σ2.
-
-```{r}
-# Datos y variables en español
-n = 20
-media_muestral = 72
-varianza_muestral = 16
-
-# Grados de libertad
-grados_libertad = n - 1
-grados_libertad
-# Intervalo de confianza para la varianza al 98%
-intervalo_confianza = sqrt((n - 1) * varianza_muestral / qchisq(c(0.99, 0.01), df = grados_libertad))
-intervalo_confianza
-```
-
-
-__9.74__ Construya un intervalo de confianza de 99%
-para σ2 en el ejercicio 9.13 de la página 286.
-
-```{r}
-# Datos del ejercicio 9.13
-muestra = c(1.01, 0.97, 1.03, 1.04, 0.99, 0.98, 0.99, 1.01, 1.03)
-n = length(muestra)
-media_muestral = mean(muestra)
-desviacion_estandar_muestra = sd(muestra)
-
-# Nivel de confianza
-nivel_confianza = 0.99
-alpha = 1 - nivel_confianza
-alpha
-# Grados de libertad
-grados_libertad = n - 1
-grados_libertad
-# Intervalo de confianza para la varianza al 99%
-intervalo_confianza = sqrt((n - 1) * var(muestra) / qchisq(c(1 - alpha/2, alpha/2), df = grados_libertad))
-intervalo_confianza
-
-```
-
-__9.80__ Construya un intervalo de confianza de 95%
-para σ2A/σ2B en el ejercicio 9.49 de la página 299. ¿Debería utilizarse la suposición de la varianza igual?
-
-```{r}
-# Datos de los tiempos de secado en horas
-pintura_A = c(3.5, 2.7, 3.9, 4.2, 3.6, 4.4, 3.1, 3.0, 4.0, 3.6, 2.7, 3.3, 5.2, 4.2, 4.4)
-pintura_B = c(4.7, 3.9, 4.5, 5.5, 4.0, 5.3, 4.9, 4.6, 5.2, 3.7, 4.4, 4.8, 5.1, 5.4, 4.8)
-
-n_A = length(pintura_A)
-n_B = length(pintura_B)
-
-var_A = var(pintura_A)
-var_A
-var_B = var(pintura_B)
-var_B
-confianza = 0.95
-confianza
-gl_A = n_A - 1
-gl_A
-gl_B = n_B - 1
-gl_B
-
-F_critico_inferior = qf((1 - confianza) / 2, gl_A, gl_B)
-F_critico_inferior
-F_critico_superior = qf((1 + confianza) / 2, gl_A, gl_B)
-F_critico_superior
-limite_inferior = var_A / var_B / F_critico_superior
-limite_inferior
-limite_superior = var_A / var_B / F_critico_inferior
-limite_superior
-
-```
 
 
 
