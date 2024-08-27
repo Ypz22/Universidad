@@ -305,6 +305,29 @@ a) Estime la recta de regresion lineal.
 b) Clacule la cantidad media de azúcar convertida que se produce cuando la temperatura registrada es 1.75.
 c) Grafique los residuos contra la temperatura. Comente el resultado
 
+```{r}
+# Datos
+temperatura <- c(1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0)
+azucar_convertida <- c(8.1, 7.8, 8.5, 9.0, 9.5, 8.6, 8.2, 8.8, 9.3, 9.0, 10.5)
+# Crear data frame
+datos <- data.frame(temperatura, azucar_convertida)
+# Ajustar el modelo de regresión lineal
+modelo <- lm(azucar_convertida ~ temperatura, data = datos)
+
+# Mostrar los coeficientes del modelo
+summary(modelo)
+# Calcular la predicción para x = 1.75
+prediccion <- predict(modelo, newdata = data.frame(temperatura = 1.75))
+prediccion
+# Graficar los residuos
+residuos <- resid(modelo)
+plot(temperatura, residuos, main = "Residuos vs Temperatura", 
+     xlab = "Temperatura", ylab = "Residuos")
+abline(h = 0, col = "red")
+
+```
+
+
 __11.5__ Se registraron las cantidades de un compuesto químico, y, que se disolvía en 100 gramos de agua a distintas temperaturas:
 <style>
         table {
@@ -367,6 +390,46 @@ __11.5__ Se registraron las cantidades de un compuesto químico, y, que se disol
 a) Encuentre la ecuación de la recta de regresión.
 b) Grafique la recta en un diagrama de dispersión.
 c) Estime la cantidad de producto químico que se disolverá en 100 gramos de agua a 50 °C.
+
+
+```{r}
+# Datos
+temperatura <- c(0, 15, 30, 45, 60, 75)
+compuesto_8g <- c(8, 12, 25, 40, 44, 51)
+compuesto_6g <- c(6, 10, 21, 34, 42, 48)
+compuesto_8g_extra <- c(8, 14, 28, 39, 45, 44)
+
+# Crear data frame
+datos <- data.frame(temperatura, compuesto_8g, compuesto_6g, compuesto_8g_extra)
+# Ajustar los modelos de regresión lineal
+modelo_8g <- lm(compuesto_8g ~ temperatura, data = datos)
+modelo_6g <- lm(compuesto_6g ~ temperatura, data = datos)
+modelo_8g_extra <- lm(compuesto_8g_extra ~ temperatura, data = datos)
+
+# Mostrar los coeficientes del modelo
+summary(modelo_8g)
+summary(modelo_6g)
+summary(modelo_8g_extra)
+# Gráfico de dispersión y rectas de regresión
+plot(temperatura, compuesto_8g, col = "blue", pch = 19, main = "Diagrama de dispersión con rectas de regresión", 
+     xlab = "Temperatura (°C)", ylab = "Compuesto Disuelto (gramos)")
+points(temperatura, compuesto_6g, col = "red", pch = 19)
+points(temperatura, compuesto_8g_extra, col = "green", pch = 19)
+abline(modelo_8g, col = "blue")
+abline(modelo_6g, col = "red")
+abline(modelo_8g_extra, col = "green")
+legend("topleft", legend = c("Compuesto (8g)", "Compuesto (6g)", "Compuesto (8g extra)"),
+       col = c("blue", "red", "green"), pch = 19)
+# Calcular la predicción para x = 50
+prediccion_8g <- predict(modelo_8g, newdata = data.frame(temperatura = 50))
+prediccion_6g <- predict(modelo_6g, newdata = data.frame(temperatura = 50))
+prediccion_8g_extra <- predict(modelo_8g_extra, newdata = data.frame(temperatura = 50))
+
+prediccion_8g
+prediccion_6g
+prediccion_8g_extra
+
+```
 
 __11.7__ Un comerciante al detalle realizó un estudio para determinar la relación que hay entre los gastos de la publicidad semanal y las ventas. Registró los datos siguientes: 
 <style>
@@ -444,6 +507,33 @@ b) Encuentre la ecuación de regresión para pronosticar las ventas semanales, a
 c) Estime las ventas semanales cuando los costos de la publicidad sean $35.
 d) Grafique los residuos contra los costos de publicidad. Haga comentarios.
 
+```{r}
+# Datos
+publicidad <- c(40, 20, 25, 20, 30, 50, 45, 40, 20, 25, 30, 50, 40, 25, 50)
+ventas <- c(385, 400, 395, 365, 475, 440, 520, 550, 400, 480, 510, 560, 525, 510, 580)
+
+# Crear data frame
+datos <- data.frame(publicidad, ventas)
+# Diagrama de dispersión
+plot(publicidad, ventas, main = "Diagrama de dispersión: Publicidad vs Ventas", 
+     xlab = "Costos de publicidad ($)", ylab = "Ventas ($)", pch = 19, col = "blue")
+# Ajustar el modelo de regresión lineal
+modelo <- lm(ventas ~ publicidad, data = datos)
+
+# Mostrar los coeficientes del modelo
+summary(modelo)
+# Calcular la predicción para x = 35
+prediccion_35 <- predict(modelo, newdata = data.frame(publicidad = 35))
+prediccion_35
+# Graficar los residuos
+residuos <- resid(modelo)
+plot(publicidad, residuos, main = "Residuos vs Costos de Publicidad", 
+     xlab = "Costos de publicidad ($)", ylab = "Residuos", pch = 19, col = "red")
+abline(h = 0, col = "blue")
+
+```
+
+
 __11.9__ Un estudio sobre la cantidad de lluvia y la contaminación removida del aire produjo los siguientes datos: 
 <style>
         table {
@@ -505,6 +595,10 @@ __11.9__ Un estudio sobre la cantidad de lluvia y la contaminación removida del
 
 a) Obtenga la ecuación de la recta de regresión para pronosticar las partículas removidas, a partir de la cantidad de lluvia diaria.
 b) Estime la cantidad de partículas removidas cuando la lluvia diaria es x = 4.8 unidades.
+
+```{r}
+
+```
 
 
 __11.11__ El empuje de un motor (y) es función de la temperatura de escape (x) en °F, cuando otras variables de importancia se mantienen constantes. Considere los siguientes datos:
@@ -649,8 +743,14 @@ Estime la ecuacion de regresión lineal múltiple:
 \mu_{Y|x_1, x_2} = \beta_0 + \beta_1 x_1 + \beta_2 x_2
 \]
 
+__12.5__ a) Ajuste una ecuación de regresión múltiple de la forma 
+\[
+\mu_{Y|x} = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+\] a los datos del ejemplo 11.8
+b) Estime el prodcuto de la reacción química para una temperatura de 255 °C.
 
-__9.47__ A continuación se listan 10 de las 431 compañías estudiadas en la revista Fortune (marzo de 1997). Se listan las utilidades totales para los 10 años anteriores a 1996 y también para 1996. Encuentre un intervalo de confianza de 95% para el cambio promedio en el porcentaje de utilidad de los inversionistas.
+__12.7__ Se efectuó un experimento con la finalidad de determinar si el flujo sanguíneo cerebral de los seres humanos podía predecirse a partir de la tensión arterial del oxígeno(milímetros de mercurio). En el estudio se utilizaron 15 pacientes y se observaron los siguientes datos:
+
 <style>
         table {
             width: 50%;
@@ -667,750 +767,83 @@ __9.47__ A continuación se listan 10 de las 431 compañías estudiadas en la re
 
 <table>
     <tr>
-        <th>Compañia</th>
-        <th>1986-1996</th>
-        <th>1996</th>
+        <th>Flujo sanguíneo, y</th>
+        <th>Tensión arteial del oxígeno, x</th>
     </tr>
     <tr>
-        <td>Coca-Cola</td>
-        <td>29.8%</td>
-        <td>43.3%</td>
+        <td>84.33</td>
+        <td>603.40</td>
     </tr>
     <tr>
-        <td>Mirage Resorts</td>
-        <td>27.9%</td>
-        <td>25.4%</td>
+        <td>87.80</td>
+        <td>582.50</td>
     </tr>
     <tr>
-        <td>Merck</td>
-        <td>22.1%</td>
-        <td>24.0%</td>
+        <td>82.20</td>
+        <td>556.20</td>
     </tr>
     <tr>
-        <td>Microsoft</td>
-        <td>44.5%</td>
-        <td>88.3%</td>
+        <td>78.21</td>
+        <td>594.60</td>
     </tr>
     <tr>
-        <td>Johnson & Johnson</td>
-        <td>22.2%</td>
-        <td>18.1%</td>
+        <td>78.44</td>
+        <td>558.90</td>
     </tr>
     <tr>
-        <td>Intel</td>
-        <td>43.8%</td>
-        <td>131.2%</td>
+        <td>80.01</td>
+        <td>575.20</td>
     </tr>
     <tr>
-        <td>Pfizer</td>
-        <td>21.7%</td>
-        <td>34.0%</td>
+        <td>83.53</td>
+        <td>580.10</td>
     </tr>
     <tr>
-        <tdProcter & Gamble</td>
-        <td>21.9%</td>
-        <td>32.1%</td>
+        <td>79.46</td>
+        <td>451.20</td>
     </tr>
     <tr>
-        <td>Berkshire Hathaway</td>
-        <td>28.3%</td>
-        <td>6.2%</td>
+        <td>75.22</td>
+        <td>404.00</td>
     </tr>
     <tr>
-        <td>S&P 500</td>
-        <td>11.8%</td>
-        <td>20.3%</td>
+        <td>76.58</td>
+        <td>484.00</td>
     </tr>
+    <tr>
+        <td>77.90</td>
+        <td>452.40</td>
+    </tr>
+    <tr>
+        <td>78.80</td>
+        <td>448.40</td>
+    </tr>
+    <tr>
+        <td>80.67</td>
+        <td>334.80</td>
+    </tr>
+    <tr>
+        <td>86.60</td>
+        <td>320.30</td>
+    </tr>
+    <tr>
+        <td>78.20</td>
+        <td>350.30</td>
 </table>
 <br>
 
-```{r}
-utilidades_1986_1996 = c(29.8, 27.9, 22.1, 24.0, 22.7, 23.2, 21.9, 21.6, 23.4, 11.8)
-utilidades_1996 = c(43.3, 36.1, 24.0, 40.6, 18.1, 19.6, 25.0, 26.2, 21.7, 20.3)
-
-diferencias = utilidades_1996 - utilidades_1986_1996
-
-media_diferencias = mean(diferencias)
-media_diferencias
-desviacion_diferencias = sd(diferencias)
-desviacion_diferencias
-
-t_test = t.test(diferencias, conf.level = 0.95)
-t_test$conf.int
-
-```
-
-
-
-
-
-
-## 2. Contrastes de hipótesis
-
-## Contrastes de hipótesis para una población
-### Media
-**Información:**<br>
-- **Supuestos:**<br>
-    - La muestra debe ser aleatoria.<br>
-    - La distribución de la población es normal o el tamaño de la muestra es suficientemente grande (n>30) por el Teorema del Límite Central.<br>
-- **Estadístico de prueba:**<br>
-    - Si se conoce la desviación estándar de la población (\(\sigma\)): \( z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \)<br>
-    - Si no se conoce la desviación estándar de la población (\(\sigma\)), se usa la desviación estándar muestral (s): \( t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \)
-
-**Pasos para realizar el contraste:**<br>
-
-1. Formular las hipótesis nula (\(H_0\)) y alternativa (\(H_1\)).<br>
-2. Elegir el nivel de significancia (\(\alpha\)).<br>
-3. Calcular el estadístico de prueba.<br>
-4. Determinar el valor crítico o el p-valor.<br>
-5. Comparar el estadístico de prueba con el valor crítico o el p-valor con \(\alpha\).<br>
-6. Tomar una decisión: rechazar \(H_0\) si el estadístico de prueba está en la región crítica o si el p-valor es menor que \(\alpha\).<br>
-
-- **Prueba t de Student:** Se utiliza cuando la muestra es pequeña (n < 30) y la varianza poblacional es desconocida.<br>
-- **Prueba Z:** Se utiliza cuando la muestra es grande (n ≥ 30) o cuando la varianza poblacional es conocida.<br>
-
-**Ejercicio:**
-Un fabricante de bombillas afirma que la vida útil media de sus bombillas es de 1000 horas. Una muestra de 50 bombillas tiene una media de 980 horas y una desviación estándar de 40 horas. ¿Hay evidencia suficiente para rechazar la afirmación del fabricante al nivel de significancia del 5%?
-
-```{r}
-# Datos del ejercicio
-n = 50
-media_muestra = 980
-media_poblacion = 1000
-desviacion_estandar = 40
-nivel_significancia = 0.05
-
-# Prueba t de Student
-estadistico_t = (media_muestra - media_poblacion) / (desviacion_estandar / sqrt(n))
-valor_p = 2 * pt(-abs(estadistico_t), df = n - 1)
-
-# Resultados
-estadistico_t
-valor_p
-```
-
-
-### Proporción
-
-**Información:**<br>
-- **Supuestos:**<br>
-    - La muestra debe ser aleatoria.<br>
-    - La distribución binomial se puede aproximar a una normal si \(np \geq 5\) y \(n(1-p) \geq 5\).<br>
-- **Estadístico de prueba:**<br>
-    \( z = \frac{\hat{p} - p_0}{\sqrt{p_0 (1 - p_0) / n}} \)<br>
-
-**Pasos para realizar el contraste:**<br>
-
-1. Formular las hipótesis nula (\(H_0\)) y alternativa (\(H_1\)).<br>
-2. Elegir el nivel de significancia (\(\alpha\)).<br>
-3. Calcular el estadístico de prueba.<br>
-4. Determinar el valor crítico o el p-valor.<br>
-5. Comparar el estadístico de prueba con el valor crítico o el p-valor con \(\alpha\).<br>
-6. Tomar una decisión: rechazar \(H_0\) si el estadístico de prueba está en la región crítica o si el p-valor es menor que \(\alpha\).<br>
-
-- **Prueba de proporciones:** Utilizada para comparar una proporción observada con una proporción esperada en una sola población.
-
-**Ejercicio:**
-Una encuesta indica que el 60% de los votantes apoyan una nueva política. Se selecciona una muestra aleatoria de 200 votantes y 110 de ellos apoyan la política. ¿Es esta muestra evidencia suficiente para concluir que la proporción real de apoyo es diferente al 60%? Utiliza un nivel de significancia del 5%.
-
-```{r}
-# Datos del ejercicio
-n = 200
-proporcion_muestra = 110 / 200
-proporcion_poblacion = 0.60
-nivel_significancia = 0.05
-
-# Prueba Z para proporciones
-estadistico_z = (proporcion_muestra - proporcion_poblacion) / sqrt((proporcion_poblacion * (1 - proporcion_poblacion)) / n)
-valor_p = 2 * pnorm(-abs(estadistico_z))
-
-# Resultados
-estadistico_z
-valor_p
-```
-
-
-### Varianza
-**Información:**<br>
-- **Supuestos:**<br>
-    - La muestra debe ser aleatoria.<br>
-    - La población debe seguir una distribución normal.<br>
-- **Estadístico de prueba:**
-    \( \chi^2 = \frac{(n - 1)s^2}{\sigma_0^2} \)
-
-**Pasos para realizar el contraste:**<br>
-
-1. Formular las hipótesis nula (\(H_0\)) y alternativa (\(H_1\)).<br>
-2. Elegir el nivel de significancia (\(\alpha\)).<br>
-3. Calcular el estadístico de prueba.<br>
-4. Determinar el valor crítico o el p-valor a partir de la distribución \(\chi^2\) con \(n-1\) grados de libertad.<br>
-5. Comparar el estadístico de prueba con el valor crítico o el p-valor con \(\alpha\).<br>
-6. Tomar una decisión: rechazar \(H_0\) si el estadístico de prueba está en la región crítica o si el p-valor es menor que \(\alpha\).<br>
-
-- **Prueba Chi-cuadrado:** Se utiliza para comparar la varianza observada con la varianza esperada en una sola población.
-
-**Ejercicio:**
-Un proceso de producción tiene una varianza estándar de 25. Una muestra de 15 observaciones tiene una varianza de 36. ¿Hay evidencia suficiente para concluir que la varianza del proceso ha cambiado? Utiliza un nivel de significancia del 5%.
-
-```{r}
-# Datos del ejercicio
-n = 15
-varianza_muestra = 36
-varianza_poblacion = 25
-nivel_significancia = 0.05
-
-# Prueba Chi-cuadrado
-estadistico_chi = (n - 1) * varianza_muestra / varianza_poblacion
-valor_p = 2 * min(pchisq(estadistico_chi, df = n - 1), 1 - pchisq(estadistico_chi, df = n - 1))
-
-# Resultados
-estadistico_chi
-valor_p
-```
-
-
-## Contrastes de hipótesis para dos poblaciones 
-### Diferencia de Medias
-**Información:**<br>
-- **Supuestos:**<br>
-    - Las muestras deben ser aleatorias e independientes.<br>
-    - Las poblaciones deben seguir una distribución normal o el tamaño de las muestras debe ser suficientemente grande.<br>
-    - Varianzas iguales o diferentes según el test (se puede usar el test de Levene para evaluar la igualdad de varianzas).<br>
-- **Estadístico de prueba:**<br>
-    - Si las varianzas son iguales: \( t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \) donde \( s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2} \)<br>
-    - Si las varianzas son diferentes: \( t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \)<br>
-
-- **Prueba t para muestras independientes:** Se usa cuando comparamos las medias de dos muestras independientes.<br>
-- **Prueba t para muestras pareadas:** Se usa cuando comparamos las medias de dos muestras relacionadas o pareadas.<br>
-
-**Ejercicio:**
-Dos fábricas producen el mismo producto y se desea comparar el tiempo medio de producción. Una muestra de 30 productos de la fábrica A tiene un tiempo medio de 50 minutos con una desviación estándar de 5 minutos, mientras que una muestra de 25 productos de la fábrica B tiene un tiempo medio de 52 minutos con una desviación estándar de 6 minutos. ¿Hay una diferencia significativa entre los tiempos medios de producción? Utiliza un nivel de significancia del 5%.
-
-```{r}
-# Datos del ejercicio
-n_A = 30
-n_B = 25
-media_A = 50
-media_B = 52
-desviacion_A = 5
-desviacion_B = 6
-nivel_significancia = 0.05
-
-# Prueba t para muestras independientes
-estadistico_t = (media_A - media_B) / sqrt((desviacion_A^2 / n_A) + (desviacion_B^2 / n_B))
-gl = ((desviacion_A^2 / n_A) + (desviacion_B^2 / n_B))^2 / ((desviacion_A^2 / n_A)^2 / (n_A - 1) + (desviacion_B^2 / n_B)^2 / (n_B - 1))
-valor_p = 2 * pt(-abs(estadistico_t), df = gl)
-
-# Resultados
-estadistico_t
-valor_p
-```
-
-
-### Diferencia de Proporciones
-**Información:**<br>
-- **Supuestos:**<br>
-    - Las muestras deben ser aleatorias e independientes.<br>
-    - Las proporciones deben ser tales que \( n_1 \hat{p}_1 \geq 5 \), \( n_1 (1 - \hat{p}_1) \geq 5 \), \( n_2 \hat{p}_2 \geq 5 \), \( n_2 (1 - \hat{p}_2) \geq 5 \).<br>
-- **Estadístico de prueba:**<br>
-    \( z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1 - \hat{p})(\frac{1}{n_1} + \frac{1}{n_2})}} \) donde \( \hat{p} = \frac{x_1 + x_2}{n_1 + n_2} \)<br>
-
-- **Prueba Z para la diferencia de proporciones:**<br> Utilizada para comparar dos proporciones observadas.
-
-**Ejercicio:**
-En un estudio de marketing, se encuentra que el 45% de los clientes en la región A prefieren el producto X, mientras que el 50% de los clientes en la región B prefieren el mismo producto. Se seleccionan 150 clientes de cada región. ¿Es esta diferencia significativa al nivel de significancia del 5%?
-
-```{r}
-# Datos del ejercicio
-n_A = 150
-n_B = 150
-proporcion_A = 0.45
-proporcion_B = 0.50
-nivel_significancia = 0.05
-
-# Prueba Z para diferencia de proporciones
-p_comb = (proporcion_A * n_A + proporcion_B * n_B) / (n_A + n_B)
-estadistico_z = (proporcion_A - proporcion_B) / sqrt(p_comb * (1 - p_comb) * (1 / n_A + 1 / n_B))
-valor_p = 2 * pnorm(-abs(estadistico_z))
-
-# Resultados
-estadistico_z
-valor_p
-```
-
-
-### Razón de Varianzas
-**Información:**<br>
-- **Supuestos:**<br>
-    - Las muestras deben ser aleatorias e independientes.<br>
-    - Las poblaciones deben seguir una distribución normal.<br>
-- **Estadístico de prueba:**<br>
-    \( F = \frac{s_1^2}{s_2^2} \)<br>
-
-**Pasos para realizar el contraste:**<br>
-
-1. Formular las hipótesis nula (\(H_0\)) y alternativa (\(H_1\)).<br>
-2. Elegir el nivel de significancia (\(\alpha\)).<br>
-3. Calcular el estadístico de prueba.<br>
-4. Determinar el valor crítico o el p-valor a partir de la distribución \(F\) con \(n_1 - 1\) y \(n_2 - 1\) grados de libertad.<br>
-5. Comparar el estadístico de prueba con el valor crítico o el p-valor con \(\alpha\).<br>
-6. Tomar una decisión: rechazar \(H_0\) si el estadístico de prueba está en la región crítica o si el p-valor es menor que \(\alpha\).<br>
-
-- **Prueba F:** Utilizada para comparar las varianzas de dos poblaciones.<br>
-
-**Ejercicio:**
-Un ingeniero quiere comparar la variabilidad en la resistencia de dos materiales diferentes. Una muestra de 10 observaciones del material A tiene una varianza de 4, y una muestra de 15 observaciones del material B tiene una varianza de 9. ¿Es la diferencia en las varianzas significativa al nivel de significancia del 5%?
-
-```{r}
-# Datos del ejercicio
-n_A = 10
-n_B = 15
-varianza_A = 4
-varianza_B = 9
-nivel_significancia = 0.05
-
-# Prueba F
-estadistico_f = varianza_A / varianza_B
-valor_p = 2 * min(pf(estadistico_f, df1 = n_A - 1, df2 = n_B - 1), 1 - pf(estadistico_f, df1 = n_A - 1, df2 = n_B - 1))
-
-# Resultados
-estadistico_f
-valor_p
-```
-
-
-
-## Potencia de una prueba
-**Información:**<br>
-
-- **Supuestos:**<br>
-    - Conocer el tamaño del efecto, el nivel de significancia (\(\alpha\)), el tamaño de la muestra (\(n\)), y la desviación estándar (\(\sigma\)).<br>
-
-**Pasos para calcular la potencia:**<br>
-
-1. Formular \(H_0\) y \(H_1\).<br>
-2. Determinar el nivel de significancia (\(\alpha\)).<br>
-3. Calcular el tamaño del efecto.<br>
-4. Usar la distribución apropiada para calcular la potencia, que es \(1 - \beta\), donde \(\beta\) es el error de tipo II.<br>
-
-La potencia de una prueba estadística es la probabilidad de rechazar la hipótesis nula cuando es falsa. Depende de varios factores, incluyendo el tamaño del efecto, el tamaño de la muestra, el nivel de significancia y la variabilidad de los datos.<br>
-
-**Ejercicio:**
-Supón que estás realizando una prueba para detectar una diferencia en la media de 5 unidades con una desviación estándar de 10 unidades. Si utilizas una muestra de tamaño 30 y un nivel de significancia del 5%, calcula la potencia de la prueba.
-
-```{r}
-# Datos del ejercicio
-diferencia_media = 5
-desviacion_estandar = 10
-n = 30
-nivel_significancia = 0.05
-
-# Cálculo de la potencia de la prueba
-library(pwr)
-potencia = pwr.t.test(d = diferencia_media / desviacion_estandar, n = n, sig.level = nivel_significancia, type = "one.sample", alternative = "two.sided")$power
-
-# Resultado
-potencia
-```
-
-
-## Resolución de Ejercicios propuestos
-
-__10.4__ Se estima que la proporción de adultos que viven
-en una pequeña ciudad que son graduados universitarios es p = 0.6. Para probar esta hipótesis, se selecciona una muestra aleatoria de 15 adultos. Si el número de graduados en nuestra muestra es cualquier número de 6 a 12, aceptaremos la hipótesis nula de que p = 0.6; en caso contrario, concluiremos que p =/ 0.6.
-
-a) Evalúe α con la suposición de que p = 0.6. Utilice la
-distribución binomial.
-b) Evalúe β para las alternativas p = 0.5 y p = 0.7.
-
-```{r}
-#a)
-# Datos y variables en español
-p_hipotesis_nula = 0.6
-n = 15 
-
-# Intervalo en el que aceptamos la hipótesis nula (6 a 12 graduados)
-k_aceptar = 6:12
-k_aceptar
-# Probabilidad de aceptar H0 cuando p = 0.6 (usando distribución binomial)
-alpha = sum(dbinom(k_aceptar, size = n, prob = p_hipotesis_nula))
-alpha
-#b)
-# Probabilidades alternativas para evaluar beta
-p_alternativas = c(0.5, 0.7)
-
-# Calcular beta para cada alternativa
-beta = numeric(length(p_alternativas))
-for (i in seq_along(p_alternativas)) {
-  beta[i] = 1 - sum(dbinom(k_aceptar, size = n, prob = p_alternativas[i]))
-}
-
-# Mostrar los resultados de beta
-cat("Valores de beta para p = 0.5 y p = 0.7:")
-cat("\n")
-for (i in seq_along(p_alternativas)) {
-  cat(sprintf("Para p = %.1f, beta = %.4f\n", p_alternativas[i], beta[i]))
-}
-
-```
-
-
-c) ¿Es éste un buen procedimiento de prueba?
-
-```{r}
-#El procedimiento descrito en el ejercicio 10.4 implica aceptar la hipótesis nula si el número de graduados en la muestra está entre 6 y 12. Esto significa que hay un rango específico dentro del cual la hipótesis nula se acepta. Sin embargo, la evaluación de si este es un buen procedimiento de prueba también depende de otros factores como el poder del test (1-B)el tamaño de la muestra, y la precisión de la estimación de p.
-
-#Para decidir si es un buen procedimiento, sería ideal compararlo con otros enfoques de prueba, como el uso de pruebas de hipótesis estándar con niveles de significancia específicos y poder de prueba calculado.
-```
-
-
-__10.12__ Se pregunta a una muestra aleatoria de 400
-votantes en cierta ciudad si están a favor de un impuesto adicional de 4% sobre la venta de gasolina, para obtener los fondos que se necesitan con urgencia para la reparación de calles. Si más de 220 pero menos de 260 favorecen el impuesto a tales ventas, concluiremos que 60% de los votantes lo apoyan. 
-a) Encuentre la probabilidad de cometer un error tipo I si 60% de los votantes están a favor del aumento de impuestos.
-b) ¿Cuál es la probabilidad de cometer un error tipo II
-al utilizar este procedimiento de prueba si en realidad tan sólo 48% de los votantes está a favor del impuesto adicional a la gasolina?
-
-```{r}
-# a) 
-n <- 400
-p_hipotesis_nula <- 0.6
-k_aceptar <- 221:259
-
-alpha <- sum(dbinom(k_aceptar, size = n, prob = p_hipotesis_nula))
-alpha
-
-# b) 
-p_hipotesis_alternativa <- 0.48
-k_aceptar <- 221:259
-
-beta <- sum(dbinom(k_aceptar, size = n, prob = p_hipotesis_alternativa))
-beta
-
-
-```
-
-
-__10.20__ Una muestra aleatoria de 64 bolsas de palomitas (rosetas) de maíz con queso chedar pesan, en promedio, 5.23 onzas con una desviación estándar de 0.24 onzas. Pruebe la hipótesis de que μ = 5.5 onzas contra la hipótesis alternativa, μ < 5.5 onzas con un nivel de
-significancia de 0.05.
-
-```{r}
-# Datos y variables en español
-media_muestral = 5.23
-mu0 = 5.5
-desviacion_estandar = 0.24
-n = 64
-nivel_significancia = 0.05
-
-# Calcular el estadístico de prueba t
-t = (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
-
-# Calcular el valor p (p-value) unilateral
-p_valor = pt(t, df = n - 1)
-
-# Comprobación de la significancia
-if (p_valor < nivel_significancia) {
-  cat("Conclusión: Se rechaza la hipótesis nula H0.")
-} else {
-  cat("Conclusión: No se rechaza la hipótesis nula H0.")
-}
-
-```
-
-
-__10.22__ La estatura promedio de mujeres en el grupo
-de primer año de cierta universidad es de 162.5 centímetros con una desviación estándar de 6.9 centímetros.
-¿Hay alguna razón para creer que hay un cambio en
-la estatura promedio, si una muestra aleatoria de 50
-mujeres en el grupo actual de primer año tiene una
-altura promedio de 165.2 centímetros? Utilice un valor
-P en su conclusión. Suponga que la desviación estándar
-permanece constante.
-
-```{r}
-# Datos y variables en español
-media_muestral = 165.2
-mu0 = 162.5
-desviacion_estandar = 6.9
-n = 50
-
-# Calcular el estadístico de prueba Z
-Z = (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
-
-# Calcular el valor p bilateral
-p_valor = 2 * pnorm(-abs(Z))
-
-# Mostrar el valor p
-p_valor
-# Nivel de significancia usual
-nivel_significancia = 0.05
-
-# Comprobación de la significancia
-if (p_valor < nivel_significancia) {
-  cat("Conclusión: Hay evidencia significativa para rechazar la hipótesis nula.")
-} else {
-  cat("Conclusión: No hay suficiente evidencia para rechazar la hipótesis nula.")
-}
-
-```
-
-
-__10.25__ Pruebe la hipótesis de que el contenido promedio
-de los envases de un lubricante específi co es de 10 litros,
-si los contenidos de una muestra aleatoria de 10 envases
-son 10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3 y 9.8
-litros. Utilice un nivel de signifi cancia de 0.01 y suponga
-que la distribución del contenido es normal.
-
-```{r}
-# Datos y variables en español
-muestras = c(10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3, 9.8)
-n = length(muestras)
-media_muestral = mean(muestras)
-mu0 = 10
-nivel_significancia = 0.01
-
-# Calcular la desviación estándar muestral
-desviacion_estandar = sd(muestras)
-
-# Calcular el estadístico de prueba t
-t = (media_muestral - mu0) / (desviacion_estandar / sqrt(n))
-t
-
-# Calcular el valor p bilateral
-p_valor = 2 * pt(-abs(t), df = n - 1)
-p_valor
-
-# Comprobación de la significancia
-if (p_valor < nivel_significancia) {
-  cat("Conclusión: Hay evidencia significativa para rechazar la hipótesis nula.")
-} else {
-  cat("Conclusión: No hay suficiente evidencia para rechazar la hipótesis nula.")
-}
-
-```
-
-
-__10.30__ Una muestra aleatoria de tamaño n1 = 25, que
-se toma de una población normal con una desviación
-estándar σ1 = 5.2, tiene una media 1 = 81. Una segunda muestra aleatoria de tamaño n2 = 36, que se
-toma de una población normal diferente con una desviación estándar σ2 = 3.4, tiene una media 2 = 76.
-Pruebe la hipótesis de que μ1 = μ2 contra la alternativa
-μ1 =/ μ2. Cite un valor P en su conclusión.
-
-```{r}
-# Datos y variables en español
-media_muestra_1 = 81
-media_muestra_2 = 76
-sigma_1 = 5.2
-sigma_2 = 3.4
-n1 = 25
-n2 = 36
-
-# Calcular el estadístico de prueba Z
-Z = ((media_muestra_1 - media_muestra_2) - 0) / sqrt((sigma_1^2 / n1) + (sigma_2^2 / n2))
-Z
-
-# Calcular el valor p bilateral
-p_valor = 2 * pnorm(-abs(Z))
-p_valor
-# Nivel de significancia usual
-nivel_significancia = 0.05
-
-# Comprobación de la significancia
-if (p_valor < nivel_significancia) {
-  cat("Conclusión: Hay evidencia significativa para rechazar la hipótesis nula.")
-} else {
-  cat("Conclusión: No hay suficiente evidencia para rechazar la hipótesis nula.")
-}
-
-```
-
-
-__10.32__  El Amstat News (diciembre de 2004) lista los
-sueldos medios de profesores asociados de estadística
-en instituciones de investigación, en escuelas de humanidades y en otras instituciones en Estados Unidos.
-Suponga que una muestra de 200 profesores asociados
-de instituciones de investigación que tienen un sueldo
-promedio de $70,750 anuales con una desviación estándar de $6000. Suponga también una muestra de 200
-profesores asociados de otros tipos de institución que
-tienen un sueldo promedio de $65,200 con una desviación estándar de $5000. Pruebe la hipótesis de que el
-sueldo medio de profesores asocia dos en instituciones
-de investigación es $2000 mayor que los de los de otras
-instituciones. Utilice un nivel de signifi cancia de 0.01.
-```{r}
-# Datos proporcionados
-media_muestra_1 = 70750
-media_muestra_2 = 65200
-desviacion_estandar_1 = 6000
-desviacion_estandar_2 = 5000
-n = 200
-delta_0 = 2000
-nivel_significancia = 0.01
-
-# Calcular el estadístico de prueba Z
-Z = ((media_muestra_1 - media_muestra_2) - delta_0) / sqrt((desviacion_estandar_1^2 / n) + (desviacion_estandar_2^2 / n))
-Z
-
-# Calcular el valor p bilateral
-p_valor = 2 * pnorm(-abs(Z))
-p_valor
-# Comprobación de la significancia
-if (p_valor < nivel_significancia) {
-  cat("Conclusión: Hay evidencia significativa para rechazar la hipótesis nula.")
-} else {
-  cat("Conclusión: No hay suficiente evidencia para rechazar la hipótesis nula.")
-}
-
-```
-
-
-__10.35__ Para indagar si un nuevo suero frena el desarrollo de la leucemia, se seleccionan 9 ratones, todos
-con una etapa avanzada de la enfermedad. Cinco ratones reciben el tratamiento y cuatro no. Los tiempos
-de supervivencia, en años, a partir del momento en que
-comienza el experimento son los siguientes:
-<style>
-        table {
-            width: 50%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-</style>
-
-<table>
-    <tr>
-        <th>Con tratamiento</th>
-        <th>2.1</th>
-        <th>5.3</th>
-        <th>1.4</th>
-        <th>4.6</th>
-        <th>0.9</th>
-    </tr>
-    <tr>
-        <td>Sin tratamiento</td>
-        <td> 1.9</td>
-        <td> 0.5</td>
-        <td> 2.8</td>
-        <td> 3.1</td>
-    </tr>
-</table>
-<br>
-
-¿Se puede decir en el nivel de signifi cancia de 0.05 que
-el suero es efectivo? Suponga que las dos distribuciones
-se distribuyen de forma normal con varianzas iguales.
-
-```{r}
-# Datos de los tiempos de supervivencia en años
-con_tratamiento = c(2.1, 5.3, 1.4, 4.6, 0.9)
-sin_tratamiento = c(1.9, 0.5, 2.8, 3.1)
-
-t_test = t.test(con_tratamiento, sin_tratamiento, var.equal = TRUE, alternative = "greater")
-
-t_test
-
-```
-
-
-__10.36__  Una compañía grande armadora de automóviles trata de decidir si compra llantas de la marca A o
-de la B para sus modelos nuevos. Para ayudar a tomar
-una decisión, se realiza un experimento en donde se
-usan 12 llantas de cada marca. Las llantas se utilizan
-hasta que se acaban. Los resultados son: 
-
-Marca A:
-x1 = 37.900 kilómetros
-s1 = 5.100 kilómetros
-Marca B:
-x1 = 39.800 kilómetros
-s1 = 5.900 kilómetros
-
-Pruebe la hipótesis de que no hay diferencia en el desgaste promedio de las 2 marcas de llantas. Suponga que
-las poblaciones se distribuyen de forma aproximadamente normal con varianzas iguales. Use un valor P.
-
-```{r}
-# Datos proporcionados
-x1 = 37900
-s1 = 5100
-x2 = 39800
-s2 = 5900
-n1 = 12
-n2 = 12
-nivel_significancia = 0.05
-
-# Calcular la desviación estándar agrupada (pooled standard deviation)
-sp = sqrt(((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2))
-
-# Calcular el estadístico t
-t = (x1 - x2) / (sp * sqrt(1/n1 + 1/n2))
-t
-
-# Calcular los grados de libertad
-df = n1 + n2 - 2
-
-# Calcular el valor p bilateral
-p_valor = 2 * pt(-abs(t), df)
-p_valor
-# Comprobación de la significancia
-if (p_valor < nivel_significancia) {
-  cat("Conclusión: Hay evidencia significativa para rechazar la hipótesis nula.")
-} else {
-  cat("Conclusión: No hay suficiente evidencia para rechazar la hipótesis nula.")
-}
-
-```
-
-
-__10.41__  El Departamento de Zoología del Instituto Politécnico y Universidad Estatal de Virginia llevó a cabo
-un estudio, para determinar si hay una diferencia signifi cativa en la densidad de organismos en dos estaciones
-diferentes ubicadas en Cedar Run, un río secundario
-que se localiza en la cuenca del río Roanoke. El drenaje de una planta de tratamiento de aguas negras y el
-sobreflujo del estanque de sedimentación de la Federal
-Mogul Corporation entran al fl ujo cerca del nacimiento
-del río. Los siguientes datos dan las medidas de densidad, en número de organismos por metro cuadrado, en
-las dos diferentes estaciones colectoras:
-
-
-¿Con un nivel de signifi cancia de 0.05 podemos concluir que son iguales las densidades promedio en las dos
-estaciones? Suponga que las observaciones provienen
-de poblaciones normales con varianzas diferentes.
-
-```{r}
-# Datos proporcionados
-densidad_estacion_1 = c(82, 85, 88, 79, 91)
-densidad_estacion_2 = c(75, 81, 77, 89, 80, 83)
-
-# Realizar la prueba t de Welch
-resultado = t.test(densidad_estacion_1, densidad_estacion_2, var.equal = FALSE)
-
-# Mostrar el resultado
-resultado
-# Obtener el valor p
-p_valor = resultado$p.value
-
-# Nivel de significancia
-nivel_significancia = 0.05
-
-# Comparar el valor p con el nivel de significancia
-if (p_valor < nivel_significancia) {
-  cat("Conclusión: Hay evidencia significativa para rechazar la hipótesis nula.")
-} else {
-  cat("Conclusión: No hay suficiente evidencia para rechazar la hipótesis nula.")
-}
-
-```
-
-
-__10.42__  Cinco muestras de una sustancia ferrosa se usan
-para determinar si hay una diferencia entre un análisis
-Ejercicios 359 360 Capítulo 10 Pruebas de hipótesis de una y dos muestras químico de laboratorio y un análisis de fl uorescencia de rayos X del contenido de hierro. Cada muestra se
-divide en dos submuestras y se aplican los dos tipos de
-análisis. A continuación se presentan los datos codifi cados que muestran los análisis de contenido de hierro:
+Estime la ecuación de regresión cuadrática
+\[
+\mu_{Y|x} = \beta_0 + \beta_1 x + \beta_2 x^2
+\]
+
+
+__12.9__ Se cree que la energía eléctrica consumida cada
+mes por una planta química está relacionada con la
+temperatura ambiental promedio z₁, el número de días
+del mes z₂, la pureza promedio del producto z₃ y las
+toneladas fabricadas del producto z₄. Se dispone de
+datos históricos que se presentan en la siguiente tabla:
 <style>
         table {
             width: 50%;
@@ -1425,88 +858,110 @@ análisis. A continuación se presentan los datos codifi cados que muestran los 
         }
 </style>
 <table>
+  <thead>
     <tr>
-        <th>Análisis</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
+      <th>y</th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>x4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>240</td>
+      <td>25</td>
+      <td>24</td>
+      <td>91</td>
+      <td>100</td>
     </tr>
     <tr>
-        <td>Rayos X</td>
-        <td>2.0</td>
-        <td>2.0</td>
-        <td>2.3</td>
-        <td>2.1</td>
-        <td>2.4</td>
+      <td>236</td>
+      <td>31</td>
+      <td>21</td>
+      <td>90</td>
+      <td>95</td>
     </tr>
     <tr>
-        <td>Química</td>
-        <td>2.2</td>
-        <td>1.9</td>
-        <td>2.5</td>
-        <td>2.3</td>
-        <td>2.4</td>    
+      <td>290</td>
+      <td>45</td>
+      <td>24</td>
+      <td>88</td>
+      <td>110</td>
     </tr>
+    <tr>
+      <td>274</td>
+      <td>60</td>
+      <td>25</td>
+      <td>87</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>301</td>
+      <td>65</td>
+      <td>25</td>
+      <td>91</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>316</td>
+      <td>72</td>
+      <td>26</td>
+      <td>94</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <td>300</td>
+      <td>80</td>
+      <td>25</td>
+      <td>87</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <td>296</td>
+      <td>84</td>
+      <td>25</td>
+      <td>86</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <td>267</td>
+      <td>75</td>
+      <td>24</td>
+      <td>88</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <td>276</td>
+      <td>60</td>
+      <td>25</td>
+      <td>91</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <td>288</td>
+      <td>50</td>
+      <td>25</td>
+      <td>90</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>261</td>
+      <td>38</td>
+      <td>23</td>
+      <td>89</td>
+      <td>98</td>
+    </tr>
+  </tbody>
 </table>
 <br>
-Suponiendo que las poblaciones son normales, pruebe
-con un nivel de signifi cancia de 0.05 si los dos métodos
-de análisis dan, en promedio, el mismo resultado.
+a) Ajuste un modelo de regresión lineal múltiple usando el conjunto de los datos anteriores.
 
-```{r}
-# Datos
-rayos_x = c(2.0, 2.0, 2.3, 2.1, 2.4)
-quimica = c(2.2, 1.9, 2.5, 2.3, 2.4)
+b) Prediga el consumo de energía para un mes en que:
 
-resultado = t.test(rayos_x, quimica, paired = TRUE)
-resultado
+x₁ = 75°F, x₂ = 24 días, x₃ = 90% y x₄ = 98 toneladas.
 
-```
-
-
-__10.44__  En el ejercicio 9.88 de la página 315, utilice la
-distribución t para probar la hipótesis de que la dieta
-reduce el peso de un individuo en 4.5 kilogramos, en
-promedio, contra la hipótesis alternativa de que la diferencia media en peso es menor que 4.5 kilogramos.
-Utilice un valor P.
-
-```{r}
-peso_antes = c(58.5, 60.3, 61.7, 69.0, 64.0, 62.6, 56.7)
-peso_despues = c(60.0, 54.9, 58.1, 62.1, 58.5, 59.9, 54.4)
-
-diferencias = peso_antes - peso_despues
-
-media_dif = mean(diferencias)
-media_dif
-sd_dif = sd(diferencias)
-sd_dif
-n = length(diferencias)
-n
-alpha = 0.05
-alpha
-error_est = sd_dif / sqrt(n)
-error_est
-t_critico = qt(1 - alpha/2, df = n-1)
-t_critico
-lim_inf = media_dif - t_critico * error_est
-lim_inf
-lim_sup = media_dif + t_critico * error_est
-lim_sup
-mu_0 = 4.5
-t_estadistico = (media_dif - mu_0) / error_est
-p_valor = pt(t_estadistico, df = n-1)
-t_estadistico
-```
-
-
-
-
-__10.46__ En un estudio realizado por el Departamento
-de Nutrición Humana y Alimentos del Instituto Politécnico y Universidad Estatal de Virginia, se registraron los siguientes datos acerca de la comparación de residuos de ácido sórbico, en partes por millón, en jamón
-inmediatamente después de sumergirlo en una solución
-de ácido y después de 60 días de almacenamiento:
+__12.11__ El departamento de personal de cierta compañia industrial utilizó a 15 sujetos en un estudio, con la finalidad de determinar la relación entre la calificación de su desempeño en el trabajo (y) y las calificaciones de cuatro examenes. Los datos son los siguientes: 
 <style>
         table {
             width: 50%;
@@ -1521,240 +976,117 @@ de ácido y después de 60 días de almacenamiento:
         }
 </style>
 <table>
+  <thead>
     <tr>
-        <th>Rebanada</th>
-        <th>Antes del almacenamiento</th>
-        <th>Después del almacenamiento</th>
+      <th>y</th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>x4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>11.2</td>
+      <td>56.5</td>
+      <td>71.0</td>
+      <td>38.5</td>
+      <td>43.0</td>
     </tr>
     <tr>
-        <td>1</td>
-        <td>224</td>
-        <td>116</td>
+      <td>14.5</td>
+      <td>59.5</td>
+      <td>72.5</td>
+      <td>38.2</td>
+      <td>44.8</td>
     </tr>
     <tr>
-        <td>2</td>
-        <td>270</td>
-        <td>96</td>
+      <td>17.2</td>
+      <td>69.2</td>
+      <td>76.0</td>
+      <td>42.5</td>
+      <td>49.0</td>
     </tr>
     <tr>
-        <td>3</td>
-        <td>400</td>
-        <td>239</td>
+      <td>17.8</td>
+      <td>74.5</td>
+      <td>79.5</td>
+      <td>43.4</td>
+      <td>56.3</td>
     </tr>
     <tr>
-        <td>4</td>
-        <td>444</td>
-        <td>329</td>
+      <td>19.3</td>
+      <td>81.2</td>
+      <td>84.0</td>
+      <td>47.5</td>
+      <td>60.2</td>
     </tr>
     <tr>
-        <td>5</td>
-        <td>590</td>
-        <td>437</td>
+      <td>24.5</td>
+      <td>88.0</td>
+      <td>86.2</td>
+      <td>47.4</td>
+      <td>62.0</td>
     </tr>
     <tr>
-        <td>6</td>
-        <td>660</td>
-        <td>597</td>
+      <td>21.2</td>
+      <td>78.2</td>
+      <td>80.5</td>
+      <td>44.5</td>
+      <td>58.1</td>
     </tr>
     <tr>
-        <td>7</td>
-        <td>1400</td>
-        <td>689</td>
+      <td>16.9</td>
+      <td>69.0</td>
+      <td>72.0</td>
+      <td>41.8</td>
+      <td>48.1</td>
     </tr>
     <tr>
-        <td>8</td>
-        <td>680</td>
-        <td>576</td>
+      <td>14.8</td>
+      <td>58.1</td>
+      <td>68.0</td>
+      <td>42.1</td>
+      <td>46.0</td>
     </tr>
+    <tr>
+      <td>20.0</td>
+      <td>80.5</td>
+      <td>85.0</td>
+      <td>48.1</td>
+      <td>60.3</td>
+    </tr>
+    <tr>
+      <td>13.2</td>
+      <td>58.3</td>
+      <td>71.0</td>
+      <td>37.5</td>
+      <td>47.1</td>
+    </tr>
+    <tr>
+      <td>22.5</td>
+      <td>84.0</td>
+      <td>87.2</td>
+      <td>51.0</td>
+      <td>65.2</td>
+    </tr>
+  </tbody>
 </table>
 <br>
 
-Si se supone que las poblaciones se distribuyen normalmente, ¿hay sufi ciente evidencia, al nivel de signifi cancia de 0.05, para decir que la duración del almacenamiento infl uye en las concentraciones residuales de
-ácido sórbico?
+Estime los coeficientes de regresión del modelo: 
+\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_4
+\]b
 
-```{r}
-# Datos
-antes = c(224, 400, 444, 590, 600, 680)
-despues = c(116, 239, 329, 437, 597, 576)
+__12.13__ Se realizó un experimento para estudiar el tamaño de los calamares consumidos por tiburones y atunes. Las variables regresoras son características del pico o la boca del calamar. Las variables regresoras y la respuesta considerada para el estudio son las siguientes:  
 
-diferencias = antes - despues
-diferencias
-
-resultado = t.test(antes, despues, paired = TRUE)
-
-resultado
-
-```
-
-
-__10.50__ ¿Qué tan grandes deberían ser las muestras del
-ejercicio 10.31, si la potencia de nuestra prueba debe
-ser 0.95 cuando la diferencia real entre los tipos de hilo
-A y B es 8 kilogramos?
-
-```{r}
-# Datos del ejercicio 10.31
-mu_A = 86.7
-sigma_A = 6.28
-mu_B = 77.8
-sigma_B = 5.61
-delta = 12  
-alpha = 0.05
-beta = 1 - 0.95  
-
-# Calculando los valores críticos de la distribución normal estándar
-Z_alpha = qnorm(1 - alpha/2)
-Z_beta = qnorm(1 - beta)
-
-# Calculando el tamaño de muestra necesario
-n = ((Z_alpha * sigma_A + Z_beta * sigma_B) / delta)^2
-
-# Redondeando al entero más cercano
-n = ceiling(n)
-
-# Mostrando el tamaño de muestra calculado
-n
-
-```
-
-
-__10.60__ En cierta universidad se estima que a lo más
-25% de los estudiantes van en bicicleta a la escuela.
-¿Ésta parece ser una estimación válida si, en una muestra aleatoria de 90 estudiantes universitarios, se encuentra que 28 van en bicicleta a la escuela? Utilice un
-nivel de signifi cancia de 0.05.
-
-```{r}
-# Definición de variables
-n = 90  
-x = 28  
-p0 = 0.25  
-alpha = 0.05  
-
-# Calculando la proporción muestral
-p = x / n
-
-# Realizando la prueba de proporciones para una muestra (Z-test)
-z = (p - p0) / sqrt(p0 * (1 - p0) / n)
-
-# Calculando el valor crítico de la distribución normal estándar para el nivel de significancia alpha
-z_critico = qnorm(1 - alpha)
-
-# Calculando el p-valor
-p_valor = 1 - pnorm(z)
-
-# Mostrando los resultados
-resultado = ifelse(z > z_critico, "Rechazar H0", "No rechazar H0")
-resultado
-p_valor
-
-```
-
-
-__10.64__  En un estudio sobre la fertilidad de mujeres
-casadas conducido por Martin O’Connell y Carolyn C.
-Rogers para la Ofi cina de Censos en 1979, se seleccionaron al azar dos grupos de esposas con edades de 25
-a 29 años y sin hijos, y a cada una se le preguntó si a
-fi nal de cuentas pla neaba tener un hijo. Se seleccionó
-un grupo entre las mujeres con menos de dos años de
-casadas y otro entre las que tenían cinco años de casadas. Suponga que 240 de 300 con menos de dos años de
-casadas planean tener un hijo algún día, comparadas
-con 288 de las 400 con cinco años de casadas. ¿Podemos concluir que la proporción de mujeres con menos
-de dos años de casadas que planean tener hijos es significativamente mayor que la proporción con cinco años
-de casadas? Utilice un valor P.
-
-```{r}
-# Datos del problema
-n1 = 300   
-x1 = 240   
-n2 = 400   
-x2 = 288   
-
-# Calculando las proporciones muestrales
-p1 = x1 / n1
-p2 = x2 / n2
-
-# Calculando la proporción combinada bajo la hipótesis nula
-p_comb = (x1 + x2) / (n1 + n2)
-
-# Calculando el estadístico Z para la prueba de proporciones
-z = (p1 - p2) / sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))
-
-# Calculando el valor p (p-valor)
-p_valor = 1 - pnorm(z)
-
-# Mostrando los resultados
-p_valor
-
-```
-
-
-__10.66__  En un invierno con epidemia de gripe, una
-compañía farmacéutica bien conocida estudió a 2000
-bebés, para determinar si el nuevo medicamento de la
-compañía era efi caz después de dos días. Entre 120 bebés que tenían gripe y se les suministró el medicamento, 29 se curaron dentro de dos días. Entre 280 bebés
-que tenían gripe pero que no recibieron el fármaco, 56
-se cura ron dentro de dos días. ¿Hay alguna indicación
-signifi cativa que apoye la afi rmación de la compañía de
-la efectividad del medicamento?
-
-```{r}
-# Datos del problema
-n1 = 120  
-x1 = 29    
-n2 = 280   
-x2 = 56   
-
-# Calculando las proporciones muestrales
-p1 = x1 / n1
-p2 = x2 / n2
-
-# Calculando la proporción combinada bajo la hipótesis nula
-p_comb = (x1 + x2) / (n1 + n2)
-
-# Calculando el estadístico Z para la prueba de proporciones
-z = (p1 - p2) / sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))
-
-# Calculando el valor p (p-valor)
-p_valor = 1 - pnorm(z)
-
-# Mostrando los resultados
-p_valor
-
-```
-
-
-__10.69__ Se deben supervisar las afl otoxinas ocasionadas por moho en cosechas de cacahuate en Virginia.
-Una muestra de 64 lotes de cacahuate revela niveles
-de 24.17 ppm, en promedio, con una varianza de 4.25
-ppm. Pruebe la hipótesis de que σ2 = 4.2 ppm con la
-alternativa de que σ2 =/ 4.2 ppm. Utilice un valor P en
-sus conclusiones.
-
-```{r}
-# Datos del problema
-n = 64       
-s2 = 4.25   
-sigma2_hipotesis = 4.2  
-
-# Estadístico de prueba (chi-cuadrado)
-chi2 = (n - 1) * s2 / sigma2_hipotesis
-
-# Grados de libertad
-df = n - 1
-
-# Valor p (dos colas)
-p_valor = 2 * pchisq(chi2, df = df, lower.tail = FALSE)
-
-# Mostrando los resultados
-p_valor
-
-```
-
-
-__10.73__ Se realiza un estudio para comparar la longitud de tiempo entre hombres y mujeres para ensamblar
-cierto producto. La experiencia indica que la distribución de los tiempos tanto para hombres como para mujeres es aproximadamente normal, pero que la varianza de los tiempos para las mujeres es menor que para
-los hombres. Una muestra aleatoria de tiempos para 11
-hombres y 14 mujeres da los siguientes datos:
+x1: longitud del morro, en pulgadas,
+x2: longitud de aleta, en pulgadas,
+x3: longitud del morro a la cola, en pulgadas,
+x4: longitud de la cola a la aleta, en pulgadas,
+x5: ancho, en pulgadas,
+y: peso, en libras. 
 
 <style>
         table {
@@ -1770,44 +1102,244 @@ hombres y 14 mujeres da los siguientes datos:
         }
 </style>
 <table>
+  <thead>
     <tr>
-        <th>Hombres</th>
-        <th>Mujeres</th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>x4</th>
+      <th>x5</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.31</td>
+      <td>1.07</td>
+      <td>0.44</td>
+      <td>0.75</td>
+      <td>0.35</td>
+      <td>1.90</td>
     </tr>
     <tr>
-        <td>n1 = 11</td>
-        <td>n2 = 14</td>
+      <td>0.99</td>
+      <td>0.84</td>
+      <td>0.34</td>
+      <td>0.57</td>
+      <td>0.32</td>
+      <td>0.72</td>
     </tr>
     <tr>
-        <td>s1 = 6.1</td>
-        <td>s2 = 5.3</td>
+      <td>0.99</td>
+      <td>0.83</td>
+      <td>0.34</td>
+      <td>0.54</td>
+      <td>0.27</td>
+      <td>0.81</td>
     </tr>
+    <tr>
+      <td>1.01</td>
+      <td>0.90</td>
+      <td>0.36</td>
+      <td>0.64</td>
+      <td>0.30</td>
+      <td>1.09</td>
+    </tr>
+    <tr>
+      <td>1.09</td>
+      <td>0.93</td>
+      <td>0.42</td>
+      <td>0.61</td>
+      <td>0.31</td>
+      <td>1.22</td>
+    </tr>
+    <tr>
+      <td>1.27</td>
+      <td>1.08</td>
+      <td>0.44</td>
+      <td>0.77</td>
+      <td>0.34</td>
+      <td>1.93</td>
+    </tr>
+    <tr>
+      <td>0.99</td>
+      <td>0.85</td>
+      <td>0.36</td>
+      <td>0.56</td>
+      <td>0.29</td>
+      <td>0.64</td>
+    </tr>
+    <tr>
+      <td>1.34</td>
+      <td>1.10</td>
+      <td>0.45</td>
+      <td>0.76</td>
+      <td>0.37</td>
+      <td>2.08</td>
+    </tr>
+    <tr>
+      <td>1.30</td>
+      <td>1.10</td>
+      <td>0.48</td>
+      <td>0.77</td>
+      <td>0.38</td>
+      <td>1.90</td>
+    </tr>
+    <tr>
+      <td>1.33</td>
+      <td>1.10</td>
+      <td>0.48</td>
+      <td>0.77</td>
+      <td>0.38</td>
+      <td>1.90</td>
+    </tr>
+    <tr>
+      <td>1.58</td>
+      <td>1.34</td>
+      <td>0.52</td>
+      <td>0.95</td>
+      <td>0.50</td>
+      <td>4.49</td>
+    </tr>
+    <tr>
+      <td>1.97</td>
+      <td>1.59</td>
+      <td>0.67</td>
+      <td>1.20</td>
+      <td>0.59</td>
+      <td>8.49</td>
+    </tr>
+    <tr>
+      <td>1.80</td>
+      <td>1.56</td>
+      <td>0.66</td>
+      <td>1.02</td>
+      <td>0.59</td>
+      <td>6.17</td>
+    </tr>
+    <tr>
+      <td>1.75</td>
+      <td>1.58</td>
+      <td>0.63</td>
+      <td>1.09</td>
+      <td>0.59</td>
+      <td>7.54</td>
+    </tr>
+    <tr>
+      <td>1.72</td>
+      <td>1.43</td>
+      <td>0.64</td>
+      <td>1.02</td>
+      <td>0.63</td>
+      <td>6.36</td>
+    </tr>
+    <tr>
+      <td>1.68</td>
+      <td>1.57</td>
+      <td>0.72</td>
+      <td>0.96</td>
+      <td>0.68</td>
+      <td>7.63</td>
+    </tr>
+    <tr>
+      <td>1.75</td>
+      <td>1.59</td>
+      <td>0.68</td>
+      <td>1.08</td>
+      <td>0.62</td>
+      <td>7.78</td>
+    </tr>
+    <tr>
+      <td>2.19</td>
+      <td>1.86</td>
+      <td>0.75</td>
+      <td>1.24</td>
+      <td>0.72</td>
+      <td>10.15</td>
+    </tr>
+    <tr>
+      <td>1.73</td>
+      <td>1.67</td>
+      <td>0.64</td>
+      <td>1.14</td>
+      <td>0.55</td>
+      <td>6.88</td>
+    </tr>
+  </tbody>
 </table>
 <br>
 
-```{r}
-n1 = 11
-s1 = 6.1
-n2 = 14
-s2 = 5.3
+ Estime la ecuación de regresión lineal múltimple:
+ 
+ \[
+\mu_{Y|x_1, x_2, x_3, x_4, x_5} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_4 + \beta_5 x_5
+\]
 
-estadistico_F = (s1^2) / (s2^2)
-estadistico_F
+__12.15__ Se llevó a cabo un estudio sobre el uso de cierto rodamiento y su relación con x1 = viscosidad del aceite y x2 = carga. Se obtuvieron los datos siguientes. [De Response Surface Methodology, Myers y Montgomery (2002).]
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
 
-gl1 = n1 - 1
-gl2 = n2 - 1
+<table>
+  <thead>
+    <tr>
+      <th>y</th>
+      <th>x1</th>
+      <th>x2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>193</td>
+      <td>1.6</td>
+      <td>851</td>
+    </tr>
+    <tr>
+      <td>172</td>
+      <td>22.0</td>
+      <td>1058</td>
+    </tr>
+    <tr>
+      <td>113</td>
+      <td>33.0</td>
+      <td>1357</td>
+    </tr>
+    <tr>
+      <td>230</td>
+      <td>15.5</td>
+      <td>816</td>
+    </tr>
+    <tr>
+      <td>91</td>
+      <td>43.0</td>
+      <td>1201</td>
+    </tr>
+    <tr>
+      <td>125</td>
+      <td>40.0</td>
+      <td>1115</td>
+    </tr>
+  </tbody>
+</table>
+<br>
 
-valor_p = 1 - pf(estadistico_F, gl1, gl2)
-valor_p
+a) Estime los parámetros desconocidos de la ecuación de regresión lineal múltiple
 
-```
+μY|x1,x2 = β₀ + β₁x₁ + β₂x₂
 
+b) Prediga el uso para una viscosidad del aceite de 20 y una carga de 1200.
 
-__10.76__ Se comparan dos tipos de instrumentos para
-medir la cantidad de monóxido de azufre en la atmósfera, en un experimento sobre la contaminación del aire.
-Se desea determinar si los dos tipos de instrumentos dan
-mediciones que tengan la misma variabilidad. Se registran las siguientes lecturas para los dos instrumentos:
-
+__13.5__ En el artículo *Shelf-Space Strategy in Retailing*, que se publicó en *Proceedings: Southern Marketing Association*, se investigó en los supermercados el efecto que tenía la altura de los anaqueles sobre las ventas de alimento enlatado para perro. Se llevó a cabo un experimento en un supermercado pequeño durante un período de 8 días, para las ventas de una marca de alimento para perro conocida como **Arf**, y que implicaba tres niveles de altura de anaquel: a las rodillas, a la cintura y a los ojos. Cada día se cambiaba al azar, en tres ocasiones distintas, la altura del anaquel en la que se situaba dicho alimento. Las secciones restantes de la góndola que contenía la marca dada se llenaban con una mezcla de marcas de comida canina, las cuales resultaban tanto familiares como desconocidas para los consumidores de esa área geográfica específica. Las ventas diarias, expresadas en cientos de dólares, del alimento **Arf** para las tres alturas de anaquel, fueron las siguientes:
 <style>
         table {
             width: 50%;
@@ -1822,69 +1354,979 @@ mediciones que tengan la misma variabilidad. Se registran las siguientes lectura
         }
 </style>
 <table>
+  <thead>
     <tr>
-        <th>Instrumento A</th>
-        <th>Instrumento B</th>
+      <th>Altura de anaquel</th>
+      <th>A las rodillas</th>
+      <th>A la cintura</th>
+      <th>A los ojos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>77</td>
+      <td>88</td>
+      <td>85</td>
     </tr>
     <tr>
-        <td>0.86</td>
-        <td>0.87</td>
+      <td></td>
+      <td>82</td>
+      <td>94</td>
+      <td>85</td>
     </tr>
     <tr>
-        <td>0.82</td>
-        <td>0.74</td>
+      <td></td>
+      <td>86</td>
+      <td>93</td>
+      <td>87</td>
     </tr>
     <tr>
-        <td>0.75</td>
-        <td>0.63</td>
+      <td></td>
+      <td>78</td>
+      <td>90</td>
+      <td>81</td>
     </tr>
     <tr>
-        <td>0.61</td>
-        <td>0.55</td>
+      <td></td>
+      <td>81</td>
+      <td>91</td>
+      <td>80</td>
     </tr>
     <tr>
-        <td>0.89</td>
-        <td>0.76</td>
+      <td></td>
+      <td>86</td>
+      <td>94</td>
+      <td>79</td>
     </tr>
     <tr>
-        <td>0.64</td>
-        <td>0.70</td>
+      <td></td>
+      <td>77</td>
+      <td>90</td>
+      <td>87</td>
     </tr>
     <tr>
-        <td>0.81</td>
-        <td>0.69</td>
+      <td></td>
+      <td>81</td>
+      <td>87</td>
+      <td>93</td>
     </tr>
-    <tr>
-        <td>0.68</td>
-        <td>0.57</td>
-    </tr>
-    <tr>
-        <td>0.65</td>
-        <td>0.53</td>
-    </tr>
+  </tbody>
 </table>
 <br>
 
-Suponiendo que las poblaciones de mediciones se distribuyen de forma aproximadamente normal, pruebe la
-hipótesis de que σA = σB, contra la alternativa de que
-σA =/ σB. Use un valor P.
+¿Existe una diferencia significativa en el promedio de ventas diarias de un alimento para perros, en función de la altura del anaquel? Utilice un nivel de significancia de 0.01.
 
-```{r}
-instrumento_A = c(0.86, 0.82, 0.75, 0.61, 0.89, 0.64, 0.81, 0.68, 0.65)
-instrumento_B = c(0.87, 0.74, 0.63, 0.55, 0.76, 0.70, 0.69, 0.57, 0.53)
+__13.7__ Se ha demostrado que el fertilizante a base de fosfato de amonio de magnesio, MgNH₄PO₄, es un proveedor eficaz de los nutrientes necesarios para el crecimiento de las plantas. Los compuestos que suministra son muy solubles en agua, lo cual permite su aplicación directa sobre la superficie del suelo o que se mezcle con el sustrato del crecimiento durante su colocación en una maceta. Se efectuó un estudio denominado *Effect of Magnesium Ammonium Phosphate on Height of Chrysanthemums*, en la Universidad George Mason, para determinar el nivel óptimo posible de la fertilización, con base en la mejoría de la respuesta del crisantemo en cuanto a su crecimiento vertical. Se dividieron 40 semillas de crisantemo en 4 grupos de diez plantas cada uno. Se sembró cada una en una maceta similar que contenía un medio uniforme de crecimiento. Se agregó a cada grupo de plantas una concentración cada vez mayor de MgNH₄PO₄, medido en gramos por bushel. Se cultivaron durante varias semanas los cuatro grupos de plantas en condiciones uniformes en un invernadero. En la tabla que sigue se presentan los tratamientos y los cambios respectivos de sus alturas, medidas en centímetros:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <thead>
+    <tr>
+      <th>Tratamiento</th>
+      <th>50 g/bu</th>
+      <th>100 g/bu</th>
+      <th>200 g/bu</th>
+      <th>400 g/bu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>13.2</td>
+      <td>16.0</td>
+      <td>7.8</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>12.4</td>
+      <td>12.6</td>
+      <td>14.4</td>
+      <td>14.8</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>12.8</td>
+      <td>14.8</td>
+      <td>20.8</td>
+      <td>19.1</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>17.2</td>
+      <td>13.0</td>
+      <td>15.8</td>
+      <td>15.8</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>13.0</td>
+      <td>14.0</td>
+      <td>17.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>14.2</td>
+      <td>23.6</td>
+      <td>27.0</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>14.0</td>
+      <td>19.6</td>
+      <td>21.1</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>21.6</td>
+      <td>17.0</td>
+      <td>18.8</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>15.0</td>
+      <td>22.2</td>
+      <td>20.2</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>20.0</td>
+      <td>24.4</td>
+      <td>23.2</td>
+      <td>18.2</td>
+    </tr>
+  </tbody>
+</table>
+<br>
 
-var_A = var(instrumento_A)
-var_B = var(instrumento_B)
+Con un nivel de significancia de 0.05, ¿podría concluirse que concentraciones diferentes de MgNH₄PO₄ afectan la estatura promedio que alcanzan los crisantemos? ¿Qué cantidad del fertilizante parece ser la mejor?
 
-estadistico_F = var_A / var_B
-estadistico_F
+__13.9__ La enzima mitocondrial NADPH:NAD transhidrogenasa, de la tenia de la rata común (Hymenolepis diminuta) cataliza el hidrógeno en transferencias de NADPH a NAD, y produce NADH. Se sabe que esta enzima desempeña un papel vital en el metabolismo anaerobio de la tenia, y recientemente se planteó la hipótesis de que podría servir como una bomba de intercambio de protones, es decir, para transferir protones a través de las membranas mitocondriales. El estudio Effect of Various Substrate Concentrations on the Conformational Variation of the NADPH:NAD Transhydrogenase of Hymenolepis diminuta llevado a cabo por la Universidad Estatal Bowling Green, se diseñó para evaluar la capacidad de dicha enzima para sufrir cambios en su conformación o su forma. Los cambios en la actividad específica de la enzima ocasionados por las variaciones en la concentración de NADP podrían interpretarse como un apoyo de la teoría del cambio de conformación. La enzima en cuestión se localiza en la membrana interior de las mitocondrias de la tenia. Se homogeneizaron las tenias, y se aisló la enzima mediante una serie de centrifugaciones. Después, se agregaron diferentes concentraciones de NADP a la solución de enzima aislada y la mezcla se incubó durante tres minutos en un baño de agua a 56 °C. Luego, se analizó la enzima con un espectrómetro de rayo dual y se calcularon los resultados siguientes, en términos de la actividad específica de la enzima, en nanomoles por minuto por miligramo de proteína:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
 
-gl1 = length(instrumento_A) - 1
-gl2 = length(instrumento_B) - 1
+<table>
+  <tr>
+    <th>0</th>
+    <th>80</th>
+    <th>160</th>
+    <th>360</th>
+  </tr>
+  <tr>
+    <td>11.01</td>
+    <td>11.38</td>
+    <td>11.02</td>
+    <td>6.04</td>
+  </tr>
+  <tr>
+    <td>12.09</td>
+    <td>10.67</td>
+    <td>10.67</td>
+    <td>8.65</td>
+  </tr>
+  <tr>
+    <td>10.55</td>
+    <td>12.33</td>
+    <td>11.50</td>
+    <td>7.76</td>
+  </tr>
+  <tr>
+    <td>11.26</td>
+    <td>10.08</td>
+    <td>10.31</td>
+    <td>10.13</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>9.36</td>
+  </tr>
+</table>
+<br>
 
-valor_p = 2 * min(pf(estadistico_F, gl1, gl2), 1 - pf(estadistico_F, gl1, gl2))
-valor_p
-```
+Pruebe la hipótesis de que la actividad específica promedio es la misma para las cuatro concentraciones, con un nivel de significancia de 0.01.
+
+__10.79__ Se lanza 180 veces un dado con los siguientes resultados: 
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <tr>
+    <th>x</th>
+    <th>f(x)</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>36</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>36</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>23</td>
+  </tr>
+</table>
+
+</body>
+<br>
+
+¿Es un dado balanceado? Utilice un nivel de significancia de 0.01
+
+
+ __10.81__  Se supone que una máquina mezcla cacahuates, avellanas, anacardos y pacanas a razón de 5:2:2:1. Se encuentra que una lata que contiene 500 de tales nueces mezcladas tiene 269 cacahuates, 112 avellanas, 74 anacardos y 45 pacanas. Al nivel de significancia de 0.05, pruebe la hipótesis de que la máquina mezcla las nueces a una razón de 5:2:2:1.
+ 
+__10.83__ Se extraen 3 cartas de una baraja ordinaria, con reemplazo, y se registra el número Y de espadas. Después de repetir el experimento 64 veces, se registran los siguientes resultados:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <tr>
+    <th>y</th>
+    <th>f</th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>31</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>0</td>
+  </tr>
+</table>
+<br>
+
+Con un nivel de significancia de 0.01, pruebe la hipótesis de que los datos registrados se pueden ajustar mediante la distribución binomial b(y, 3, 1/4), y = 0, 1, 2, 3.
+
+__10.85__ Se lanza una moneda hasta que sale una cara y se registra el número de lanzamientos X. Después de repetir el experimento 256 veces, obtenemos los siguientes resultados:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <thead>
+    <tr>
+      <th>x</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>f</td>
+      <td>136</td>
+      <td>60</td>
+      <td>34</td>
+      <td>12</td>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+Con un nivel de significancia de 0.05 pruebe la hipótesis de que la distribución observada de X se puede ajustar por la distribución geométrica g(r, 1/2), x = 1, 2, 3,...
+
+__10.87__ Repita el ejercicio 10.85 con el nuevo conjunto de datos obtenidos al realizar 256 veces el experimento que se describe.
+
+__10.89__ En el ejercicio 1.19 de la página 28, pruebe la bondad del ajuste entre las frecuencias de clase que se observan y las frecuencias esperadas correspondientes de una distribución normal con μ = 1.8 y σ = 0.4. Utilice un nivel de significancia de 0.01.
+
+__10.91__  Una muestra aleatoria de 90 adultos se clasifica de acuerdo con su género y el número de horas que pasan viendo la televisión durante una semana.
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2"></th>
+      <th colspan="2">Sexo</th>
+    </tr>
+    <tr>
+      <th>Masculino</th>
+      <th>Femenino</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Más de 25 horas</td>
+      <td>15</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <td>Menos de 25 horas</td>
+      <td>27</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+Utilice un nivel de significancia de 0.01 y pruebe la hipótesis de que el tiempo que pasan viendo televisión es independiente de si el espectador es hombre o mujer.
+
+
+__10.93__ Un criminólogo realizó una investigación para determinar si, en una ciudad grande, la incidencia de ciertos tipos de delitos varía de una parte a otra. Los crímenes específicos de interés son asalto (con violencia), robo en casa, hurto y homicidio. La siguiente tabla muestra el número de delitos cometidos en cuatro áreas de la ciudad durante el año pasado.
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <thead>
+    <tr>
+      <th colspan="5">Tipo de crimen</th>
+    </tr>
+    <tr>
+      <th>Distrito</th>
+      <th>Asalto</th>
+      <th>Robo en casa</th>
+      <th>Hurto</th>
+      <th>Homicidio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>162</td>
+      <td>118</td>
+      <td>451</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>310</td>
+      <td>196</td>
+      <td>996</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>258</td>
+      <td>193</td>
+      <td>458</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>280</td>
+      <td>175</td>
+      <td>390</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+¿A partir de tales datos podemos concluir, con un nivel de significancia de 0.01, que la ocurrencia de estos tipos de delitos es dependiente del distrito de la ciudad?
+
+__10.95__ Para determinar las posiciones actuales acerca de las oraciones en escuelas públicas, se llevó a cabo una investigación en cuatro condados de Virginia. La siguiente tabla da las opiniones de 200 padres del condado de Craig, 150 padres del de Giles, 100 padres del de Franklin y 100 del de Montgomery:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <tr>
+    <th>Condado</th>
+    <th>Craig</th>
+    <th>Giles</th>
+    <th>Franklin</th>
+    <th>Mont.</th>
+  </tr>
+  <tr>
+    <th>A favor</th>
+    <td>65</td>
+    <td>66</td>
+    <td>40</td>
+    <td>34</td>
+  </tr>
+  <tr>
+    <th>En contra</th>
+    <td>42</td>
+    <td>30</td>
+    <td>33</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>Sin opinión</th>
+    <td>93</td>
+    <td>54</td>
+    <td>27</td>
+    <td>24</td>
+  </tr>
+</table>
+<br>
+Pruebe la homogeneidad de las opiniones entre los 4 condados con respecto a las oraciones en escuelas públicas. Utilice un valor P en sus conclusiones.
+
+__10.97__ Las siguientes respuestas con respecto al estándar de vida al momento de una encuesta de opinión independiente de 1000 familias contra un año antes parece estar de acuerdo con los resultados de un estudio publicado en Across the Board (junio de 1981)
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <caption>Evolución de la percepción del estándar de vida</caption>
+  <thead>
+    <tr>
+      <th>Periodo</th>
+      <th>Algo mejor</th>
+      <th>Igual</th>
+      <th>No tan bueno</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1980: Enero</td>
+      <td>72</td>
+      <td>144</td>
+      <td>84</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>1980: Mayo</td>
+      <td>63</td>
+      <td>135</td>
+      <td>102</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>1981: Enero</td>
+      <td>47</td>
+      <td>100</td>
+      <td>53</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>1981: Enero</td>
+      <td>40</td>
+      <td>105</td>
+      <td>55</td>
+      <td>200</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+"Pruebe la hipótesis de que las proporciones de familias dentro de cada estándar de vida son las mismas para cada uno de los cuatro periodos. Utilice un valor P.
+
+__16.1__  Los siguientes datos representan el tiempo, en minutos, que un paciente tiene que esperar durante 12 visitas al consultorio de una doctora antes de ser atendido por ésta:  
+
+17  15  20  20  32  28
+12  26  25  25  35  24
+
+Utilice la prueba de signo al nivel de significancia de 0.05 para probar la afirmación de la doctora, de que la media del tiempo de espera para sus pacientes no es mayor que 20 minutos antes de entrar al consultorio. 
+
+__16.3__ Un inspector de alimentos examina 16 latas de cierta marca de jamón para determinar el porcentaje de impurezas externas. Se registraron los siguientes datos:
+
+2.4 2.3 3.1 2.2 2.3 1.2 1.0 2.4
+1.7 1.1 4.2 1.9 1.7 3.6 1.6 2.3
+
+Con la aproximación normal a la distribución binomial, realice una prueba de signo al nivel de significancia de 0.05, para probar la hipótesis nula de que la mediana del porcentaje de impurezas en esta marca de jamón es 2.5%, contra la alternativa de que la mediana del porcentaje de impurezas no es 2.5%.
+
+__16.5__ Se afirma que una nueva dieta reducirá 4.5 kilogramos el peso de una persona, en promedio, en un periodo de 2 semanas. Se registran los pesos de 10 mujeres que siguen esta dieta, antes y después de un periodo de 2 semanas, y se obtienen los siguientes datos:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <caption>Pesos de 10 mujeres antes y después de una dieta</caption>
+  <thead>
+    <tr>
+      <th>Mujer</th>
+      <th>Peso antes (kg)</th>
+      <th>Peso después (kg)</th>
+      <th>Pérdida de peso (kg)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>58.5</td>
+      <td>60.0</td>
+      <td>-1.5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>60.3</td>
+      <td>54.9</td>
+      <td>5.4</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>61.7</td>
+      <td>58.1</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>69.0</td>
+      <td>62.1</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>64.0</td>
+      <td>58.5</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>62.6</td>
+      <td>59.9</td>
+      <td>2.7</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>56.7</td>
+      <td>54.4</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>63.6</td>
+      <td>60.2</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>68.2</td>
+      <td>62.3</td>
+      <td>5.9</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>59.4</td>
+      <td>58.7</td>
+      <td>0.7</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Utilice la prueba de signo al nivel de significancia de 0.05 para probar la hipótesis de que la dieta reduce la mediana del peso en 4.5 kilogramos, contra la hipótesis alternativa de que la mediana de la diferencia en pesos es menor que 4.5 kilogramos.
+
+__16.7__ Las siguientes cifras indican la presión sanguínea sistólica de 16 corredores antes y después de una carrera de 8 kilómetros:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <caption>Presión arterial sistólica antes y después de una carrera de 8 km</caption>
+  <thead>
+    <tr>
+      <th>Corredor</th>
+      <th>Antes (mmHg)</th>
+      <th>Después (mmHg)</th>
+      <th>Cambio (mmHg)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>158</td>
+      <td>164</td>
+      <td>+6</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>149</td>
+      <td>158</td>
+      <td>+9</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>160</td>
+      <td>163</td>
+      <td>+3</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>159</td>
+      <td>170</td>
+      <td>+11</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+Utilice una prueba de signo al nivel de significancia de 0.05 para probar la hipótesis nula de que correr 8 kilómetros aumenta la mediana de la presión sanguínea sistólica en 8 puntos contra la alternativa de que el aumento en la mediana es menor que 8 puntos.
+
+__16.9__ Analice los datos del ejercicio 16.2 usando la prueba de rango con signo.
+
+__16.11__ Repita el ejercicio 16.5 usando la prueba de rango con signo.
+
+__16.13__ Repita el ejercicio 16.7 con la prueba de rango con signo.
+
+
+__16.15__ Un fabricante de cigarrillos afirma que el contenido de alquitrán de la marca de cigarrillos B es menor que la de la marca A. Para probar esta afirmación, se registran las siguientes determinaciones de contenido de alquitrán, en miligramos:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <caption>Contenido de alquitrán (mg) en cigarrillos</caption>
+  <thead>
+    <tr>
+      <th>Marca</th>
+      <th>Medición 1</th>
+      <th>Medición 2</th>
+      <th>Medición 3</th>
+      <th>Medición 4</th>
+      <th>Medición 5</th>
+      <th>Medición 6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>1</td>
+      <td>12</td>
+      <td>9</td>
+      <td>13</td>
+      <td>11</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>8</td>
+      <td>10</td>
+      <td>7</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+Utilice la prueba de suma de rangos con α = 0.05 para probar si tal afirmación es válida.
+
+
+_16.17__ Los siguientes datos representan el número de horas que operan dos diferentes tipos de calculadoras científicas de bolsillo, antes de que necesiten recargarse.
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <caption>Duración de la batería (horas) de calculadoras</caption>
+  <thead>
+    <tr>
+      <th>Calculadora</th>
+      <th>Medición 1</th>
+      <th>Medición 2</th>
+      <th>Medición 3</th>
+      <th>Medición 4</th>
+      <th>Medición 5</th>
+      <th>Medición 6</th>
+      <th>Medición 7</th>
+      <th>Medición 8</th>
+      <th>Medición 9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>5.5</td>
+      <td>5.6</td>
+      <td>6.3</td>
+      <td>4.6</td>
+      <td>5.3</td>
+      <td>5.0</td>
+      <td>6.2</td>
+      <td>5.8</td>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>3.8</td>
+      <td>4.8</td>
+      <td>4.3</td>
+      <td>4.2</td>
+      <td>4.0</td>
+      <td>4.9</td>
+      <td>4.5</td>
+      <td>5.2</td>
+      <td>4.5</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+Utilice la prueba de la suma de rangos con α = 0.01 para determinar si la calculadora A opera más tiempo que la calculadora B con una carga completa de la batería.
+
+__16.19__ De una clase de matemáticas de 12 estudiantes con capacidades iguales, quienes utilizan material programado, se seleccionan 5 al azar y el profesor les da instrucción adicional. Los resultados del examen final son los siguientes:
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <caption>Calificaciones</caption>
+  <thead>
+    <tr>
+      <th>Grupo</th>
+      <th>Calificación 1</th>
+      <th>Calificación 2</th>
+      <th>Calificación 3</th>
+      <th>Calificación 4</th>
+      <th>Calificación 5</th>
+      <th>Calificación 6</th>
+      <th>Calificación 7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Con instrucción adicional</td>
+      <td>87</td>
+      <td>69</td>
+      <td>78</td>
+      <td>91</td>
+      <td>80</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sin instrucción adicional</td>
+      <td>75</td>
+      <td>88</td>
+      <td>64</td>
+      <td>82</td>
+      <td>93</td>
+      <td>79</td>
+      <td>67</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Utilice la prueba de la suma de rangos con α = 0.05 para determinar si la instrucción adicional afecta la calificación promedio.
+
+__16.21__ Los siguientes datos representan los tiempos de operación, en horas, para tres tipos de calculadoras científicas de bolsillo, antes de que requieran recarga.
+<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+<table>
+  <caption>Tiempo de operación en horas</caption>
+  <thead>
+    <tr>
+      <th>Calculadora A</th>
+      <th>Calculadora B</th>
+      <th>Calculadora C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>4.9</td>
+      <td>5.5</td>
+      <td>6.2</td>
+    </tr>
+    <tr>
+      <td>6.1</td>
+      <td>5.4</td>
+      <td>6.4</td>
+    </tr>
+    <tr>
+      <td>4.3</td>
+      <td>6.2</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>4.6</td>
+      <td>5.8</td>
+      <td>5.6</td>
+    </tr>
+    <tr>
+      <td>5.2</td>
+      <td>5.5</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>5.2</td>
+      <td>6.3</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>4.8</td>
+      <td>6.6</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Utilice la prueba de Kruskal-Wallis, en el nivel de significancia 0.01, para probar la hipótesis de que los tiempos de operación para las tres calculadoras son iguales.
+
 
 
 ## Consultas:
