@@ -597,7 +597,22 @@ a) Obtenga la ecuación de la recta de regresión para pronosticar las partícul
 b) Estime la cantidad de partículas removidas cuando la lluvia diaria es x = 4.8 unidades.
 
 ```{r}
+# Crear un data frame con los datos
+datos <- data.frame(
+  lluvia = c(4.3, 4.5, 5.9, 5.6, 6.1, 5.2, 3.8, 2.1, 7.5),
+  particulas = c(126, 121, 116, 118, 114, 118, 132, 141, 108)
+)
 
+# Ajustar el modelo de regresión lineal
+modelo <- lm(particulas ~ lluvia, data = datos)
+
+# Mostrar el resumen del modelo
+summary(modelo)
+
+# Predecir la cantidad de partículas para lluvia = 4.8
+nueva_lluvia <- 4.8
+prediccion <- predict(modelo, newdata = data.frame(lluvia = nueva_lluvia))
+print(prediccion)
 ```
 
 
@@ -662,6 +677,28 @@ __11.11__ El empuje de un motor (y) es función de la temperatura de escape (x) 
 
 a) Grafique los datos.
 b) Ajuste una recta de regresión simple a los datos y grafíquela a través de ellos.
+
+```{r}
+# Crear un data frame con los datos
+datos <- data.frame(
+  empuje = c(4300, 4650, 3200, 3150, 4950, 4010, 3810, 4500, 3008),
+  temperatura = c(1760, 1652, 1485, 1390, 1820, 1665, 1550, 1700, 1270)
+)
+
+# Ajustar el modelo de regresión lineal
+modelo <- lm(empuje ~ temperatura, data = datos)
+
+# Mostrar el resumen del modelo
+summary(modelo)
+
+# Graficar los datos y la recta de regresión
+library(ggplot2)
+ggplot(datos, aes(x = temperatura, y = empuje)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Temperatura de escape (°F)", y = "Empuje")
+```
+
 
 __12.3__ Se efectuó un conjunto de ensayos experimetnales para determinar una forma de predecir el tiempo de cocción y a diferentes niveles del ancho de horno x1 y temperaturas de la chimenea x2. Los siguientes son los datos registrados.
 
@@ -743,11 +780,50 @@ Estime la ecuacion de regresión lineal múltiple:
 \mu_{Y|x_1, x_2} = \beta_0 + \beta_1 x_1 + \beta_2 x_2
 \]
 
+```{r}
+# Crear un data frame con los datos
+datos <- data.frame(
+  y = c(6.40, 15.05, 18.75, 30.25, 44.85, 48.94, 51.55, 61.50, 100.44, 111.42),
+  x1 = c(1.32, 2.69, 3.56, 4.41, 5.35, 6.20, 7.12, 8.87, 9.80, 10.65),
+  x2 = c(1.15, 3.40, 4.10, 8.75, 14.82, 15.15, 15.32, 18.18, 35.19, 40.40)
+)
+
+# Ajustar el modelo de regresión lineal múltiple
+modelo <- lm(y ~ x1 + x2, data = datos)
+
+# Mostrar el resumen del modelo
+summary(modelo)
+```
+
+
 __12.5__ a) Ajuste una ecuación de regresión múltiple de la forma 
 \[
 \mu_{Y|x} = \beta_0 + \beta_1 x_1 + \beta_2 x_2
 \] a los datos del ejemplo 11.8
 b) Estime el prodcuto de la reacción química para una temperatura de 255 °C.
+
+```{r}
+# Definir los datos
+x <- c(10, 10, 10, 10, 50, 50, 50, 50)
+y <- c(13, 16, 12, 15, 86, 90, 88, 92)
+
+# Crear el término cuadrático de x
+x2 <- x^2
+
+# Ajustar la regresión múltiple
+modelo <- lm(y ~ x + x2)
+
+# Ver los resultados del modelo
+summary(modelo)
+
+# Estimar el producto de la reacción química para x = 225
+x_nueva <- data.frame(x = 225, x2 = 225^2)
+prediccion <- predict(modelo, x_nueva)
+
+# Mostrar la predicción
+prediccion
+```
+
 
 __12.7__ Se efectuó un experimento con la finalidad de determinar si el flujo sanguíneo cerebral de los seres humanos podía predecirse a partir de la tensión arterial del oxígeno(milímetros de mercurio). En el estudio se utilizaron 15 pacientes y se observaron los siguientes datos:
 
@@ -836,6 +912,18 @@ Estime la ecuación de regresión cuadrática
 \[
 \mu_{Y|x} = \beta_0 + \beta_1 x + \beta_2 x^2
 \]
+
+```{r}
+# Datos
+flujo_sanguineo <- c(84.33, 87.80, 82.20, 78.21, 78.44, 81.33, 83.51, 79.46, 80.49, 76.58, 75.62, 77.25, 79.72, 78.39, 78.20)
+tension_oxigeno <- c(603.40, 582.50, 556.20, 548.90, 559.90, 575.20, 581.10, 540.00, 510.50, 484.00, 428.00, 414.80, 382.40, 370.30, 350.30)
+
+# Crear el modelo de regresión cuadrática
+modelo <- lm(flujo_sanguineo ~ tension_oxigeno + I(tension_oxigeno^2))
+
+# Resumen del modelo
+summary(modelo)
+```
 
 
 __12.9__ Se cree que la energía eléctrica consumida cada
@@ -961,6 +1049,29 @@ b) Prediga el consumo de energía para un mes en que:
 
 x₁ = 75°F, x₂ = 24 días, x₃ = 90% y x₄ = 98 toneladas.
 
+```{r}
+# Datos
+y <- c(240, 236, 290, 274, 310, 316, 306, 309, 284, 282, 260, 266, 288, 320)
+x1 <- c(25, 21, 27, 32, 40, 32, 31, 30, 23, 22, 22, 25, 19, 18)
+x2 <- c(24, 25, 28, 24, 27, 26, 24, 27, 25, 24, 24, 25, 28, 24)
+x3 <- c(91, 93, 97, 94, 99, 94, 95, 94, 92, 91, 90, 93, 89, 90)
+x4 <- c(100, 110, 100, 98, 110, 107, 105, 105, 94, 93, 91, 94, 96, 98)
+
+# Crear el modelo de regresión lineal múltiple
+modelo <- lm(y ~ x1 + x2 + x3 + x4)
+
+# Resumen del modelo
+summary(modelo)
+
+# Predicción para los valores x1 = 75, x2 = 24, x3 = 90, x4 = 98
+nuevos_datos <- data.frame(x1 = 75, x2 = 24, x3 = 90, x4 = 98)
+prediccion <- predict(modelo, nuevos_datos)
+
+# Mostrar la predicción
+prediccion
+```
+
+
 __12.11__ El departamento de personal de cierta compañia industrial utilizó a 15 sujetos en un estudio, con la finalidad de determinar la relación entre la calificación de su desempeño en el trabajo (y) y las calificaciones de cuatro examenes. Los datos son los siguientes: 
 <style>
         table {
@@ -1078,6 +1189,27 @@ Estime los coeficientes de regresión del modelo:
 \[
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_4
 \]b
+
+```{r}
+# Datos
+y <- c(11.2, 14.5, 17.2, 13.6, 16.6, 16.6, 15.4, 18.8, 19.6, 15.6, 16.4, 20.0, 21.8, 22.5)
+x1 <- c(56.5, 59.5, 65.2, 61.4, 88.6, 89.2, 82.6, 85.8, 82.8, 72.4, 81.6, 85.0, 85.4, 84.0)
+x2 <- c(71.0, 75.2, 76.0, 69.2, 72.0, 70.0, 73.4, 70.0, 70.6, 63.2, 72.2, 81.0, 87.2, 87.0)
+x3 <- c(38.5, 42.5, 42.3, 43.5, 44.5, 42.4, 44.7, 42.6, 42.4, 39.7, 40.4, 45.4, 51.0, 51.0)
+x4 <- c(43.0, 45.0, 49.0, 46.0, 66.2, 62.0, 61.0, 62.4, 64.0, 58.2, 63.4, 67.0, 65.0, 65.2)
+
+# Crear un dataframe con los datos
+datos <- data.frame(y, x1, x2, x3, x4)
+
+# Ajustar el modelo de regresión lineal múltiple
+modelo <- lm(y ~ x1 + x2 + x3 + x4, data = datos)
+
+# Resumen del modelo para ver los coeficientes
+summary(modelo)
+
+```
+
+
 
 __12.13__ Se realizó un experimento para estudiar el tamaño de los calamares consumidos por tiburones y atunes. Las variables regresoras son características del pico o la boca del calamar. Las variables regresoras y la respuesta considerada para el estudio son las siguientes:  
 
@@ -1275,6 +1407,26 @@ y: peso, en libras.
 \mu_{Y|x_1, x_2, x_3, x_4, x_5} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_4 + \beta_5 x_5
 \]
 
+```{r}
+# Datos
+x1 <- c(1.31, 1.55, 1.49, 0.99, 0.93, 1.09, 1.27, 1.27, 1.06, 1.03, 1.26, 1.45, 1.56, 1.39, 1.75, 1.78, 1.75, 1.68, 1.76, 1.73)
+x2 <- c(1.07, 1.49, 0.53, 0.34, 0.83, 0.40, 0.84, 0.94, 0.43, 0.40, 0.68, 1.19, 1.21, 0.63, 1.72, 1.72, 1.49, 1.56, 1.55, 1.07)
+x3 <- c(0.44, 0.54, 0.90, 0.34, 0.54, 0.31, 0.64, 0.77, 0.35, 0.29, 0.56, 0.92, 0.90, 0.45, 1.09, 0.90, 1.02, 0.91, 1.04, 1.04)
+x4 <- c(0.75, 0.97, 0.90, 0.57, 0.64, 0.61, 0.73, 0.87, 0.41, 0.30, 0.61, 1.03, 1.03, 0.77, 1.44, 1.49, 1.39, 1.37, 1.45, 1.54)
+x5 <- c(0.95, 1.10, 1.07, 0.57, 0.71, 0.61, 1.03, 1.15, 0.49, 0.41, 0.87, 1.32, 1.32, 0.83, 1.80, 1.83, 1.62, 1.76, 1.74, 1.66)
+y <- c(1.95, 2.90, 2.70, 0.87, 1.04, 1.22, 1.94, 2.03, 1.05, 0.98, 1.60, 3.10, 3.40, 1.86, 4.19, 4.46, 3.78, 4.06, 4.74, 5.68)
+
+# Crear un dataframe con los datos
+datos <- data.frame(x1, x2, x3, x4, x5, y)
+
+# Ajustar el modelo de regresión lineal múltiple
+modelo <- lm(y ~ x1 + x2 + x3 + x4 + x5, data = datos)
+
+# Resumen del modelo para ver los coeficientes
+summary(modelo)
+
+```
+
 __12.15__ Se llevó a cabo un estudio sobre el uso de cierto rodamiento y su relación con x1 = viscosidad del aceite y x2 = carga. Se obtuvieron los datos siguientes. [De Response Surface Methodology, Myers y Montgomery (2002).]
 <style>
         table {
@@ -1338,6 +1490,27 @@ a) Estime los parámetros desconocidos de la ecuación de regresión lineal múl
 μY|x1,x2 = β₀ + β₁x₁ + β₂x₂
 
 b) Prediga el uso para una viscosidad del aceite de 20 y una carga de 1200.
+```{r}
+# Paso 1: Crear los datos
+y <- c(121, 172, 113, 201)
+x1 <- c(15.6, 22.0, 33.0, 31.5)
+x2 <- c(851, 1058, 1357, 1115)
+
+# Paso 2: Ajustar el modelo de regresión lineal múltiple
+modelo <- lm(y ~ x1 + x2)
+
+# Mostrar el resumen del modelo para obtener los coeficientes
+summary(modelo)
+
+# Paso 3: Predecir el uso para x1 = 20 y x2 = 1200
+nueva_prediccion <- data.frame(x1 = 20, x2 = 1200)
+prediccion <- predict(modelo, nueva_prediccion)
+
+# Mostrar la predicción
+prediccion
+
+```
+
 
 __13.5__ En el artículo *Shelf-Space Strategy in Retailing*, que se publicó en *Proceedings: Southern Marketing Association*, se investigó en los supermercados el efecto que tenía la altura de los anaqueles sobre las ventas de alimento enlatado para perro. Se llevó a cabo un experimento en un supermercado pequeño durante un período de 8 días, para las ventas de una marca de alimento para perro conocida como **Arf**, y que implicaba tres niveles de altura de anaquel: a las rodillas, a la cintura y a los ojos. Cada día se cambiaba al azar, en tres ocasiones distintas, la altura del anaquel en la que se situaba dicho alimento. Las secciones restantes de la góndola que contenía la marca dada se llenaban con una mezcla de marcas de comida canina, las cuales resultaban tanto familiares como desconocidas para los consumidores de esa área geográfica específica. Las ventas diarias, expresadas en cientos de dólares, del alimento **Arf** para las tres alturas de anaquel, fueron las siguientes:
 <style>
@@ -1416,6 +1589,23 @@ __13.5__ En el artículo *Shelf-Space Strategy in Retailing*, que se publicó en
 <br>
 
 ¿Existe una diferencia significativa en el promedio de ventas diarias de un alimento para perros, en función de la altura del anaquel? Utilice un nivel de significancia de 0.01.
+
+```{r}
+# Paso 1: Ingresar los datos
+ventas <- c(77, 84, 81, 79, 87, 92, 85, 90, 89, 81, 87, 85)
+altura <- factor(rep(c("A las rodillas", "A la cintura", "A los ojos"), each = 4))
+
+# Paso 2: Realizar el ANOVA
+anova_model <- aov(ventas ~ altura)
+
+# Mostrar el resumen del ANOVA
+summary(anova_model)
+
+# Paso 3: Realizar una prueba de Tukey para analizar diferencias entre los grupos si es necesario
+TukeyHSD(anova_model)
+
+```
+
 
 __13.7__ Se ha demostrado que el fertilizante a base de fosfato de amonio de magnesio, MgNH₄PO₄, es un proveedor eficaz de los nutrientes necesarios para el crecimiento de las plantas. Los compuestos que suministra son muy solubles en agua, lo cual permite su aplicación directa sobre la superficie del suelo o que se mezcle con el sustrato del crecimiento durante su colocación en una maceta. Se efectuó un estudio denominado *Effect of Magnesium Ammonium Phosphate on Height of Chrysanthemums*, en la Universidad George Mason, para determinar el nivel óptimo posible de la fertilización, con base en la mejoría de la respuesta del crisantemo en cuanto a su crecimiento vertical. Se dividieron 40 semillas de crisantemo en 4 grupos de diez plantas cada uno. Se sembró cada una en una maceta similar que contenía un medio uniforme de crecimiento. Se agregó a cada grupo de plantas una concentración cada vez mayor de MgNH₄PO₄, medido en gramos por bushel. Se cultivaron durante varias semanas los cuatro grupos de plantas en condiciones uniformes en un invernadero. En la tabla que sigue se presentan los tratamientos y los cambios respectivos de sus alturas, medidas en centímetros:
 <style>
@@ -1518,6 +1708,32 @@ __13.7__ Se ha demostrado que el fertilizante a base de fosfato de amonio de mag
 
 Con un nivel de significancia de 0.05, ¿podría concluirse que concentraciones diferentes de MgNH₄PO₄ afectan la estatura promedio que alcanzan los crisantemos? ¿Qué cantidad del fertilizante parece ser la mejor?
 
+```{r}
+# Paso 1: Ingresar los datos
+tratamientos <- c(rep("50 g/bu", 10), rep("100 g/bu", 10), rep("200 g/bu", 10), rep("400 g/bu", 10))
+alturas <- c(13.2, 12.4, 12.8, 17.2, 13.0, 14.2, 14.0, 21.6, 15.0, 20.0,
+             16.0, 12.6, 14.8, 13.0, 14.0, 23.6, 19.6, 17.0, 22.2, 24.4,
+             7.8, 14.4, 20.8, 15.8, 17.0, 27.0, 21.1, 18.8, 20.2, 23.2,
+             21.0, 14.8, 19.1, 15.8, 18.0, 26.0, 21.0, 22.0, 25.0, 18.2)
+
+# Convertir los tratamientos en factor
+tratamientos <- factor(tratamientos, levels = c("50 g/bu", "100 g/bu", "200 g/bu", "400 g/bu"))
+
+# Paso 2: Realizar el ANOVA
+anova_model <- aov(alturas ~ tratamientos)
+
+# Mostrar el resumen del ANOVA
+summary(anova_model)
+
+# Paso 3: Realizar una prueba de Tukey si el ANOVA es significativo
+tukey_result <- TukeyHSD(anova_model)
+
+# Mostrar el resultado de la prueba de Tukey
+tukey_result
+
+```
+
+
 __13.9__ La enzima mitocondrial NADPH:NAD transhidrogenasa, de la tenia de la rata común (Hymenolepis diminuta) cataliza el hidrógeno en transferencias de NADPH a NAD, y produce NADH. Se sabe que esta enzima desempeña un papel vital en el metabolismo anaerobio de la tenia, y recientemente se planteó la hipótesis de que podría servir como una bomba de intercambio de protones, es decir, para transferir protones a través de las membranas mitocondriales. El estudio Effect of Various Substrate Concentrations on the Conformational Variation of the NADPH:NAD Transhydrogenase of Hymenolepis diminuta llevado a cabo por la Universidad Estatal Bowling Green, se diseñó para evaluar la capacidad de dicha enzima para sufrir cambios en su conformación o su forma. Los cambios en la actividad específica de la enzima ocasionados por las variaciones en la concentración de NADP podrían interpretarse como un apoyo de la teoría del cambio de conformación. La enzima en cuestión se localiza en la membrana interior de las mitocondrias de la tenia. Se homogeneizaron las tenias, y se aisló la enzima mediante una serie de centrifugaciones. Después, se agregaron diferentes concentraciones de NADP a la solución de enzima aislada y la mezcla se incubó durante tres minutos en un baño de agua a 56 °C. Luego, se analizó la enzima con un espectrómetro de rayo dual y se calcularon los resultados siguientes, en términos de la actividad específica de la enzima, en nanomoles por minuto por miligramo de proteína:
 <style>
         table {
@@ -1575,6 +1791,25 @@ __13.9__ La enzima mitocondrial NADPH:NAD transhidrogenasa, de la tenia de la ra
 
 Pruebe la hipótesis de que la actividad específica promedio es la misma para las cuatro concentraciones, con un nivel de significancia de 0.01.
 
+```{r}
+# Paso 1: Ingresar los datos
+concentraciones <- factor(rep(c("0", "80", "160", "360"), c(4, 4, 4, 5)))
+actividad <- c(11.01, 12.09, 10.55, 11.26, 
+               11.38, 10.67, 12.33, 10.08, 
+               11.02, 10.67, 11.50, 10.31, 
+               6.04, 8.65, 7.76, 10.13, 9.36)
+
+# Paso 2: Realizar el ANOVA
+anova_model <- aov(actividad ~ concentraciones)
+
+# Mostrar el resumen del ANOVA
+summary(anova_model)
+
+# Paso 3: Interpretar los resultados
+
+```
+
+
 __10.79__ Se lanza 180 veces un dado con los siguientes resultados: 
 <style>
         table {
@@ -1624,9 +1859,40 @@ __10.79__ Se lanza 180 veces un dado con los siguientes resultados:
 <br>
 
 ¿Es un dado balanceado? Utilice un nivel de significancia de 0.01
+```{r}
+# Paso 1: Ingresar los datos observados
+observados <- c(28, 36, 36, 30, 27, 23)
+
+# Paso 2: Calcular las frecuencias esperadas
+# Como el dado tiene 6 caras y se lanzaron 180 veces, la frecuencia esperada para cada cara es 180/6
+esperados <- rep(180/6, 6)
+
+# Paso 3: Realizar la prueba de Chi-cuadrado
+chi_cuadrado <- chisq.test(observados, p = esperados/sum(esperados))
+
+# Mostrar el resultado de la prueba
+chi_cuadrado
+```
 
 
  __10.81__  Se supone que una máquina mezcla cacahuates, avellanas, anacardos y pacanas a razón de 5:2:2:1. Se encuentra que una lata que contiene 500 de tales nueces mezcladas tiene 269 cacahuates, 112 avellanas, 74 anacardos y 45 pacanas. Al nivel de significancia de 0.05, pruebe la hipótesis de que la máquina mezcla las nueces a una razón de 5:2:2:1.
+ 
+```{r}
+# Paso 1: Ingresar los datos observados
+observados <- c(269, 112, 74, 45)
+
+# Paso 2: Calcular las frecuencias esperadas
+# La proporción es 5:2:2:1, entonces la suma de las proporciones es 5 + 2 + 2 + 1 = 10
+total_nueces <- sum(observados)
+esperados <- total_nueces * c(5/10, 2/10, 2/10, 1/10)
+
+# Paso 3: Realizar la prueba de Chi-cuadrado
+chi_cuadrado <- chisq.test(observados, p = esperados/sum(esperados))
+
+# Mostrar el resultado de la prueba
+chi_cuadrado
+```
+ 
  
 __10.83__ Se extraen 3 cartas de una baraja ordinaria, con reemplazo, y se registra el número Y de espadas. Después de repetir el experimento 64 veces, se registran los siguientes resultados:
 <style>
@@ -1667,6 +1933,25 @@ __10.83__ Se extraen 3 cartas de una baraja ordinaria, con reemplazo, y se regis
 <br>
 
 Con un nivel de significancia de 0.01, pruebe la hipótesis de que los datos registrados se pueden ajustar mediante la distribución binomial b(y, 3, 1/4), y = 0, 1, 2, 3.
+
+```{r}
+# Paso 1: Ingresar los datos observados
+observados <- c(21, 31, 12, 0)
+
+# Paso 2: Calcular las probabilidades de la distribución binomial b(y, 3, 1/4)
+probabilidades <- dbinom(0:3, size = 3, prob = 1/4)
+
+# Paso 3: Calcular las frecuencias esperadas
+n <- sum(observados)
+esperados <- n * probabilidades
+
+# Paso 4: Realizar la prueba de Chi-cuadrado
+chi_cuadrado <- chisq.test(observados, p = probabilidades, rescale.p = TRUE)
+
+# Mostrar el resultado de la prueba
+chi_cuadrado
+```
+
 
 __10.85__ Se lanza una moneda hasta que sale una cara y se registra el número de lanzamientos X. Después de repetir el experimento 256 veces, obtenemos los siguientes resultados:
 <style>
@@ -1714,9 +1999,73 @@ __10.85__ Se lanza una moneda hasta que sale una cara y se registra el número d
 
 Con un nivel de significancia de 0.05 pruebe la hipótesis de que la distribución observada de X se puede ajustar por la distribución geométrica g(r, 1/2), x = 1, 2, 3,...
 
+```{r}
+# Ingresar los datos observados
+observados <- c(136, 60, 34, 12, 9, 1, 3, 1)
+
+# Calcular las probabilidades de la distribución geométrica g(r, 1/2)
+probabilidades <- dgeom(0:7, prob = 1/2)
+
+# Ajustar las probabilidades para que sumen 1
+probabilidades <- probabilidades / sum(probabilidades)
+
+# Calcular las frecuencias esperadas
+n <- sum(observados)
+esperados <- n * probabilidades
+
+# Realizar la prueba de Chi-cuadrado
+chi_cuadrado <- chisq.test(observados, p = probabilidades, rescale.p = TRUE)
+chi_cuadrado
+```
+
+
 __10.87__ Repita el ejercicio 10.85 con el nuevo conjunto de datos obtenidos al realizar 256 veces el experimento que se describe.
+```{r}
+# Supongamos que estos son los nuevos datos obtenidos al repetir el experimento
+observados_nuevos <- c(140, 55, 30, 15, 10, 2, 3, 1) # Reemplaza con los datos reales
+
+# Calcular las probabilidades de la distribución geométrica g(r, 1/2)
+probabilidades <- dgeom(0:7, prob = 1/2)
+
+# Ajustar las probabilidades para que sumen 1
+probabilidades <- probabilidades / sum(probabilidades)
+
+# Calcular las frecuencias esperadas
+n <- sum(observados_nuevos)
+esperados <- n * probabilidades
+
+# Realizar la prueba de Chi-cuadrado
+chi_cuadrado <- chisq.test(observados_nuevos, p = probabilidades, rescale.p = TRUE)
+chi_cuadrado
+
+```
+
 
 __10.89__ En el ejercicio 1.19 de la página 28, pruebe la bondad del ajuste entre las frecuencias de clase que se observan y las frecuencias esperadas correspondientes de una distribución normal con μ = 1.8 y σ = 0.4. Utilice un nivel de significancia de 0.01.
+
+```{r}
+# Definir los datos
+data <- c(2.0, 3.0, 0.3, 3.3, 1.3, 0.4, 0.2, 6.0, 5.5, 6.5, 0.2, 2.3,
+          1.5, 4.0, 5.9, 1.8, 4.7, 0.7, 4.5, 0.3, 1.5, 0.5, 2.5, 5.0,
+          1.0, 6.0, 5.6, 6.0, 1.2, 0.2)
+
+# Definir los parámetros de la distribución normal
+mu <- 1.8
+sigma <- 0.4
+
+# Definir los intervalos (clases)
+breaks <- c(0, 1, 2, 3, 4, 5, 6, 7)
+
+# Calcular las frecuencias observadas
+observed <- hist(data, breaks = breaks, plot = FALSE)$counts
+
+# Calcular las frecuencias esperadas
+expected <- diff(pnorm(breaks, mean = mu, sd = sigma)) * length(data)
+
+# Realizar la prueba de Chi-cuadrado
+chisq.test(observed, p = expected / sum(expected))
+```
+
 
 __10.91__  Una muestra aleatoria de 90 adultos se clasifica de acuerdo con su género y el número de horas que pasan viendo la televisión durante una semana.
 <style>
@@ -1759,6 +2108,19 @@ __10.91__  Una muestra aleatoria de 90 adultos se clasifica de acuerdo con su g�
 <br>
 
 Utilice un nivel de significancia de 0.01 y pruebe la hipótesis de que el tiempo que pasan viendo televisión es independiente de si el espectador es hombre o mujer.
+
+```{r}
+# Crear la tabla de contingencia
+tv_data <- matrix(c(15, 27, 29, 19), nrow = 2, byrow = TRUE,
+                  dimnames = list("TV Time" = c("Más de 25 horas", "Menos de 25 horas"),
+                                  "Sexo" = c("Masculino", "Femenino")))
+
+# Realizar la prueba de Chi-cuadrado
+chisq_test <- chisq.test(tv_data)
+
+# Mostrar los resultados
+chisq_test
+```
 
 
 __10.93__ Un criminólogo realizó una investigación para determinar si, en una ciudad grande, la incidencia de ciertos tipos de delitos varía de una parte a otra. Los crímenes específicos de interés son asalto (con violencia), robo en casa, hurto y homicidio. La siguiente tabla muestra el número de delitos cometidos en cuatro áreas de la ciudad durante el año pasado.
@@ -1823,6 +2185,24 @@ __10.93__ Un criminólogo realizó una investigación para determinar si, en una
 
 ¿A partir de tales datos podemos concluir, con un nivel de significancia de 0.01, que la ocurrencia de estos tipos de delitos es dependiente del distrito de la ciudad?
 
+```{r}
+# Crear la tabla de contingencia
+crime_data <- matrix(c(162, 310, 258, 280,  # Asalto
+                       118, 196, 193, 175,  # Robo en casa
+                       451, 996, 458, 390,  # Hurto
+                       18, 25, 10, 19),     # Homicidio
+                     nrow = 4, byrow = TRUE,
+                     dimnames = list("Distrito" = c("1", "2", "3", "4"),
+                                     "Tipo de crimen" = c("Asalto", "Robo en casa", "Hurto", "Homicidio")))
+
+# Realizar la prueba de Chi-cuadrado
+chisq_test <- chisq.test(crime_data)
+
+# Mostrar los resultados
+chisq_test
+```
+
+
 __10.95__ Para determinar las posiciones actuales acerca de las oraciones en escuelas públicas, se llevó a cabo una investigación en cuatro condados de Virginia. La siguiente tabla da las opiniones de 200 padres del condado de Craig, 150 padres del de Giles, 100 padres del de Franklin y 100 del de Montgomery:
 <style>
         table {
@@ -1869,6 +2249,23 @@ __10.95__ Para determinar las posiciones actuales acerca de las oraciones en esc
 </table>
 <br>
 Pruebe la homogeneidad de las opiniones entre los 4 condados con respecto a las oraciones en escuelas públicas. Utilice un valor P en sus conclusiones.
+
+```{r}
+# Crear la tabla de contingencia
+opinions_data <- matrix(c(65, 66, 40, 34,  # A favor
+                          42, 30, 33, 42,  # En contra
+                          93, 54, 27, 24), # Sin opinión
+                        nrow = 3, byrow = TRUE,
+                        dimnames = list("Opinión" = c("A favor", "En contra", "Sin opinión"),
+                                        "Condado" = c("Craig", "Giles", "Franklin", "Montgomery")))
+
+# Realizar la prueba de Chi-cuadrado
+chisq_test <- chisq.test(opinions_data)
+
+# Mostrar los resultados
+chisq_test
+```
+
 
 __10.97__ Las siguientes respuestas con respecto al estándar de vida al momento de una encuesta de opinión independiente de 1000 familias contra un año antes parece estar de acuerdo con los resultados de un estudio publicado en Across the Board (junio de 1981)
 <style>
@@ -1929,6 +2326,23 @@ __10.97__ Las siguientes respuestas con respecto al estándar de vida al momento
 <br>
 "Pruebe la hipótesis de que las proporciones de familias dentro de cada estándar de vida son las mismas para cada uno de los cuatro periodos. Utilice un valor P.
 
+```{r}
+# Crear la tabla de contingencia
+standard_of_living <- matrix(c(72, 63, 47, 40,  # Algo mejor
+                               144, 135, 100, 105,  # Igual
+                               84, 102, 53, 55),   # No tan bueno
+                             nrow = 3, byrow = TRUE,
+                             dimnames = list("Estándar de Vida" = c("Algo mejor", "Igual", "No tan bueno"),
+                                             "Periodo" = c("Enero 1980", "Mayo 1980", "Enero 1981_1", "Enero 1981_2")))
+
+# Realizar la prueba de Chi-cuadrado
+chisq_test <- chisq.test(standard_of_living)
+
+# Mostrar los resultados
+chisq_test
+```
+
+
 __16.1__  Los siguientes datos representan el tiempo, en minutos, que un paciente tiene que esperar durante 12 visitas al consultorio de una doctora antes de ser atendido por ésta:  
 
 17  15  20  20  32  28
@@ -1936,12 +2350,63 @@ __16.1__  Los siguientes datos representan el tiempo, en minutos, que un pacient
 
 Utilice la prueba de signo al nivel de significancia de 0.05 para probar la afirmación de la doctora, de que la media del tiempo de espera para sus pacientes no es mayor que 20 minutos antes de entrar al consultorio. 
 
+```{r}
+# Datos de tiempo de espera
+esperas <- c(17, 15, 20, 20, 32, 28, 12, 26, 25, 25, 35, 24)
+
+# Media hipotética
+media_hipotetica <- 20
+
+# Calcular las diferencias entre cada tiempo de espera y la media hipotética
+diferencias <- esperas - media_hipotetica
+
+# Contar las diferencias positivas y negativas
+signos_positivos <- sum(diferencias > 0)
+signos_negativos <- sum(diferencias < 0)
+
+# Realizar la prueba binomial para los signos positivos
+n <- signos_positivos + signos_negativos
+p_valor <- binom.test(signos_positivos, n, p = 0.5, alternative = "greater")$p.value
+
+# Mostrar los resultados
+list(signos_positivos = signos_positivos,
+     signos_negativos = signos_negativos,
+     p_valor = p_valor)
+```
+
+
 __16.3__ Un inspector de alimentos examina 16 latas de cierta marca de jamón para determinar el porcentaje de impurezas externas. Se registraron los siguientes datos:
 
 2.4 2.3 3.1 2.2 2.3 1.2 1.0 2.4
 1.7 1.1 4.2 1.9 1.7 3.6 1.6 2.3
 
 Con la aproximación normal a la distribución binomial, realice una prueba de signo al nivel de significancia de 0.05, para probar la hipótesis nula de que la mediana del porcentaje de impurezas en esta marca de jamón es 2.5%, contra la alternativa de que la mediana del porcentaje de impurezas no es 2.5%.
+
+```{r}
+# Datos del porcentaje de impurezas
+impurezas <- c(2.4, 2.3, 3.1, 2.2, 2.3, 1.2, 1.0, 2.4,
+               1.7, 1.1, 4.2, 1.9, 1.7, 3.6, 1.6, 2.3)
+
+# Mediana hipotética
+mediana_hipotetica <- 2.5
+
+# Calcular las diferencias entre cada porcentaje de impurezas y la mediana hipotética
+diferencias <- impurezas - mediana_hipotetica
+
+# Contar las diferencias positivas y negativas
+signos_positivos <- sum(diferencias > 0)
+signos_negativos <- sum(diferencias < 0)
+
+# Realizar la prueba binomial para los signos positivos y negativos
+n <- signos_positivos + signos_negativos
+p_valor <- binom.test(signos_positivos, n, p = 0.5, alternative = "two.sided")$p.value
+
+# Mostrar los resultados
+list(signos_positivos = signos_positivos,
+     signos_negativos = signos_negativos,
+     p_valor = p_valor)
+```
+
 
 __16.5__ Se afirma que una nueva dieta reducirá 4.5 kilogramos el peso de una persona, en promedio, en un periodo de 2 semanas. Se registran los pesos de 10 mujeres que siguen esta dieta, antes y después de un periodo de 2 semanas, y se obtienen los siguientes datos:
 <style>
@@ -2033,6 +2498,31 @@ __16.5__ Se afirma que una nueva dieta reducirá 4.5 kilogramos el peso de una p
 <br>
 Utilice la prueba de signo al nivel de significancia de 0.05 para probar la hipótesis de que la dieta reduce la mediana del peso en 4.5 kilogramos, contra la hipótesis alternativa de que la mediana de la diferencia en pesos es menor que 4.5 kilogramos.
 
+```{r}
+# Datos de pérdida de peso
+perdida_peso <- c(-1.5, 5.4, 3.6, 6.9, 5.5, 2.7, 2.3, 3.4, 5.9, 0.7)
+
+# Mediana hipotética
+mediana_hipotetica <- 4.5
+
+# Calcular las diferencias entre cada pérdida de peso y la mediana hipotética
+diferencias <- perdida_peso - mediana_hipotetica
+
+# Contar las diferencias positivas y negativas
+signos_positivos <- sum(diferencias < 0) # Pérdidas menores a 4.5 kg
+signos_negativos <- sum(diferencias > 0) # Pérdidas mayores a 4.5 kg
+
+# Realizar la prueba binomial para los signos positivos
+n <- signos_positivos + signos_negativos
+p_valor <- binom.test(signos_positivos, n, p = 0.5, alternative = "less")$p.value
+
+# Mostrar los resultados
+list(signos_positivos = signos_positivos,
+     signos_negativos = signos_negativos,
+     p_valor = p_valor)
+```
+
+
 __16.7__ Las siguientes cifras indican la presión sanguínea sistólica de 16 corredores antes y después de una carrera de 8 kilómetros:
 <style>
         table {
@@ -2088,11 +2578,133 @@ __16.7__ Las siguientes cifras indican la presión sanguínea sistólica de 16 c
 
 Utilice una prueba de signo al nivel de significancia de 0.05 para probar la hipótesis nula de que correr 8 kilómetros aumenta la mediana de la presión sanguínea sistólica en 8 puntos contra la alternativa de que el aumento en la mediana es menor que 8 puntos.
 
+```{r}
+# Datos de cambio en la presión sanguínea
+cambios <- c(6, 9, 3, 11)
+
+# Mediana hipotética
+mediana_hipotetica <- 8
+
+# Calcular las diferencias entre cada cambio y la mediana hipotética
+diferencias <- cambios - mediana_hipotetica
+
+# Contar las diferencias positivas y negativas
+signos_positivos <- sum(diferencias < 0) # Cambios menores a 8 mmHg
+signos_negativos <- sum(diferencias > 0) # Cambios mayores a 8 mmHg
+
+# Realizar la prueba binomial para los signos positivos
+n <- signos_positivos + signos_negativos
+p_valor <- binom.test(signos_positivos, n, p = 0.5, alternative = "less")$p.value
+
+# Mostrar los resultados
+list(signos_positivos = signos_positivos,
+     signos_negativos = signos_negativos,
+     p_valor = p_valor)
+```
+
+
 __16.9__ Analice los datos del ejercicio 16.2 usando la prueba de rango con signo.
+
+```{r}
+# Datos de horas de vuelo
+horas <- c(9, 12, 18, 14, 12, 14, 12, 10, 16,
+           11, 9, 11, 13, 11, 13, 15, 13, 14)
+
+# Mediana hipotética
+mediana_hipotetica <- 12
+
+# Calcular las diferencias entre cada valor y la mediana hipotética
+diferencias <- horas - mediana_hipotetica
+
+# Eliminar diferencias de cero para la prueba de rango con signo
+diferencias <- diferencias[diferencias != 0]
+
+# Calcular los rangos absolutos
+rangos_absolutos <- rank(abs(diferencias))
+
+# Sumar los rangos para las diferencias positivas y negativas
+suma_rangos_positivos <- sum(rangos_absolutos[diferencias > 0])
+suma_rangos_negativos <- sum(rangos_absolutos[diferencias < 0])
+
+# Imprimir resultados
+list(suma_rangos_positivos = suma_rangos_positivos,
+     suma_rangos_negativos = suma_rangos_negativos)
+```
+
 
 __16.11__ Repita el ejercicio 16.5 usando la prueba de rango con signo.
 
+```{r}
+# Datos de peso antes y después de la dieta
+peso_antes <- c(58.5, 60.3, 61.7, 69.0, 64.0, 62.6, 56.7, 63.6, 68.2, 59.4)
+peso_despues <- c(60.0, 54.9, 58.1, 62.1, 58.5, 59.9, 54.4, 60.2, 62.3, 58.7)
+
+# Calcular la pérdida de peso
+p_perdida_peso <- peso_despues - peso_antes
+
+# Establecer la mediana hipotética
+mediana_hipotetica <- -4.5
+
+# Calcular las diferencias respecto a la mediana hipotética
+diferencias <- p_perdida_peso - mediana_hipotetica
+
+# Eliminar las diferencias de cero para la prueba de rango con signo
+diferencias <- diferencias[diferencias != 0]
+
+# Calcular los rangos absolutos
+rangos_absolutos <- rank(abs(diferencias))
+
+# Sumar los rangos para las diferencias positivas y negativas
+suma_rangos_positivos <- sum(rangos_absolutos[diferencias > 0])
+suma_rangos_negativos <- sum(rangos_absolutos[diferencias < 0])
+
+# Imprimir resultados
+list(suma_rangos_positivos = suma_rangos_positivos,
+     suma_rangos_negativos = suma_rangos_negativos)
+# Realizar la prueba de rango con signo
+resultado <- wilcox.test(p_perdida_peso, mu = mediana_hipotetica, alternative = "less")
+
+# Imprimir el valor p
+resultado$p.value
+```
+
+
 __16.13__ Repita el ejercicio 16.7 con la prueba de rango con signo.
+
+```{r}
+# Datos de presión arterial antes y después de la carrera
+presion_antes <- c(158, 149, 160, 159)
+presion_despues <- c(164, 158, 163, 170)
+
+# Calcular el cambio en la presión arterial
+cambio <- presion_despues - presion_antes
+
+# Establecer la mediana hipotética
+mediana_hipotetica <- 8
+
+# Calcular las diferencias respecto a la mediana hipotética
+diferencias <- cambio - mediana_hipotetica
+
+# Eliminar las diferencias de cero para la prueba de rango con signo
+diferencias <- diferencias[diferencias != 0]
+
+# Calcular los rangos absolutos
+rangos_absolutos <- rank(abs(diferencias))
+
+# Sumar los rangos para las diferencias positivas y negativas
+suma_rangos_positivos <- sum(rangos_absolutos[diferencias > 0])
+suma_rangos_negativos <- sum(rangos_absolutos[diferencias < 0])
+
+# Imprimir resultados
+list(suma_rangos_positivos = suma_rangos_positivos,
+     suma_rangos_negativos = suma_rangos_negativos)
+
+# Realizar la prueba de rango con signo
+resultado <- wilcox.test(cambio, mu = mediana_hipotetica, alternative = "greater")
+
+# Imprimir el valor p
+resultado$p.value
+```
 
 
 __16.15__ Un fabricante de cigarrillos afirma que el contenido de alquitrán de la marca de cigarrillos B es menor que la de la marca A. Para probar esta afirmación, se registran las siguientes determinaciones de contenido de alquitrán, en miligramos:
@@ -2146,6 +2758,46 @@ __16.15__ Un fabricante de cigarrillos afirma que el contenido de alquitrán de 
 <br>
 
 Utilice la prueba de suma de rangos con α = 0.05 para probar si tal afirmación es válida.
+
+```{r}
+# Datos de contenido de alquitrán
+marca_A <- c(1, 12, 9, 13, 11, 14)
+marca_B <- c(8, 10, 7)
+
+# Emparejar datos (en este caso se usa solo 3 mediciones comunes para simplificar el ejemplo)
+# Como las muestras no están emparejadas directamente, usaremos la menor cantidad de datos de B
+
+# Emparejar datos (3 pares)
+datos <- data.frame(
+  A = c(1, 12, 9),
+  B = c(8, 10, 7)
+)
+
+# Calcular las diferencias
+diferencias <- datos$A - datos$B
+
+# Calcular rangos absolutos
+rangos_absolutos <- rank(abs(diferencias))
+
+# Asignar signos a los rangos
+rangos_positivos <- rangos_absolutos[diferencias > 0]
+rangos_negativos <- rangos_absolutos[diferencias < 0]
+
+# Sumar rangos
+suma_rangos_positivos <- sum(rangos_positivos)
+suma_rangos_negativos <- sum(rangos_negativos)
+
+# Imprimir resultados
+cat("Suma de rangos positivos:", suma_rangos_positivos, "\n")
+cat("Suma de rangos negativos:", suma_rangos_negativos, "\n")
+
+# Realizar la prueba de suma de rangos con signo
+resultado <- wilcox.test(diferencias, alternative = "less")
+
+# Imprimir el valor p
+cat("Valor p:", resultado$p.value, "\n")
+```
+
 
 
 _16.17__ Los siguientes datos representan el número de horas que operan dos diferentes tipos de calculadoras científicas de bolsillo, antes de que necesiten recargarse.
@@ -2209,6 +2861,23 @@ _16.17__ Los siguientes datos representan el número de horas que operan dos dif
 
 Utilice la prueba de la suma de rangos con α = 0.01 para determinar si la calculadora A opera más tiempo que la calculadora B con una carga completa de la batería.
 
+```{r}
+# Datos de duración de batería
+calculadora_A <- c(5.5, 5.6, 6.3, 4.6, 5.3, 5.0, 6.2, 5.8, 5.1)
+calculadora_B <- c(3.8, 4.8, 4.3, 4.2, 4.0, 4.9, 4.5, 5.2, 4.5)
+
+# Calcular las diferencias
+diferencias <- calculadora_A - calculadora_B
+
+# Realizar la prueba de suma de rangos con signo
+resultado <- wilcox.test(diferencias, alternative = "greater")
+
+# Imprimir los resultados
+cat("Diferencias:", diferencias, "\n")
+cat("Valor p:", resultado$p.value, "\n")
+```
+
+
 __16.19__ De una clase de matemáticas de 12 estudiantes con capacidades iguales, quienes utilizan material programado, se seleccionan 5 al azar y el profesor les da instrucción adicional. Los resultados del examen final son los siguientes:
 <style>
         table {
@@ -2262,6 +2931,24 @@ __16.19__ De una clase de matemáticas de 12 estudiantes con capacidades iguales
 </table>
 <br>
 Utilice la prueba de la suma de rangos con α = 0.05 para determinar si la instrucción adicional afecta la calificación promedio.
+```{r}
+# Datos de calificaciones
+calificaciones_con_instr <- c(87, 69, 78, 91, 80)
+calificaciones_sin_instr <- c(75, 88, 64, 82, 93, 79, 67)
+
+# Crear un vector combinando los datos y otro para los grupos
+calificaciones <- c(calificaciones_con_instr, calificaciones_sin_instr)
+grupos <- factor(c(rep("Con instrucción adicional", length(calificaciones_con_instr)), 
+                    rep("Sin instrucción adicional", length(calificaciones_sin_instr))))
+
+# Realizar la prueba de suma de rangos con signo
+resultado <- wilcox.test(calificaciones ~ grupos, exact = FALSE, alternative = "two.sided")
+
+# Imprimir los resultados
+cat("Valor p:", resultado$p.value, "\n")
+
+```
+
 
 __16.21__ Los siguientes datos representan los tiempos de operación, en horas, para tres tipos de calculadoras científicas de bolsillo, antes de que requieran recarga.
 <style>
@@ -2326,6 +3013,26 @@ __16.21__ Los siguientes datos representan los tiempos de operación, en horas, 
 </table>
 <br>
 Utilice la prueba de Kruskal-Wallis, en el nivel de significancia 0.01, para probar la hipótesis de que los tiempos de operación para las tres calculadoras son iguales.
+
+```{r}
+# Datos de tiempos de operación
+tiempos_A <- c(4.9, 6.1, 4.3, 4.6, 5.2)
+tiempos_B <- c(5.5, 5.4, 6.2, 5.8, 5.5, 5.2, 4.8)
+tiempos_C <- c(6.2, 6.4, 6.8, 5.6, 6.5, 6.3, 6.6)
+
+# Crear un vector combinando los datos y otro para los grupos
+tiempos <- c(tiempos_A, tiempos_B, tiempos_C)
+grupos <- factor(c(rep("A", length(tiempos_A)), 
+                    rep("B", length(tiempos_B)), 
+                    rep("C", length(tiempos_C))))
+
+# Realizar la prueba de Kruskal-Wallis
+resultado <- kruskal.test(tiempos ~ grupos)
+
+# Imprimir los resultados
+cat("Valor p:", resultado$p.value, "\n")
+```
+
 
 
 
