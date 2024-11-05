@@ -1,0 +1,46 @@
+Ingresar el numero de elementos en la mochila: 4
+Elemento (1) de la mochila
+Valor: 10
+Peso: 4
+
+Elemento (2) de la mochila
+Valor: 40
+Peso: 3
+
+Elemento (3) de la mochila
+Valor: 30
+Peso: 5
+
+Elemento (4) de la mochila
+Valor: 20
+Peso: 2
+
+----------------------------------------------------------------
+Verificando que se ha ordenado de mayor a menor segun el indice
+----------------------------------------------------------------
+Elemento (1) de la mochila
+Indice: 13.3333
+Peso: 3
+Valor: 40
+
+Elemento (2) de la mochila
+Indice: 10
+Peso: 2
+Valor: 20
+
+Elemento (3) de la mochila
+Indice: 6
+Peso: 5
+Valor: 30
+
+Elemento (4) de la mochila
+Indice: 2.5
+Peso: 4
+Valor: 10
+
+
+Peso maximo de la mochila:
+8
+
+El valor maximo de la mochila es: 78
+Numero de iteraciones: 9

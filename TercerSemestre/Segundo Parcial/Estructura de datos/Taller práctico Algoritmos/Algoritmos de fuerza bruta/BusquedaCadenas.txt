@@ -1,0 +1,3 @@
+Patr├│n encontrado en el ├¡ndice 8
+Patr├│n encontrado en el ├¡ndice 47
+Numero de iteraciones realizadas: 62
