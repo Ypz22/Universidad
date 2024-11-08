@@ -1,0 +1,29 @@
+div{
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    
+}
+
+img{
+    width: 20px;
+    height: 20px;
+}
+
+.perfil{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+footer{
+    background-color: aqua;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 5px;
+}
+
+li{
+    text-align: left;
+}
