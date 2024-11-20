@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tablas</title>
+    <!-- <link rel="stylesheet" href="css/style.css">
+-->
+    <link rel="stylesheet" href="css/styleTable.css">
+</head>
+<body>
+    <header>Tablas</header>
+    <section>
+        <p>Uso de las etiquetas <em>table</em> para el <i>manejo</i> de envio o recibo de informacion</p>
+        <article>
+            <table frame="void" rules ="rows"  class="tableStyle" border="2px" cellpadding = "10px" cellspacing = "0">
+                <caption align="top">Listado de Personas</caption>
+                <!--
+                <colgroup>
+                    <col>
+                    <col style="width: 500; background-color: blueviolet;"> </col>
+                </colgroup>
+                -->
+                <thead>
+                    <tr>
+                        <th align="center" width="300px" >Nombre</th>
+                        <th width="300px" align="center">Apellidos</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Mateo Garcia Developer</td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Andres</td>
+                        <td>Alvares</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Jefferson</td>
+                        <td>Yepez</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Sebas</td>
+                        <td>Parra</td>
+                        <td>20</td>
+                    </tr>
+                </tbody>
+            </table>
+            <form>
+                <label>Nombre: </label><input type="text" id="nombre" placeholder="Nombre"><br>
+                <label>Apellido: </label><input type="text" id="apellido" placeholder="Apellido"><br>
+                <label>Contrasena: </label><input type="password" id="password" placeholder="Contrasena">
+                <br>
+                <label>Tipo de persona: </label>
+                <select id="cboTipo">
+                    <option>Estudiante</option>
+                    <option>Docente</option>
+                    <option>Administrativo</option>
+                </select>
+                <input type="submit" value="Enviar">
+            </form>
+        </article>
+    </section>
+</body>
+</html>

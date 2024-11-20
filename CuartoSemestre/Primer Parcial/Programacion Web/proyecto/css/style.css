@@ -63,6 +63,14 @@ nav{
     margin-bottom: 20px;
 }
 
+.table{
+    float: right;
+    font-size: 20px;
+    text-decoration: none;
+    padding-right: 15px;
+    padding-top: 8px;
+}
+
 aside{
     float: right;
     height: 300px;
@@ -114,3 +122,16 @@ div h3{
     display: flex;
 }
 
+.tableStyle{
+    border-style: double;
+    border-color: #fff;
+}
+
+th{
+    background-color: #f3f;
+    border: 2px solid #000;  
+}
+
+td{
+    background-color: #bbb;
+}
