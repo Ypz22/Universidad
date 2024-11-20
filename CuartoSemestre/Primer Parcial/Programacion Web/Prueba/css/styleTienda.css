@@ -19,7 +19,8 @@ h1{
 nav{
     text-align: center;
     margin: 0;
-    background: #0f0
+    background: #0f0;
+    padding: 15px 20px;
 }
 
 a{
@@ -128,12 +129,6 @@ caption{
     height: 150px;
 }
 
-.asistente textarea{
-    display: block;
-    padding: 10px;
-    width: 180px;
-    margin-left: 50px;
-}
 
 .asistente button{
     margin-bottom: 15px;
@@ -143,6 +138,7 @@ caption{
     background-color: #0f0;
     width: 250px;
     margin: auto;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
