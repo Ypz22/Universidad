@@ -9,7 +9,7 @@
     margin-top: 40px;
     height: 700px;
     width: 500px;
-    border: 2px solid #000;
+    box-shadow: 0 0 10px #000;
 }
 
 .container_img{
@@ -129,5 +129,15 @@ h3{
 .blanco{
     border: 1px solid white;
     background-color: white;
+}
+
+body:has(.title:hover){
+    background-color: black;
+}
+
+.container:has(.title:hover){
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.3);
 }
 
