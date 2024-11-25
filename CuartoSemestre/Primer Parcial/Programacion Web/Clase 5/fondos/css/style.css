@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+}
+
+body{
+    box-sizing: border-box;
+    background-color: white;
+}
+
+header{
+    background-color: rgb(200, 0, 255);
+}
+
+.seccion1{
+    height: 450px;
+    background-color: #000;
+    background-image: url(../img/Angular_full_color_logo.svg.png) ;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.seccion2{
+    height: 400px;
+    background-image: url(../img/bc.png);
+
+}
+
+.seccion3{
+    height: 500px;
+    background-image: url(../img/bcangular.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.seccion4{
+    height: 1000px;
+}   
