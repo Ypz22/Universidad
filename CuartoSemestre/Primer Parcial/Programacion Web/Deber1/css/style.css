@@ -141,3 +141,6 @@ body:has(.title:hover){
     box-shadow: 0 0 1rem rgba(255, 255, 255, 0.3);
 }
 
+.container:has(.title:hover) img{
+    transform: scale(1.2);
+}
