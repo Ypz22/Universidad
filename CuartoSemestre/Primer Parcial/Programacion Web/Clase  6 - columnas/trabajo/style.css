@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: 100px;
+    background-color: #0bf;
+}
+
+h1{
+    position: relative;
+    top:35%;
+    left: 8%;
+    color: #fff;
+    font-size: 30px;
+}
+
+nav{
+    height: 40px;
+    background-color: #0df;
+    padding-top: 20px;
+}
+
+section{
+    background-image: url(img/abstract-watercolor-texture-wallpaper-background-free-vector.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+}
+
+aside{
+    background-color: #fff;
+    position: absolute;
+    left: 65%;
+    top: 30%;
+    padding: 20px;
+    width: 200px;
+    border-radius: 20px;
+}
+
+
+a{
+    text-decoration: none;
+    margin-left:  5%;
+    color: #000;
+}
+
+.article1{
+    position: relative;
+    top: 50px;
+    left: 10%;
+    width: 45%;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.fecha{
+    background-color: #06f;
+    position: absolute;
+    height: 80px;
+    width: 80px; 
+    left: -70px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+
+.number{
+    font-size: 30px;
+}
+
+img{
+    height: 150px;
+}
+

@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100%;
+}
+
+span{
+    width: 30px;
+    height: 30px;
+    border: 1px solid brown;
+    display: inline-block;
+}
+
+.section1{
+    border: 1px solid red;
+    height: 2000px;
+    position: relative;
+    top: 100px;
+}
+
+.article1{
+    border: 1px solid blueviolet;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
+.article2{
+    border: 1px solid greenyellow;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.article3{
+    border: 1px solid salmon;
+    height: 100px;
+    width: 100px;
+}
+
+.article4{
+    border: 1px solid turquoise;
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+.container{
+    transform-style: preserve-3d;
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(10deg);
+    border: 5px solid hotpink;
+}
