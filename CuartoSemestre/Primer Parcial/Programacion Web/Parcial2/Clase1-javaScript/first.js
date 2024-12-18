@@ -38,7 +38,7 @@ let objecto = {
     edad: 30,
     altura: 1.8
 }
-console.log(objecto);
+console.log(objecto.altura);
 
 //tipo de dato typeof
 
@@ -231,3 +231,5 @@ console.log(parseInt("abc")); //no hay valor para convertir
 console.log(Number("42px")); //No se puede convertir toda la cadeba 
 console.log(Number(3.1415)); //convierte el numero en flotante
 console.log(Number("abc")); //no hay valor para convertir en la cadena
+
+
