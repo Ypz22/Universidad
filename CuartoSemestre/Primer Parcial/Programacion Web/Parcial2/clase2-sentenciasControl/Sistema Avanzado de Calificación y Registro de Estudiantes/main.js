@@ -95,7 +95,7 @@ let estudianteMayor = {
 
 let estudianteMenor = {
     nombre: "",
-    promedio:0
+    promedio: 20
 } 
 
 let estudiantes = [estudiante1,estudiante2,estudiante3,estudiante4,estudiante5,estudiante6,estudiante7,estudiante8,estudiante9,estudiante10];
@@ -110,6 +110,7 @@ for(let estudiante of estudiantes){
 for(let estudiante of estudiantes){
     let maximo = estudiante.notas.reduce((acumulador,num) => (num > acumulador ? num: acumulador), estudiante.notas[0]);
     estudiante.maximo = maximo;
+
     let minimo = estudiante.notas.reduce((acumulador,num) => (num < acumulador ? num: acumulador), estudiante.notas[0]);
     estudiante.minimo = minimo;
 }
@@ -140,15 +141,13 @@ for(let estudiante of estudiantes){
 }
 
 for(let estudiante1 of estudiantes){
-    for(let estudiante2 of estudiantes){
-        if(estudiante1.maximo > estudiante2.maximo){
-            estudianteMayor.nombre = estudiante1.nombre;
-            estudianteMayor.promedio = estudiante1.promedio;
-        }
-        if(estudiante1.minimo < estudiante2.minimo){
-            estudianteMenor.nombre = estudiante1;
-            estudianteMenor.promedio = estudiante1.promedio;
-        }
+    if(estudiante1.promedio > estudianteMayor.promedio){
+        estudianteMayor.nombre = estudiante1.nombre;
+        estudianteMayor.promedio = estudiante1.promedio;
+    }
+    if(estudiante1.minimo < estudianteMenor.promedio){
+        estudianteMenor.nombre = estudiante1.nombre;
+        estudianteMenor.promedio = estudiante1.promedio;
     }
 }
 
