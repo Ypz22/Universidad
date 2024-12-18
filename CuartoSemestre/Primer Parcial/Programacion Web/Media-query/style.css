@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+}
+
+header{
+    background-color: cyan;
+    padding: 2%;
+}
+
+.seccion1 img{
+    width: 50%;
+}
+
+.seccion2 img{
+    width: 30%;
+}
+
+
+
+nav{
+    display: flex;
+}
+
+section{
+    display: flex;
+    width: 70%;
+    height: 50%;
+}
+
+aside{
+    background-color: black;
+    color: white;
+    padding: 2%;
+}
+
+aside ul{
+    display: block;
+}
+
+@media(max-width:600px){
+    section{
+        display: block;
+    }
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background-color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+
+article{
+    padding: 4%;
+}
