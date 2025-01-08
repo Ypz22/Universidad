@@ -18,30 +18,33 @@ const inventario = {
   producto4,
 
   venderProducto: function (nombreProducto, cantidad) {
-    for (let producto in this) {
-      if (
-        this[producto].nombre === nombreProducto &&
-        this[producto].cantidad >= cantidad
-      ) {
-        this[producto].cantidad -= cantidad;
-        console.log(
-          `La venta de ${cantidad} ${nombreProducto} ha sido exitosa!`
-        );
-      }
+    for (const key in this) {
+        const producto = this[key];
+        if (producto && producto.nombre === nombreProducto) {
+            if (producto.cantidad >= cantidad) {
+                producto.cantidad -= cantidad;
+                console.log(`La venta de ${cantidad} ${nombreProducto} ha sido exitosa!`);
+            } else {
+                console.log(`No hay suficiente stock de ${nombreProducto}`);
+            }
+            return;
+        }
     }
-  },
+    console.log(`El producto ${nombreProducto} no existe en el inventario.`);
+},
   descuentoProducto: function (descuento) {
-    for (let producto in this) {
-      if (this[producto].precio > 0 && this[producto].precio < 100) {
-        this[producto].precio = this[producto].precio * (descuento / 100);
+    for (let clave in this) {
+        let producto = this[clave];
+      if (producto.precio > 0 && producto.precio < 100) {
+        producto.precio = producto.precio * (descuento / 100);
       }
     }
   },
 };
 
 Object.seal(inventario);
-
-inventario.venderProducto("Laptop", 5);
+console.log(inventario);
+inventario.venderProducto("Lapto", 11);
 inventario.venderProducto("Mouse", 10);
 inventario.venderProducto("Monitor", 2);
 inventario.venderProducto("Teclado", 5);
