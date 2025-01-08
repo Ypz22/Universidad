@@ -32,7 +32,9 @@ const inventario = {
   },
   descuentoProducto: function (descuento) {
     for (let producto in this) {
-      this[producto].precio = this[producto].precio * (descuento / 100);
+      if (this[producto].precio > 0 && this[producto].precio < 100) {
+        this[producto].precio = this[producto].precio * (descuento / 100);
+      }
     }
   },
 };
