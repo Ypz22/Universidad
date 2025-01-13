@@ -121,6 +121,8 @@ inventario.agregarProductos("laptop", 500, 20, "tecnologia");
 inventario.agregarProductos("celular", 200, 30, "celulares");
 inventario.agregarProductos("manzanas", 6, 30, "Comida");
 inventario.agregarProductos("cargador", 400, 30, "tecnologia");
+inventario.agregarProductos("chancho", 5, 100, "tecnologia");
+inventario.agregarProductos("peras", 2, 200, "tecnologia");
 
 //Uso de get y set
 console.log(inventario.productos[0].obtenerNombre);
@@ -143,6 +145,8 @@ inventario.aplicarDescuento('tecnologia', 10);
 inventario.realizarVenta('celular', 10);
 inventario.realizarVenta('laptop', 15);
 inventario.realizarVenta('celular', 10);
+inventario.realizarVenta('chancho', 10);
+
 
 //Reporte Final
 inventario.reporteDetallado();
