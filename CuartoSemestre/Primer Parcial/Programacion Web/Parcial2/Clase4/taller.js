@@ -38,7 +38,7 @@ const inventario = {
       if (producto.precio > 0 && producto.precio < 100) {
         producto.precio = producto.precio * (descuento / 100);
       }
-    }
+    };
   },
 };
 
