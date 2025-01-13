@@ -33,8 +33,9 @@ class Venta {
                 let productoVendido = productosVendido[0];
                 if (productoVendido) {
                     productoVendido.cantidad += cantidad;
+                    productoVendido.fecha = new Date();
                 } else {
-                    this.#ventas.push({ "nombre": producto.nombre, "cantidad": cantidad, "Fecha": new Date() });
+                    this.#ventas.push({ "nombre": producto.nombre, "cantidad": cantidad, "fecha": new Date() });
                 }
                 this.ingresosGenerados += producto.precio;
                 console.log(`Venta del producto ${producto.nombre} se realizo con exito!!`);
