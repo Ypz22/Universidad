@@ -14,6 +14,9 @@ class Producto {
         this.nombre = nombre;
     }
 
+    imprimirProducto() {
+        console.log(`Producto: ${this.nombre}, cantidad: ${this.cantidad}, precio: ${this.precio}, categoria: ${this.categoria}`);
+    }
 }
 
 class Venta {
@@ -98,11 +101,11 @@ class Inventario extends Venta {
     }
 
     reporteDetallado() {
-        console.log('Inventario actual: \n');
+        console.log('\nInventario actual: \n');
         for (let producto of this.productos) {
-            console.log(producto);
+            producto.imprimirProducto();
         }
-        console.log('Ventas Realizadas:');
+        console.log('\nVentas Realizadas:');
         console.log(this.obtenerVentas);
         console.log(`Ingresos Generados: ${this.ingresosGenerados}`);
         this.productoMasVendido();
