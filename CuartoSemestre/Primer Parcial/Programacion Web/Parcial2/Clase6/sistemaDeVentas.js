@@ -50,6 +50,7 @@ class Orden {
     constructor() {
         this._idOrden = ++Orden.contadorOrdenes;
         this._productos = [];
+        this.totalVentaSinImpuesto = 0;
         // this._contadorProductosAgregados = 0;
     }
 
@@ -69,14 +70,11 @@ class Orden {
         }
     }
 
-    agregarProducto(producto, cantidad) {
+    agregarProducto(producto) {
         if (this._productos.length < Orden.MAX_PRODUCTOS) {
-            if (producto._cantidad - cantidad >= 0) {
-                if (producto._categoria === 'tecnologia') {
-                    producto._precio -= producto._precio * 0.1;
-                }
+            if (producto._cantidad >= 0) {
                 this._productos.push(producto);
-                producto._cantidad -= cantidad;
+                producto._cantidad--;
                 // this._productos[this._contadorProductosAgregados++] = producto;
             } else {
                 console.log(`No hay suficiente stock de ${producto._nombre}\n`);
@@ -89,6 +87,7 @@ class Orden {
     calcularTotal() {
         let totalVenta = 0;
         for (let producto of this._productos) {
+            this.totalVentaSinImpuesto += producto._precio;
             totalVenta += this.calcularImpuesto(producto);
         }
         return totalVenta;
@@ -99,18 +98,26 @@ class Orden {
         for (let producto of this._productos) {
             productosOrden += '\n{' + producto.toString() + '}\n';
         }
+        console.log(`-------------- Orden: ${this.idOrden} --------------`);
 
-        console.log(`Orden: ${this._idOrden}, Total: $${this.calcularTotal()}, Productos: \n${productosOrden}`);
+        console.log(`Total con ipuestos: $${this.calcularTotal()}\n\nTotal sin impuestos: $${this.totalVentaSinImpuesto}\n\nProductos:\n${productosOrden}`);
     }
 
     calcularImpuesto(producto) {
-        return producto.Precio + producto.Precio * 15 / 100;
+        return producto.Precio + producto.Precio * 16 / 100;
+    }
+
+    aplicarDescuento(categoria, porcentaje) {
+        let listaCategoria = this._productos.filter(producto => producto._categoria === categoria);
+        for (let producto of listaCategoria) {
+            producto._precio -= producto._precio * (porcentaje / 100);
+        }
     }
 }
 
 
 let producto1 = new Producto('Pantalon', 200, 'ropa', 10);
-let producto2 = new Producto('Vestido', 300, 'ropa', 5);
+let producto2 = new Producto('Vestido', 300, 'ropa', 2);
 let producto3 = new Producto('Camisa', 100, 'ropa', 10);
 let producto4 = new Producto('Laptop', 500, 'tecnologia', 10);
 let producto5 = new Producto('Celular', 200, 'tecnologia', 10);
@@ -120,13 +127,37 @@ console.log(producto1.toString());
 console.log(producto2.toString());
 console.log('\n');
 
+let orden1 = new Orden();
+orden1.agregarProducto(producto7);
+orden1.agregarProducto(producto5);
+orden1.agregarProducto(producto3);
+orden1.agregarProducto(producto2);
+orden1.agregarProducto(producto4);
+orden1.agregarProducto(producto6);
+orden1.aplicarDescuento('comida', 10);
+orden1.mostrarOrden();
+
 let orden2 = new Orden();
-orden2.agregarProducto(producto1, 2);
-orden2.agregarProducto(producto2, 3);
-orden2.agregarProducto(producto3, 5);
-orden2.agregarProducto(producto3, 6);
+orden2.agregarProducto(producto1);
+orden2.agregarProducto(producto2);
+orden2.agregarProducto(producto3);
+orden2.agregarProducto(producto3);
+orden2.agregarProducto(producto4);
+orden2.aplicarDescuento('ropa', 10);
 orden2.OrdernarDescendente();
 orden2.mostrarOrden();
+
+let orden3 = new Orden();
+orden3.agregarProducto(producto2);
+orden3.agregarProducto(producto2);
+orden3.agregarProducto(producto2);
+orden3.agregarProducto(producto4);
+orden3.agregarProducto(producto6);
+orden3.agregarProducto(producto7);
+orden3.aplicarDescuento('tecnologia', 10);
+orden3.mostrarOrden();
+
+
 
 
 
