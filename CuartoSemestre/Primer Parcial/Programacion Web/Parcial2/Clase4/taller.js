@@ -19,24 +19,24 @@ const inventario = {
 
   venderProducto: function (nombreProducto, cantidad) {
     for (const key in this) {
-        const producto = this[key];
-        if (producto && producto.nombre === nombreProducto) {
-            if (producto.cantidad >= cantidad) {
-                producto.cantidad -= cantidad;
-                console.log(`La venta de ${cantidad} ${nombreProducto} ha sido exitosa!`);
-            } else {
-                console.log(`No hay suficiente stock de ${nombreProducto}`);
-            }
-            return;
+      const producto = this[key];
+      if (producto && producto.nombre === nombreProducto) {
+        if (producto.cantidad >= cantidad) {
+          producto.cantidad -= cantidad;
+          console.log(`La venta de ${cantidad} ${nombreProducto} ha sido exitosa!`);
+        } else {
+          console.log(`No hay suficiente stock de ${nombreProducto}`);
         }
+        return;
+      }
     }
     console.log(`El producto ${nombreProducto} no existe en el inventario.`);
-},
+  },
   descuentoProducto: function (descuento) {
     for (let clave in this) {
-        let producto = this[clave];
+      let producto = this[clave];
       if (producto.precio > 0 && producto.precio < 100) {
-        producto.precio = producto.precio * (descuento / 100);
+        producto.precio -= producto.precio * (descuento / 100);
       }
     };
   },

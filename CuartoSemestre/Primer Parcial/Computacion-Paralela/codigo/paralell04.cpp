@@ -20,3 +20,5 @@ int main()
     printf("Producto total: %d\n", producto);
     return 0;
 }
+
+// algoritmo de la cuadratura de Gauss secuencial,recursivo y paralelo

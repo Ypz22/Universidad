@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de DOM en JS</title>
+</head>
+
+<body>
+    <h1 id="titulo">Manejo del DOM en JS</h1>
+    <img id="img" src="./dog-img.jpg" alt="dog" width="200px" height="200px"> <br>
+    <button type="button" onclick="mostrar()">Mostrar</button>
+    <script>
+        let contador = 0;
+        let imgs = ['./dog-img.jpg', './flower.jpg', './leon.jpeg', './paisale.jpeg', './flower2.jpg'];
+        // document.write('Saludos write!');
+        function mostrar() {
+            // document.write('Adios');
+            // document.getElementById('titulo').innerHTML = 'Nuevo titulo'
+            // document.getElementById('img').src = './flower.jpg';
+            // document.getElementById('titulo').style.color = 'blue'
+            setInterval(() => {
+                contador++;
+                if (contador === 5) {
+                    contador = 0;
+                }
+                document.getElementById('img').src = imgs[contador];
+            }, 2000);
+        }
+
+        //Crear una funcion que permita el cambio 
+    </script>
+</body>
+
+</html>
