@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="entrar()">
+    <h1 id="titulo">Evento onload()</h1>
+    <br>
+    <div id="mostrar"></div>
+    <script>
+        function entrar() {
+            alert('Entrando a la pagina web');
+        }
+        //Manejo cookies
+        //Son archivos que guardan informacion cuando navegamos por la web
+        //validar un formato (llave, valor );
+        let text = '';
+        if (navigator.cookieEnabled) {
+            text = 'Cookies estan habilitadas';
+        } else {
+            text = 'Cookies estan inhabilitadas';
+        }
+        document.getElementById('mostrar').innerHTML = text;
+    </script>
+</body>
+
+</html>
