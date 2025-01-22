@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario</title>
+    <style>
+        #formulario {
+            display: none;
+        }
+    </style>
+</head>
+
+<body id="background">
+    <h1 id="titulo">titulo de la pagina</h1>
+    <button id="btn-config">Configuración</button>
+    <form id="formulario">
+        Titulo: <input type="text" id="titulo-input">
+        Color: <input type="color" id="color">
+        Comentarios: <input type="checkbox" id="comentarios">
+    </form>
+    <h2>Lista de Elementos</h2>
+    <ul id="itemList">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+    </ul>
+    <script>
+        const btnConfig = document.getElementById('btn-config');
+        const formulario = document.getElementById('formulario');
+        const tituloInput = document.getElementById('titulo-input');
+        const titulo = document.getElementById('titulo');
+        const color = document.getElementById('color');
+        const comentarios = document.getElementById()
+
+        btnConfig.addEventListener('click', () => {
+            if (formulario.style.display === 'none') {
+                formulario.style.display = 'block';
+            } else {
+                formulario.style.display = 'none';
+            }
+        });
+
+        tituloInput.addEventListener("input", (event) => {
+            titulo.textContent = tituloInput.value;
+        });
+
+        color.addEventListener("input", () => {
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>
