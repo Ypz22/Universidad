@@ -1,0 +1,12 @@
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/bin/Debug/net9.0/CapaEntidad.deps.json
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/bin/Debug/net9.0/CapaEntidad.dll
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/bin/Debug/net9.0/CapaEntidad.pdb
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/CapaEntidad.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/CapaEntidad.AssemblyInfoInputs.cache
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/CapaEntidad.AssemblyInfo.cs
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/CapaEntidad.csproj.CoreCompileInputs.cache
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/CapaEntidad.sourcelink.json
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/CapaEntidad.dll
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/refint/CapaEntidad.dll
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/CapaEntidad.pdb
+/Users/jeffersonyepez/Universidad/CuartoSemestre/Primer Parcial/Programacion Web/TercerParcial/MiAplicacionMVC/CapaEntidad/obj/Debug/net9.0/ref/CapaEntidad.dll

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Titulo de la pagina</h1>
+    <button>Configuracion</button>
+    <br>
+    <form class="hidden">
+        <input type="text" placeholder="Nuevo titulo" onchange="update()"><br>
+        <input type="color" onchange="update()"><br>
+        <input type="checkbox" onchange="update()"><br>
+        <textarea id="coments" onchange="update()"></textarea>
+        <br>
+    </form>
+    <br>
+    <ul>
+        <li class="item">Elemento 1</li>
+        <li class="item">Elemento 2</li>
+        <li class="item">Elemento 3</li>
+    </ul>
+
+
+    <script>
+        const button = document.querySelector('button');
+        const form = document.querySelector('form');
+        const input = document.querySelector('input');
+        const color = document.querySelector('input[type="color"]');
+        const checkbox = document.querySelector('input[type="checkbox"]');
+        const ul = document.querySelector('ul');
+        const items = document.querySelectorAll('.item');
+        const textarea = document.querySelector('textarea');
+        const save = document.querySelector('#save');
+
+        button.addEventListener('click', () => {
+            form.classList.toggle('hidden');
+        });
+
+        function update() {
+            const title = input.value;
+            const colorValue = color.value;
+            const checked = checkbox.checked;
+
+            document.querySelector('h1').innerText = title;
+            document.body.style.backgroundColor = colorValue;
+            if (checked) {
+                textarea.style.display = 'none';
+            } else {
+                textarea.style.display = 'block';
+            }
+        }
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                item.remove();
+            });
+        });
+
+    </script>
+</body>
+
+</html>

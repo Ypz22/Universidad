@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de los eventos con DOM JS</title>
+</head>
+
+<body>
+    <h1 id="titulo">Evento OnClick()</h1>
+    <!-- onclick="this.innerHTML = 'Nuevo Titulo'" -->
+    <script>
+        // function cambiarTexto(titulo) {
+        //     titulo.innerHTML = 'Nuevo titulo';
+        // }
+        document.getElementById('titulo').onclick = cambiarTexto;
+        function cambiarTexto(params) {
+            document.getElementById('titulo').innerHTML = 'otro titulo llamada';
+        }
+    </script>
+</body>
+
+</html>

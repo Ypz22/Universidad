@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="titulo">Evento addlistener() tipo flecha</h1>
+    <br>
+    <form action="" id="formulario">
+        Nombre: <input type="text" id="nombre">
+        <br>
+        Apellido: <input type="text" id="apellido">
+        <br>
+    </form>
+    <script>
+        let formulario = document.getElementById('formulario');
+
+        formulario.addEventListener('click', (evento) => {
+            // let component = evento.target
+            // component.style.background = 'yellow';
+            evento.target.style.background = 'yellow';
+        }, true);
+        formulario.addEventListener('blur', (evento) => {
+            let component = evento.target
+            component.style.background = ''; //es como poner white
+        }, true);
+        formulario.addEventListener('click', (evento) => {
+            let component = evento.target
+            component.style.background = 'yellow';
+        }, true);
+        formulario.addEventListener('blur', (evento) => {
+            let component = evento.target
+            component.style.background = 'white';
+        }, true);
+    </script>
+</body>
+
+</html>

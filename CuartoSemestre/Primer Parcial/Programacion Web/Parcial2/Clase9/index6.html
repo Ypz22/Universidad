@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="titulo">Evento addlistener()</h1>
+    <br>
+    Nombre: <input type="text" id="nombre">
+    <br>
+    Apellido: <input type="text" id="apellido">
+    <script>
+        document.getElementById('nombre').addEventListener('focus', cambiar);
+        document.getElementById('nombre').addEventListener('blur', regresar);
+        document.getElementById('apellido').addEventListener('focus', cambiar);
+        document.getElementById('apellido').addEventListener('blur', regresar);
+        function cambiar(evento) {
+            let component = evento.target
+            component.style.background = 'yellow';
+        }
+        function regresar(evento) {
+            let component = evento.target
+            component.style.background = 'white';
+        }
+    </script>
+</body>
+
+</html>
