@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triángulo de Estrellas</title>
+</head>
+
+<body>
+    <form action="javascript:void(0)">
+        <input type="text" placeholder="Ingrese su nombre">
+        <input id="numero" type="text" placeholder="Ingrese un número entero">
+        <button type="button" onclick="triangulo()">Mostrar Estrellas</button>
+        <p id="estrella"></p>
+    </form>
+
+    <script>
+        function triangulo() {
+            const n = parseInt(document.querySelector("#numero").value);
+            let resultado = "";
+
+            if (isNaN(n) || n <= 0) {
+                resultado = "Por favor ingrese un número entero válido.";
+            } else {
+                for (let i = 1; i <= n; i++) {
+                    resultado += "*".repeat(i) + "<br>";
+                }
+            }
+
+            document.getElementById("estrella").innerHTML = resultado;
+        }
+    </script>
+</body>
+
+</html>
